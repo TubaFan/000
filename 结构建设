@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanyunqi's Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="language-switch">
+            <button onclick="switchLanguage('en')">English</button>
+            <button onclick="switchLanguage('cn')">中文</button>
+        </div>
+        <h1 id="site-title">Fanyunqi's Personal Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" id="home-link">Home</a></li>
+            <li><a href="#" id="instruments-link">Instruments</a></li>
+            <li><a href="#" id="contact-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home">
+            <h2 id="home-title">Welcome to My Personal Website</h2>
+            <p id="home-description">Here you'll find information about musical instruments and more.</p>
+        </section>
+
+        <section id="instruments">
+            <h2 id="instruments-title">Instruments</h2>
+            <div class="instrument-category">
+                <h3 id="category1-title">Woodwinds</h3>
+                <img src="woodwind.jpg" alt="Woodwind Instruments" class="instrument-img">
+                <p id="category1-description">Description of woodwind instruments.</p>
+            </div>
+
+            <div class="instrument-category">
+                <h3 id="category2-title">Brass</h3>
+                <img src="brass.jpg" alt="Brass Instruments" class="instrument-img">
+                <p id="category2-description">Description of brass instruments.</p>
+            </div>
+
+            <div class="instrument-category">
+                <h3 id="category3-title">Strings</h3>
+                <img src="strings.jpg" alt="String Instruments" class="instrument-img">
+                <p id="category3-description">Description of string instruments.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 id="contact-title">Contact Me</h2>
+            <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
+    </footer>
+</body>
+</html>
