@@ -1,0 +1,45 @@
+const translations = {
+    en: {
+        "site-title": "Fanyunqi's Personal Website",
+        "home-link": "Home",
+        "instruments-link": "Instruments",
+        "contact-link": "Contact",
+        "home-title": "Welcome to My Personal Website",
+        "home-description": "Here you'll find information about musical instruments and more.",
+        "instruments-title": "Instruments",
+        "category1-title": "Woodwinds",
+        "category1-description": "Description of woodwind instruments.",
+        "category2-title": "Brass",
+        "category2-description": "Description of brass instruments.",
+        "category3-title": "Strings",
+        "category3-description": "Description of string instruments.",
+        "contact-title": "Contact Me",
+        "contact-description": "Feel free to reach out to me via email: "
+    },
+    cn: {
+        "site-title": "范云祺的个人网站",
+        "home-link": "主页",
+        "instruments-link": "乐器介绍",
+        "contact-link": "联系方式",
+        "home-title": "欢迎来到我的个人网站",
+        "home-description": "在这里你可以找到关于乐器的相关信息。",
+        "instruments-title": "乐器介绍",
+        "category1-title": "木管乐器",
+        "category1-description": "木管乐器的描述。",
+        "category2-title": "铜管乐器",
+        "category2-description": "铜管乐器的描述。",
+        "category3-title": "弦乐器",
+        "category3-description": "弦乐器的描述。",
+        "contact-title": "联系我",
+        "contact-description": "欢迎通过邮箱与我联系: "
+    }
+};
+
+function switchLanguage(lang) {
+    document.querySelectorAll("[id]").forEach(element => {
+        const key = element.id;
+        if (translations[lang][key]) {
+            element.innerText = translations[lang][key];
+        }
+    });
+}
