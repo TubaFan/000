@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanyunqi's Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .language-switch {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .language-switch button {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            list-style: none;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .instrument-category {
+            margin-bottom: 2rem;
+        }
+
+        .instrument-img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        const translations = {
+            en: {
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Here you'll find information about musical instruments and more.",
+                "instruments-title": "Instruments",
+                "category1-title": "Woodwinds",
+                "category1-description": "Description of woodwind instruments.",
+                "category2-title": "Brass",
+                "category2-description": "Description of brass instruments.",
+                "category3-title": "Strings",
+                "category3-description": "Description of string instruments.",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email: "
+            },
+            cn: {
+                "site-title": "范云祺的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器介绍",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "在这里你可以找到关于乐器的相关信息。",
+                "instruments-title": "乐器介绍",
+                "category1-title": "木管乐器",
+                "category1-description": "木管乐器的描述。",
+                "category2-title": "铜管乐器",
+                "category2-description": "铜管乐器的描述。",
+                "category3-title": "弦乐器",
+                "category3-description": "弦乐器的描述。",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系: "
+            }
+        };
+
+        function switchLanguage(lang) {
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="language-switch">
+            <button onclick="switchLanguage('en')">English</button>
+            <button onclick="switchLanguage('cn')">中文</button>
+        </div>
+        <h1 id="site-title">Fanyunqi's Personal Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" id="home-link">Home</a></li>
+            <li><a href="#" id="instruments-link">Instruments</a></li>
+            <li><a href="#" id="contact-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home">
+            <h2 id="home-title">Welcome to My Personal Website</h2>
+            <p id="home-description">Here you'll find information about musical instruments and more.</p>
+        </section>
+
+        <section id="instruments">
+            <h2 id="instruments-title">Instruments</h2>
+            <div class="instrument-category">
+                <h3 id="category1-title">Woodwinds</h3>
+                <img src="woodwind.jpg" alt="Woodwind Instruments" class="instrument-img">
+                <p id="category1-description">Description of woodwind instruments.</p>
+            </div>
+
+            <div class="instrument-category">
+                <h3 id="category2-title">Brass</h3>
+                <img src="brass.jpg" alt="Brass Instruments" class="instrument-img">
+                <p id="category2-description">Description of brass instruments.</p>
+            </div>
+
+            <div class="instrument-category">
+                <h3 id="category3-title">Strings</h3>
+                <img src="strings.jpg" alt="String Instruments" class="instrument-img">
+                <p id="category3-description">Description of string instruments.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 id="contact-title">Contact Me</h2>
+            <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
+    </footer>
+</body>
+</html>
