@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,10 +38,11 @@
             background-color: #444;
             padding: 0;
             margin: 0;
+            list-style-type: none;
         }
 
         nav ul li {
-            list-style: none;
+            position: relative;
         }
 
         nav ul li a {
@@ -55,31 +56,37 @@
             background-color: #555;
         }
 
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            display: none;
+            min-width: 150px;
+            z-index: 1;
+        }
+
+        .dropdown a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #555;
+        }
+
+        /* Show the dropdown menu when the parent menu item is hovered */
+        nav ul li:hover .dropdown {
+            display: block;
+        }
+
         main {
             padding: 2rem;
-            min-height: calc(100vh - 120px);
+            min-height: calc(100vh - 120px); /* Ensures content does not overlap with footer */
             box-sizing: border-box;
-        }
-
-        #home {
-            background-image: url('background.jpg'); /* Add your background image here */
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .instrument-category {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .instrument-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -102,6 +109,9 @@
                 "site-title": "Yunqi Fan Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
+                "dropdown-item1": "Woodwinds",
+                "dropdown-item2": "Brass",
+                "dropdown-item3": "Strings",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
                 "home-description": "Here you'll find information about musical instruments and more.",
@@ -113,15 +123,15 @@
                 "category3-title": "Strings",
                 "category3-description": "Description of string instruments.",
                 "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email:fanyunqi236@gmail.com "
+                "contact-description": "Feel free to reach out to me via email:fantunqi236@gmail.com "
             },
             cn: {
                 "site-title": "范云麒的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器介绍",
-                "乐器介绍":"111",
-                "乐器介绍":"222",
-                "乐器介绍":"333",
+                "dropdown-item1": "木管乐器",
+                "dropdown-item2": "铜管乐器",
+                "dropdown-item3": "弦乐器",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
@@ -133,7 +143,7 @@
                 "category3-title": "弦乐器",
                 "category3-description": "弦乐器的描述。",
                 "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系:fanyunqi236@gmail.com "
+                "contact-description": "欢迎通过邮箱与我联系:fantunqi236@gmail.com "
             }
         };
 
@@ -144,14 +154,6 @@
                     element.innerText = translations[lang][key];
                 }
             });
-
-            // Adjust spacing based on language
-            const mainSection = document.querySelector('main');
-            if (lang === 'cn') {
-                mainSection.style.padding = '3rem 2rem';
-            } else {
-                mainSection.style.padding = '2rem';
-            }
         }
 
         function showSection(sectionId) {
@@ -182,7 +184,14 @@
     <nav>
         <ul>
             <li><a href="#" id="home-link" onclick="showSection('home')">Home</a></li>
-            <li><a href="#" id="instruments-link" onclick="showSection('instruments')">Instruments</a></li>
+            <li>
+                <a href="#" id="instruments-link">Instruments</a>
+                <ul class="dropdown">
+                    <li><a href="#" id="dropdown-item1" onclick="showSection('instruments')">Woodwinds</a></li>
+                    <li><a href="#" id="dropdown-item2" onclick="showSection('instruments')">Brass</a></li>
+                    <li><a href="#" id="dropdown-item3" onclick="showSection('instruments')">Strings</a></li>
+                </ul>
+            </li>
             <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
         </ul>
     </nav>
@@ -195,23 +204,7 @@
 
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
-            <div class="instrument-category">
-                <h3 id="category1-title">Woodwinds</h3>
-                <img src="woodwind.jpg" alt="Woodwind Instruments" class="instrument-img">
-                <p id="category1-description">Description of woodwind instruments.</p>
-            </div>
-
-            <div class="instrument-category">
-                <h3 id="category2-title">Brass</h3>
-                <img src="brass.jpg" alt="Brass Instruments" class="instrument-img">
-                <p id="category2-description">Description of brass instruments.</p>
-            </div>
-
-            <div class="instrument-category">
-                <h3 id="category3-title">Strings</h3>
-                <img src="strings.jpg" alt="String Instruments" class="instrument-img">
-                <p id="category3-description">Description of string instruments.</p>
-            </div>
+            <!-- Add instrument categories or descriptions here -->
         </section>
 
         <section id="contact" class="hidden">
@@ -225,3 +218,4 @@
     </footer>
 </body>
 </html>
+ 
