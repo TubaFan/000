@@ -59,35 +59,61 @@
             background-color: #555;
         }
 
+        /* Dropdown Menu Styles */
         .dropdown, .sub-dropdown {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #444;
+            background-color: #fff;
             display: none;
             min-width: 200px;
             z-index: 1;
+            border: 1px solid #ccc;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
         .dropdown a, .sub-dropdown a {
             padding: 10px;
-            color: white;
+            color: #333;
             text-decoration: none;
             display: block;
+            background-color: #fff;
+            transition: background-color 0.3s;
         }
 
         .dropdown a:hover, .sub-dropdown a:hover {
-            background-color: #555;
+            background-color: #f0f0f0;
         }
 
-        nav ul li:hover .dropdown {
+        nav ul li:hover > .dropdown {
             display: block;
         }
 
-        .dropdown li:hover .sub-dropdown {
+        .dropdown li:hover > .sub-dropdown {
             display: block;
             left: 100%;
             top: 0;
+        }
+
+        nav ul li .sub-dropdown {
+            left: 200px; /* Adjusts the position of the third-level menu */
+        }
+
+        /* Make dropdown menus visually appealing */
+        .dropdown, .sub-dropdown {
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown a, .sub-dropdown a {
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown a:last-child, .sub-dropdown a:last-child {
+            border-bottom: none;
         }
 
         main {
@@ -152,7 +178,8 @@
                             <li><a href="#" id="flute" onclick="showInstruments('woodwinds')">Flute</a></li>
                             <li><a href="#" id="clarinet" onclick="showInstruments('woodwinds')">Clarinet</a></li>
                             <li><a href="#" id="oboe" onclick="showInstruments('woodwinds')">Oboe</a></li>
-                            <li><a href="#">Brands</a>
+                            <li>
+                                <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
                                     <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
                                     <li><a href="#" onclick="filterInstruments('Buffet')">Buffet</a></li>
@@ -167,7 +194,8 @@
                             <li><a href="#" onclick="showInstruments('brass')">Trumpet</a></li>
                             <li><a href="#" onclick="showInstruments('brass')">Trombone</a></li>
                             <li><a href="#" onclick="showInstruments('brass')">Tuba</a></li>
-                            <li><a href="#">Brands</a>
+                            <li>
+                                <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
                                     <li><a href="#" onclick="filterInstruments('Bach')">Bach</a></li>
                                     <li><a href="#" onclick="filterInstruments('Conn')">Conn</a></li>
@@ -182,7 +210,8 @@
                             <li><a href="#" onclick="showInstruments('strings')">Violin</a></li>
                             <li><a href="#" onclick="showInstruments('strings')">Cello</a></li>
                             <li><a href="#" onclick="showInstruments('strings')">Bass</a></li>
-                            <li><a href="#">Brands</a>
+                            <li>
+                                <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
                                     <li><a href="#" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
                                     <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
