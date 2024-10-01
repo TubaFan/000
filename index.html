@@ -56,6 +56,39 @@
             background-color: #555;
         }
 
+        /* Dropdown Menu Styles */
+        .dropdown, .sub-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #444;
+            display: none;
+            min-width: 200px;
+            z-index: 1;
+        }
+
+        .dropdown a, .sub-dropdown a {
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover, .sub-dropdown a:hover {
+            background-color: #555;
+        }
+
+        /* Show the dropdown menu when hovering */
+        nav ul li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li:hover .sub-dropdown {
+            display: block;
+            left: 100%;
+            top: 0;
+        }
+
         main {
             padding: 2rem;
             min-height: calc(100vh - 120px);
@@ -63,24 +96,12 @@
         }
 
         #home {
-            background-image: url('0R7A8449.jpg'); /* 使用你上传的图片作为背景 */
+            background-image: url('0R7A8449.jpg');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 3rem;
             text-align: center;
-        }
-
-        .instrument-category {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .instrument-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -96,75 +117,15 @@
         .hidden {
             display: none;
         }
+
+        .filter {
+            margin-bottom: 1rem;
+        }
+
+        .filter label {
+            margin-right: 10px;
+        }
     </style>
-    <script>
-        const translations = {
-            en: {
-                "site-title": "Yunqi Fan Personal Website",
-                "home-link": "Home",
-                "instruments-link": "Instruments",
-                "dropdown-item1": "Woodwinds",
-                "dropdown-item2": "Brass",
-                "dropdown-item3": "Strings",
-                "contact-link": "Contact",
-                "home-title": "Welcome to My Personal Website",
-                "home-description": "Here you'll find information about musical instruments and more.",
-                "instruments-title": "Instruments",
-                "category1-title": "Woodwinds",
-                "category1-description": "Description of woodwind instruments.",
-                "category2-title": "Brass",
-                "category2-description": "Description of brass instruments.",
-                "category3-title": "Strings",
-                "category3-description": "Description of string instruments.",
-                "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email:fanyunqi236@gmail.com "
-            },
-            cn: {
-                "site-title": "范云麒的个人网站",
-                "home-link": "主页",
-                "instruments-link": "乐器介绍",
-                "dropdown-item1": "木管乐器",
-                "dropdown-item2": "铜管乐器",
-                "dropdown-item3": "弦乐器",
-                "contact-link": "联系方式",
-                "home-title": "欢迎来到我的个人网站",
-                "home-description": "在这里你可以找到关于乐器的相关信息。",
-                "instruments-title": "乐器介绍",
-                "category1-title": "木管乐器",
-                "category1-description": "木管乐器的描述。",
-                "category2-title": "铜管乐器",
-                "category2-description": "铜管乐器的描述。",
-                "category3-title": "弦乐器",
-                "category3-description": "弦乐器的描述。",
-                "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系:fanyunqi236@gmail.com "
-            }
-        };
-
-        function switchLanguage(lang) {
-            document.querySelectorAll("[id]").forEach(element => {
-                const key = element.id;
-                if (translations[lang][key]) {
-                    element.innerText = translations[lang][key];
-                }
-            });
-        }
-
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('main section');
-            sections.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.remove('hidden');
-                } else {
-                    section.classList.add('hidden');
-                }
-            });
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            showSection('home');
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -181,9 +142,51 @@
             <li>
                 <a href="#" id="instruments-link">Instruments</a>
                 <ul class="dropdown">
-                    <li><a href="#" id="dropdown-item1" onclick="showSection('instruments')">Woodwinds</a></li>
-                    <li><a href="#" id="dropdown-item2" onclick="showSection('instruments')">Brass</a></li>
-                    <li><a href="#" id="dropdown-item3" onclick="showSection('instruments')">Strings</a></li>
+                    <li>
+                        <a href="#" id="dropdown-woodwinds">Woodwinds</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" id="flute" onclick="filterInstruments('flute')">Flute</a></li>
+                            <li><a href="#" id="clarinet" onclick="filterInstruments('clarinet')">Clarinet</a></li>
+                            <li><a href="#" id="oboe" onclick="filterInstruments('oboe')">Oboe</a></li>
+                            <li><a href="#" id="woodwind-brands">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" id="woodwind-yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" id="woodwind-buffet" onclick="filterInstruments('Buffet')">Buffet</a></li>
+                                    <li><a href="#" id="woodwind-selmer" onclick="filterInstruments('Selmer')">Selmer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" id="dropdown-brass">Brass</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" id="trumpet" onclick="filterInstruments('trumpet')">Trumpet</a></li>
+                            <li><a href="#" id="trombone" onclick="filterInstruments('trombone')">Trombone</a></li>
+                            <li><a href="#" id="tuba" onclick="filterInstruments('tuba')">Tuba</a></li>
+                            <li><a href="#" id="brass-brands">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" id="brass-bach" onclick="filterInstruments('Bach')">Bach</a></li>
+                                    <li><a href="#" id="brass-conn" onclick="filterInstruments('Conn')">Conn</a></li>
+                                    <li><a href="#" id="brass-yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" id="dropdown-strings">Strings</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" id="violin" onclick="filterInstruments('violin')">Violin</a></li>
+                            <li><a href="#" id="cello" onclick="filterInstruments('cello')">Cello</a></li>
+                            <li><a href="#" id="bass" onclick="filterInstruments('bass')">Bass</a></li>
+                            <li><a href="#" id="strings-brands">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" id="strings-strad" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
+                                    <li><a href="#" id="strings-yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" id="strings-eastman" onclick="filterInstruments('Eastman')">Eastman</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
@@ -198,7 +201,13 @@
 
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
-            <!-- Add instrument categories or descriptions here -->
+            <div class="filter">
+                <label for="filter">Filter by brand or type:</label>
+                <input type="text" id="filter" oninput="filterInstruments(this.value)">
+            </div>
+            <ul id="instrument-list">
+                <!-- Filtered instruments will appear here -->
+            </ul>
         </section>
 
         <section id="contact" class="hidden">
@@ -210,5 +219,130 @@
     <footer>
         <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
     </footer>
+
+    <script>
+        const translations = {
+            en: {
+                "site-title": "Yunqi Fan Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "dropdown-woodwinds": "Woodwinds",
+                "dropdown-brass": "Brass",
+                "dropdown-strings": "Strings",
+                "flute": "Flute",
+                "clarinet": "Clarinet",
+                "oboe": "Oboe",
+                "trumpet": "Trumpet",
+                "trombone": "Trombone",
+                "tuba": "Tuba",
+                "violin": "Violin",
+                "cello": "Cello",
+                "bass": "Bass",
+                "woodwind-brands": "Brands",
+                "woodwind-yamaha": "Yamaha",
+                "woodwind-buffet": "Buffet",
+                "woodwind-selmer": "Selmer",
+                "brass-brands": "Brands",
+                "brass-bach": "Bach",
+                "brass-conn": "Conn",
+                "brass-yamaha": "Yamaha",
+                "strings-brands": "Brands",
+                "strings-strad": "Stradivarius",
+                "strings-yamaha": "Yamaha",
+                "strings-eastman": "Eastman",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Here you'll find information about musical instruments and more.",
+                "instruments-title": "Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email:fanyunqi236@gmail.com "
+            },
+            cn: {
+                "site-title": "范云麒的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器介绍",
+                "dropdown-woodwinds": "木管乐器",
+                "dropdown-brass": "铜管乐器",
+                "dropdown-strings": "弦乐器",
+                "flute": "长笛",
+                "clarinet": "单簧管",
+                "oboe": "双簧管",
+                "trumpet": "小号",
+                "trombone": "长号",
+                "tuba": "大号",
+                "violin": "小提琴",
+                "cello": "大提琴",
+                "bass": "低音提琴",
+                "woodwind-brands": "品牌",
+                "woodwind-yamaha": "雅马哈",
+                "woodwind-buffet": "布菲",
+                "woodwind-selmer": "塞尔玛",
+                "brass-brands": "品牌",
+                "brass-bach": "巴赫",
+                "brass-conn": "康恩",
+                "brass-yamaha": "雅马哈",
+                "strings-brands": "品牌",
+                "strings-strad": "斯特拉迪瓦里",
+                "strings-yamaha": "雅马哈",
+                "strings-eastman": "伊士曼",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "在这里你可以找到关于乐器的相关信息。",
+                "instruments-title": "乐器",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系:fanyunqi236@gmail.com "
+            }
+        };
+
+        const instrumentData = {
+            flute: ["Yamaha", "Buffet", "Selmer"],
+            clarinet: ["Yamaha", "Buffet", "Selmer"],
+            oboe: ["Yamaha", "Buffet", "Selmer"],
+            trumpet: ["Bach", "Conn", "Yamaha"],
+            trombone: ["Bach", "Conn", "Yamaha"],
+            tuba: ["Bach", "Conn", "Yamaha"],
+            violin: ["Stradivarius", "Yamaha", "Eastman"],
+            cello: ["Stradivarius", "Yamaha", "Eastman"],
+            bass: ["Stradivarius", "Yamaha", "Eastman"]
+        };
+
+        function filterInstruments(filter) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = '';
+            for (const instrument in instrumentData) {
+                if (instrument.includes(filter) || instrumentData[instrument].some(brand => brand.includes(filter))) {
+                    instrumentData[instrument].forEach(brand => {
+                        const li = document.createElement('li');
+                        li.textContent = `${instrument}: ${brand}`;
+                        instrumentList.appendChild(li);
+                    });
+                }
+            }
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        function switchLanguage(lang) {
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            showSection('home');
+        });
+    </script>
 </body>
 </html>
