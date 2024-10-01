@@ -30,15 +30,6 @@
         .language-switch button {
             margin: 0 5px;
             padding: 5px 10px;
-            border: none;
-            background-color: #555;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .language-switch button:hover {
-            background-color: #777;
         }
 
         nav ul {
@@ -59,62 +50,41 @@
             padding: 1rem;
             color: white;
             text-decoration: none;
-            transition: background-color 0.3s;
         }
 
         nav ul li a:hover {
             background-color: #555;
         }
 
-        /* Dropdown Menu Styles */
         .dropdown, .sub-dropdown {
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #fff;
+            background-color: #444;
             display: none;
             min-width: 200px;
             z-index: 1;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
-
-        nav ul li:hover > .dropdown {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown li:hover > .sub-dropdown {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
         }
 
         .dropdown a, .sub-dropdown a {
             padding: 10px;
-            color: #333;
+            color: white;
             text-decoration: none;
             display: block;
-            transition: background-color 0.3s;
         }
 
         .dropdown a:hover, .sub-dropdown a:hover {
-            background-color: #f0f0f0;
+            background-color: #555;
         }
 
-        .sub-dropdown {
-            top: 0;
+        nav ul li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li:hover .sub-dropdown {
+            display: block;
             left: 100%;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
+            top: 0;
         }
 
         main {
@@ -132,6 +102,12 @@
             text-align: center;
         }
 
+        .instrument-list img {
+            max-width: 150px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -144,6 +120,23 @@
 
         .hidden {
             display: none;
+        }
+
+        .filter {
+            margin-bottom: 1rem;
+        }
+
+        .filter label {
+            margin-right: 10px;
+        }
+
+        .details {
+            text-align: center;
+        }
+
+        .details img {
+            max-width: 400px;
+            margin: 1rem 0;
         }
     </style>
 </head>
@@ -163,28 +156,13 @@
                 <a href="#" id="instruments-link">Instruments</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="#" id="dropdown-woodwinds">Woodwinds</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" id="flute" onclick="showSection('instruments')">Flute</a></li>
-                            <li><a href="#" id="clarinet" onclick="showSection('instruments')">Clarinet</a></li>
-                            <li><a href="#" id="oboe" onclick="showSection('instruments')">Oboe</a></li>
-                        </ul>
+                        <a href="#" id="dropdown-woodwinds" onclick="showInstruments('woodwinds')">Woodwinds</a>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-brass">Brass</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" id="trumpet" onclick="showSection('instruments')">Trumpet</a></li>
-                            <li><a href="#" id="trombone" onclick="showSection('instruments')">Trombone</a></li>
-                            <li><a href="#" id="tuba" onclick="showSection('instruments')">Tuba</a></li>
-                        </ul>
+                        <a href="#" id="dropdown-brass" onclick="showInstruments('brass')">Brass</a>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-strings">Strings</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" id="violin" onclick="showSection('instruments')">Violin</a></li>
-                            <li><a href="#" id="cello" onclick="showSection('instruments')">Cello</a></li>
-                            <li><a href="#" id="bass" onclick="showSection('instruments')">Bass</a></li>
-                        </ul>
+                        <a href="#" id="dropdown-strings" onclick="showInstruments('strings')">Strings</a>
                     </li>
                 </ul>
             </li>
@@ -200,7 +178,15 @@
 
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
-            <p>Select an instrument category to see more details.</p>
+            <div id="instrument-list" class="instrument-list">
+                <!-- Instruments will be displayed here -->
+            </div>
+        </section>
+
+        <section id="details" class="hidden details">
+            <h2 id="details-title">Instrument Details</h2>
+            <img id="details-img" src="" alt="Instrument Image">
+            <p id="details-description">Description of the selected instrument.</p>
         </section>
 
         <section id="contact" class="hidden">
@@ -214,62 +200,67 @@
     </footer>
 
     <script>
-        const translations = {
-            en: {
-                "site-title": "Fanyunqi's Personal Website",
-                "home-link": "Home",
-                "instruments-link": "Instruments",
-                "dropdown-woodwinds": "Woodwinds",
-                "dropdown-brass": "Brass",
-                "dropdown-strings": "Strings",
-                "flute": "Flute",
-                "clarinet": "Clarinet",
-                "oboe": "Oboe",
-                "trumpet": "Trumpet",
-                "trombone": "Trombone",
-                "tuba": "Tuba",
-                "violin": "Violin",
-                "cello": "Cello",
-                "bass": "Bass",
-                "contact-link": "Contact",
-                "home-title": "Welcome to My Personal Website",
-                "home-description": "Here you'll find information about musical instruments and more.",
-                "instruments-title": "Instruments",
-                "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email: fanyunqi236@gmail.com"
-            },
-            cn: {
-                "site-title": "范云祺的个人网站",
-                "home-link": "主页",
-                "instruments-link": "乐器介绍",
-                "dropdown-woodwinds": "木管乐器",
-                "dropdown-brass": "铜管乐器",
-                "dropdown-strings": "弦乐器",
-                "flute": "长笛",
-                "clarinet": "单簧管",
-                "oboe": "双簧管",
-                "trumpet": "小号",
-                "trombone": "长号",
-                "tuba": "大号",
-                "violin": "小提琴",
-                "cello": "大提琴",
-                "bass": "低音提琴",
-                "contact-link": "联系方式",
-                "home-title": "欢迎来到我的个人网站",
-                "home-description": "在这里你可以找到关于乐器的相关信息。",
-                "instruments-title": "乐器介绍",
-                "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系: fanyunqi236@gmail.com"
-            }
+        const instrumentData = {
+            woodwinds: [
+                { name: "Flute", img: "flute.jpg", description: "A beautiful silver flute." },
+                { name: "Clarinet", img: "clarinet.jpg", description: "A smooth black clarinet." },
+                { name: "Oboe", img: "oboe.jpg", description: "An elegant wooden oboe." },
+                { name: "Piccolo", img: "piccolo.jpg", description: "A high-pitched piccolo." },
+                { name: "Bassoon", img: "bassoon.jpg", description: "A deep-toned bassoon." },
+                { name: "Saxophone", img: "saxophone.jpg", description: "A shiny golden saxophone." },
+                { name: "Contrabassoon", img: "contrabassoon.jpg", description: "A low-pitched contrabassoon." },
+                { name: "Recorder", img: "recorder.jpg", description: "A simple recorder for beginners." },
+                { name: "English Horn", img: "englishhorn.jpg", description: "A mellow English horn." },
+                { name: "Bass Clarinet", img: "bassclarinet.jpg", description: "A deep bass clarinet." }
+            ],
+            brass: [
+                { name: "Trumpet", img: "trumpet.jpg", description: "A bright golden trumpet." },
+                { name: "Trombone", img: "trombone.jpg", description: "A large and powerful trombone." },
+                { name: "Tuba", img: "tuba.jpg", description: "A heavy, deep-toned tuba." },
+                { name: "French Horn", img: "frenchhorn.jpg", description: "A circular French horn." },
+                { name: "Cornet", img: "cornet.jpg", description: "A smooth-toned cornet." },
+                { name: "Euphonium", img: "euphonium.jpg", description: "A rich-sounding euphonium." },
+                { name: "Baritone Horn", img: "baritonehorn.jpg", description: "A resonant baritone horn." },
+                { name: "Flugelhorn", img: "flugelhorn.jpg", description: "A mellow flugelhorn." },
+                { name: "Sousaphone", img: "sousaphone.jpg", description: "A marching sousaphone." },
+                { name: "Bugle", img: "bugle.jpg", description: "A simple and loud bugle." }
+            ],
+            strings: [
+                { name: "Violin", img: "violin.jpg", description: "A classic violin for soloists." },
+                { name: "Cello", img: "cello.jpg", description: "A deep-toned cello." },
+                { name: "Bass", img: "bass.jpg", description: "A large and powerful bass." },
+                { name: "Viola", img: "viola.jpg", description: "A rich-sounding viola." },
+                { name: "Harp", img: "harp.jpg", description: "A golden harp for symphonies." },
+                { name: "Guitar", img: "guitar.jpg", description: "A versatile acoustic guitar." },
+                { name: "Mandolin", img: "mandolin.jpg", description: "A small and plucky mandolin." },
+                { name: "Ukulele", img: "ukulele.jpg", description: "A bright and cheerful ukulele." },
+                { name: "Banjo", img: "banjo.jpg", description: "A rhythmic banjo for folk music." },
+                { name: "Double Bass", img: "doublebass.jpg", description: "A large double bass for orchestras." }
+            ]
         };
 
-        function switchLanguage(lang) {
-            document.querySelectorAll("[id]").forEach(element => {
-                const key = element.id;
-                if (translations[lang][key]) {
-                    element.innerText = translations[lang][key];
-                }
+        function showInstruments(category) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // Clear existing content
+
+            instrumentData[category].forEach(instrument => {
+                const img = document.createElement('img');
+                img.src = instrument.img;
+                img.alt = instrument.name;
+                img.onclick = () => showDetails(instrument);
+
+                instrumentList.appendChild(img);
             });
+
+            showSection('instruments');
+        }
+
+        function showDetails(instrument) {
+            document.getElementById('details-title').innerText = instrument.name;
+            document.getElementById('details-img').src = instrument.img;
+            document.getElementById('details-description').innerText = instrument.description;
+
+            showSection('details');
         }
 
         function showSection(sectionId) {
@@ -279,6 +270,15 @@
                     section.classList.remove('hidden');
                 } else {
                     section.classList.add('hidden');
+                }
+            });
+        }
+
+        function switchLanguage(lang) {
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
                 }
             });
         }
