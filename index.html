@@ -62,22 +62,21 @@
         /* Dropdown Menu Styles */
         .dropdown, .sub-dropdown {
             position: absolute;
-            top: 100%;
-            left: 0;
             background-color: #fff;
             display: none;
             min-width: 200px;
             z-index: 1;
-            border: 1px solid #ccc;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
         .dropdown a, .sub-dropdown a {
-            padding: 10px;
+            padding: 10px 20px;
             color: #333;
             text-decoration: none;
             display: block;
-            background-color: #fff;
+            font-size: 16px;
             transition: background-color 0.3s;
         }
 
@@ -91,29 +90,12 @@
 
         .dropdown li:hover > .sub-dropdown {
             display: block;
-            left: 100%;
-            top: 0;
+            top: 100%; /* Make the third-level menu appear below */
+            left: 0;
         }
 
-        nav ul li .sub-dropdown {
-            left: 200px; /* Adjusts the position of the third-level menu */
-        }
-
-        /* Make dropdown menus visually appealing */
-        .dropdown, .sub-dropdown {
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .dropdown a, .sub-dropdown a {
-            padding: 12px 20px;
-            font-size: 14px;
-            color: #333;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .dropdown a:last-child, .sub-dropdown a:last-child {
-            border-bottom: none;
+        .sub-dropdown a {
+            font-size: 14px; /* Smaller font size for third-level menu */
         }
 
         main {
