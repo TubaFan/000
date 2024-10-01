@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yunqi Fan Personal Website</title>
+    <title>Fanyunqi's Personal Website</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,6 +91,13 @@
             transform: translateY(0);
         }
 
+        .dropdown li:hover > .sub-dropdown {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
         .dropdown a, .sub-dropdown a {
             padding: 10px;
             color: #333;
@@ -104,16 +111,10 @@
         }
 
         .sub-dropdown {
-            left: 100%;
             top: 0;
-        }
-
-        /* Show sub-dropdown when hovering */
-        .dropdown li:hover > .sub-dropdown {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
+            left: 100%;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
         }
 
         main {
@@ -160,7 +161,7 @@
             <button onclick="switchLanguage('en')">English</button>
             <button onclick="switchLanguage('cn')">中文</button>
         </div>
-        <h1 id="site-title">Yunqi Fan Personal Website</h1>
+        <h1 id="site-title">Fanyunqi's Personal Website</h1>
     </header>
 
     <nav>
@@ -250,7 +251,7 @@
     <script>
         const translations = {
             en: {
-                "site-title": "Yunqi Fan Personal Website",
+                "site-title": "Fanyunqi's Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
                 "dropdown-woodwinds": "Woodwinds",
@@ -282,10 +283,10 @@
                 "home-description": "Here you'll find information about musical instruments and more.",
                 "instruments-title": "Instruments",
                 "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email:fanyunqi236@gmail.com "
+                "contact-description": "Feel free to reach out to me via email: "
             },
             cn: {
-                "site-title": "范云麒的个人网站",
+                "site-title": "范云祺的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器介绍",
                 "dropdown-woodwinds": "木管乐器",
@@ -317,7 +318,7 @@
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
                 "instruments-title": "乐器",
                 "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系:fanyunqi236@gmail.com "
+                "contact-description": "欢迎通过邮箱与我联系: "
             }
         };
 
