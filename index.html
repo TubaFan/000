@@ -30,6 +30,9 @@
         .language-switch button {
             margin: 0 5px;
             padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
         }
 
         nav ul {
@@ -56,6 +59,7 @@
             background-color: #555;
         }
 
+        /* Dropdown Menu Styles */
         .dropdown, .sub-dropdown {
             position: absolute;
             top: 100%;
@@ -122,18 +126,6 @@
             display: none;
         }
 
-        .filter {
-            margin-bottom: 1rem;
-        }
-
-        .filter label {
-            margin-right: 10px;
-        }
-
-        .details {
-            text-align: center;
-        }
-
         .details img {
             max-width: 400px;
             margin: 1rem 0;
@@ -156,13 +148,49 @@
                 <a href="#" id="instruments-link">Instruments</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="#" id="dropdown-woodwinds" onclick="showInstruments('woodwinds')">Woodwinds</a>
+                        <a href="#" id="dropdown-woodwinds">Woodwinds</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" id="flute" onclick="showInstruments('woodwinds')">Flute</a></li>
+                            <li><a href="#" id="clarinet" onclick="showInstruments('woodwinds')">Clarinet</a></li>
+                            <li><a href="#" id="oboe" onclick="showInstruments('woodwinds')">Oboe</a></li>
+                            <li><a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Buffet')">Buffet</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Selmer')">Selmer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-brass" onclick="showInstruments('brass')">Brass</a>
+                        <a href="#" id="dropdown-brass">Brass</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" onclick="showInstruments('brass')">Trumpet</a></li>
+                            <li><a href="#" onclick="showInstruments('brass')">Trombone</a></li>
+                            <li><a href="#" onclick="showInstruments('brass')">Tuba</a></li>
+                            <li><a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Bach')">Bach</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Conn')">Conn</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-strings" onclick="showInstruments('strings')">Strings</a>
+                        <a href="#" id="dropdown-strings">Strings</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" onclick="showInstruments('strings')">Violin</a></li>
+                            <li><a href="#" onclick="showInstruments('strings')">Cello</a></li>
+                            <li><a href="#" onclick="showInstruments('strings')">Bass</a></li>
+                            <li><a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Eastman')">Eastman</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -200,6 +228,31 @@
     </footer>
 
     <script>
+        const translations = {
+            en: {
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Here you'll find information about musical instruments and more.",
+                "instruments-title": "Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email: "
+            },
+            cn: {
+                "site-title": "范云祺的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器介绍",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "在这里你可以找到关于乐器的相关信息。",
+                "instruments-title": "乐器介绍",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系: "
+            }
+        };
+
         const instrumentData = {
             woodwinds: [
                 { name: "Flute", img: "flute.jpg", description: "A beautiful silver flute." },
