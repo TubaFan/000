@@ -1,360 +1,499 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fanyunqi's Personal Website</title>
+    <title>我的个人网页</title>
     <style>
+        /* 样式部分 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
         }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .language-switch {
-            position: absolute;
+        #language-switch {
+            position: fixed;
             top: 10px;
-            right: 20px;
+            right: 10px;
         }
-
-        .language-switch button {
-            margin: 0 5px;
-            padding: 5px 10px;
-            background-color: #555;
-            color: white;
-            cursor: pointer;
+        nav {
+            background-color: #333;
         }
-
         nav ul {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 0;
-            margin: 0;
             list-style-type: none;
+            padding: 10px;
+            margin: 0;
+            display: flex;
         }
-
         nav ul li {
             position: relative;
-            margin: 0 15px;
+            margin-right: 20px;
         }
-
         nav ul li a {
-            display: block;
-            padding: 1rem;
-            color: white;
+            color: #fff;
             text-decoration: none;
+            padding: 5px;
         }
-
-        nav ul li a:hover {
-            background-color: #555;
-        }
-
-        nav ul li:hover .dropdown {
-            display: block;
-        }
-
-        .dropdown {
+        nav ul li ul {
             display: none;
             position: absolute;
-            background-color: #555;
-            padding: 10px;
-            z-index: 1000;
-            list-style: none;
+            background-color: #444;
+            top: 30px;
             left: 0;
-            top: 100%;
-            min-width: 200px;
+            list-style-type: none;
+            padding: 0;
         }
-
-        .dropdown li:hover .sub-dropdown {
+        nav ul li:hover > ul {
             display: block;
         }
-
-        .sub-dropdown {
-            display: none;
-            position: absolute;
-            background-color: #666;
-            left: 100%;
-            top: 0;
-            min-width: 200px;
+        nav ul li ul li {
+            width: 150px;
         }
-
-        .dropdown li a, .sub-dropdown li a {
-            color: white;
+        nav ul li ul li a {
             padding: 10px;
-            text-decoration: none;
             display: block;
         }
-
-        .dropdown li a:hover, .sub-dropdown li a:hover {
-            background-color: #777;
+        nav ul li ul li ul {
+            left: 150px;
+            top: 0;
         }
-
-        main {
-            padding: 2rem;
-            min-height: calc(100vh - 120px);
-            box-sizing: border-box;
+        #content {
+            padding: 20px;
         }
-
-        #home {
-            background-image: url('0R7A8449.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem;
-            text-align: center;
-        }
-
-        .instrument-list img {
-            max-width: 150px;
-            cursor: pointer;
-            margin: 10px;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-
-        .hidden {
+        .section {
             display: none;
         }
-
-        .filter {
-            margin-bottom: 1rem;
+        #cart {
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ddd;
         }
-
-        .filter label {
-            margin-right: 10px;
+        #cart h3 {
+            margin-top: 0;
+        }
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        #cart-items li {
+            margin-bottom: 5px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .product h3 {
+            margin-top: 0;
+        }
+        .product button {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="language-switch">
-            <button onclick="switchLanguage('en')">English</button>
-            <button onclick="switchLanguage('cn')">中文</button>
-        </div>
-        <h1 id="site-title">Fanyunqi's Personal Website</h1>
-    </header>
+    <div id="language-switch">
+        <button onclick="switchLanguage('zh')">中文</button>
+        <button onclick="switchLanguage('en')">English</button>
+    </div>
+
+    <div id="cart">
+        <h3 id="cart-title">购物车</h3>
+        <ul id="cart-items"></ul>
+        <button onclick="checkout()" id="checkout-button">结算</button>
+    </div>
+
+    <h1 id="title">我的个人网页</h1>
 
     <nav>
         <ul>
-            <li><a href="#" id="home-link" onclick="showSection('home')">Home</a></li>
+            <li><a href="#" onclick="showSection('home')">主页</a></li>
             <li>
-                <a href="#" id="instruments-link">Instruments</a>
-                <ul class="dropdown">
-                    <li>
-                        <a href="#">Woodwinds</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('flute')">Flute</a></li>
-                            <li><a href="#" onclick="showInstruments('clarinet')">Clarinet</a></li>
-                            <li><a href="#" onclick="showInstruments('oboe')">Oboe</a></li>
-                            <li>
-                                <a href="#">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Buffet')">Buffet</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Selmer')">Selmer</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Brass</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('trumpet')">Trumpet</a></li>
-                            <li><a href="#" onclick="showInstruments('trombone')">Trombone</a></li>
-                            <li><a href="#" onclick="showInstruments('tuba')">Tuba</a></li>
-                            <li>
-                                <a href="#">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Bach')">Bach</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Conn')">Conn</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Strings</a>
-                        <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('violin')">Violin</a></li>
-                            <li><a href="#" onclick="showInstruments('cello')">Cello</a></li>
-                            <li><a href="#" onclick="showInstruments('bass')">Bass</a></li>
-                            <li>
-                                <a href="#">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Eastman')">Eastman</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                <a href="#" onclick="showSection('instruments')">乐器商城</a>
+                <ul id="instrument-menu">
+                    <!-- 动态生成菜单 -->
                 </ul>
             </li>
-            <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
+            <li><a href="#" onclick="showSection('contact')">联系方式</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section id="home">
-            <h2 id="home-title">Welcome to My Personal Website</h2>
-            <p id="home-description">Here you'll find information about musical instruments and more.</p>
-        </section>
+    <div id="content">
+        <!-- 内容区域 -->
+        <div id="home" class="section">
+            <h2>欢迎来到我的个人主页！</h2>
+            <p>这里是我的个人简介。</p>
+        </div>
 
-        <section id="instruments" class="hidden">
-            <h2 id="instruments-title">Instruments</h2>
-            <div class="filter">
-                <label for="filter">Filter by brand or type:</label>
-                <input type="text" id="filter" oninput="filterInstruments(this.value)">
+        <div id="instruments" class="section">
+            <h2>乐器商城</h2>
+            <div id="product-list">
+                <!-- 乐器列表 -->
             </div>
-            <div id="instrument-list" class="instrument-list">
-                <!-- Instruments will be displayed here -->
-            </div>
-        </section>
+        </div>
 
-        <section id="details" class="hidden details">
-            <h2 id="details-title">Instrument Details</h2>
-            <img id="details-img" src="" alt="Instrument Image">
-            <p id="details-description">Description of the selected instrument.</p>
-        </section>
-
-        <section id="contact" class="hidden">
-            <h2 id="contact-title">Contact Me</h2>
-            <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
-    </footer>
+        <div id="contact" class="section">
+            <h2>联系方式</h2>
+            <p>邮箱：example@example.com</p>
+        </div>
+    </div>
 
     <script>
-        const translations = {
-            en: {
-                "site-title": "Fanyunqi's Personal Website",
-                "home-link": "Home",
-                "instruments-link": "Instruments",
-                "contact-link": "Contact",
-                "home-title": "Welcome to My Personal Website",
-                "home-description": "Here you'll find information about musical instruments and more.",
-                "instruments-title": "Instruments",
-                "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email: "
-            },
-            cn: {
-                "site-title": "范云祺的个人网站",
-                "home-link": "主页",
-                "instruments-link": "乐器介绍",
-                "contact-link": "联系方式",
-                "home-title": "欢迎来到我的个人网站",
-                "home-description": "在这里你可以找到关于乐器的相关信息。",
-                "instruments-title": "乐器介绍",
-                "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系: "
-            }
-        };
-
-        const instrumentData = {
-            flute: [
-                { name: "Yamaha Flute", img: "flute.jpg", description: "A beautiful silver Yamaha flute." },
-                { name: "Buffet Flute", img: "flute.jpg", description: "A smooth sounding Buffet flute." },
-                { name: "Selmer Flute", img: "flute.jpg", description: "A top quality Selmer flute." }
-            ],
-            trumpet: [
-                { name: "Yamaha Trumpet", img: "trumpet.jpg", description: "A bright sounding Yamaha trumpet." },
-                { name: "Bach Trumpet", img: "trumpet.jpg", description: "A powerful Bach trumpet." },
-                { name: "Conn Trumpet", img: "trumpet.jpg", description: "A well-rounded Conn trumpet." }
-            ],
-            violin: [
-                { name: "Stradivarius Violin", img: "violin.jpg", description: "A classic Stradivarius violin." },
-                { name: "Yamaha Violin", img: "violin.jpg", description: "A versatile Yamaha violin." },
-                { name: "Eastman Violin", img: "violin.jpg", description: "A high-quality Eastman violin." }
-            ]
-        };
-
-        function filterInstruments(filter) {
-            const instrumentList = document.getElementById('instrument-list');
-            instrumentList.innerHTML = ''; // Clear the list
-
-            for (const category in instrumentData) {
-                instrumentData[category].forEach(instrument => {
-                    if (instrument.name.toLowerCase().includes(filter.toLowerCase())) {
-                        const img = document.createElement('img');
-                        img.src = instrument.img;
-                        img.alt = instrument.name;
-                        img.onclick = () => showDetails(instrument);
-
-                        instrumentList.appendChild(img);
+        // 内容数据
+        var content = {
+            'zh': {
+                'title': '我的个人网页',
+                'cartTitle': '购物车',
+                'checkoutButton': '结算',
+                'emptyCart': '购物车为空。',
+                'home': {
+                    'title': '欢迎来到我的个人主页！',
+                    'content': '这里是我的个人简介。'
+                },
+                'instruments': {
+                    'title': '乐器商城',
+                    'categories': {
+                        '弦乐器': {
+                            '弓弦乐器': {
+                                '小提琴': {
+                                    'price': 5000,
+                                    'description': '小提琴是一种弦乐器。',
+                                },
+                                '大提琴': {
+                                    'price': 8000,
+                                    'description': '大提琴是一种低音弦乐器。'
+                                }
+                            },
+                            '弹拨乐器': {
+                                '吉他': {
+                                    'price': 3000,
+                                    'description': '吉他是一种弹拨乐器。'
+                                },
+                                '古筝': {
+                                    'price': 7000,
+                                    'description': '古筝是中国传统乐器。'
+                                }
+                            }
+                        },
+                        '管乐器': {
+                            '木管乐器': {
+                                '长笛': {
+                                    'price': 2000,
+                                    'description': '长笛是一种木管乐器。'
+                                },
+                                '单簧管': {
+                                    'price': 2500,
+                                    'description': '单簧管是一种单簧木管乐器。'
+                                }
+                            },
+                            '铜管乐器': {
+                                '小号': {
+                                    'price': 3500,
+                                    'description': '小号是一种铜管乐器。'
+                                },
+                                '长号': {
+                                    'price': 4000,
+                                    'description': '长号是一种低音铜管乐器。'
+                                }
+                            }
+                        }
                     }
-                });
+                },
+                'contact': {
+                    'title': '联系方式',
+                    'content': '邮箱：example@example.com'
+                },
+                'nav': {
+                    'home': '主页',
+                    'instruments': '乐器商城',
+                    'contact': '联系方式'
+                },
+                'addToCart': '加入购物车',
+                'cart': '购物车',
+                'total': '总计',
+                'checkoutMessage': '感谢您的购买！'
+            },
+            'en': {
+                'title': 'My Personal Website',
+                'cartTitle': 'Shopping Cart',
+                'checkoutButton': 'Checkout',
+                'emptyCart': 'Your cart is empty.',
+                'home': {
+                    'title': 'Welcome to My Personal Homepage!',
+                    'content': 'This is my personal introduction.'
+                },
+                'instruments': {
+                    'title': 'Instrument Store',
+                    'categories': {
+                        'String Instruments': {
+                            'Bowed Strings': {
+                                'Violin': {
+                                    'price': 5000,
+                                    'description': 'The violin is a string instrument.'
+                                },
+                                'Cello': {
+                                    'price': 8000,
+                                    'description': 'The cello is a bass string instrument.'
+                                }
+                            },
+                            'Plucked Strings': {
+                                'Guitar': {
+                                    'price': 3000,
+                                    'description': 'The guitar is a plucked string instrument.'
+                                },
+                                'Guzheng': {
+                                    'price': 7000,
+                                    'description': 'The guzheng is a traditional Chinese instrument.'
+                                }
+                            }
+                        },
+                        'Wind Instruments': {
+                            'Woodwind': {
+                                'Flute': {
+                                    'price': 2000,
+                                    'description': 'The flute is a woodwind instrument.'
+                                },
+                                'Clarinet': {
+                                    'price': 2500,
+                                    'description': 'The clarinet is a single-reed woodwind instrument.'
+                                }
+                            },
+                            'Brass': {
+                                'Trumpet': {
+                                    'price': 3500,
+                                    'description': 'The trumpet is a brass instrument.'
+                                },
+                                'Trombone': {
+                                    'price': 4000,
+                                    'description': 'The trombone is a bass brass instrument.'
+                                }
+                            }
+                        }
+                    }
+                },
+                'contact': {
+                    'title': 'Contact Information',
+                    'content': 'Email: example@example.com'
+                },
+                'nav': {
+                    'home': 'Home',
+                    'instruments': 'Instrument Store',
+                    'contact': 'Contact'
+                },
+                'addToCart': 'Add to Cart',
+                'cart': 'Cart',
+                'total': 'Total',
+                'checkoutMessage': 'Thank you for your purchase!'
+            }
+        };
+
+        var currentLanguage = 'zh';
+        var cart = [];
+
+        // 切换语言函数
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('title').innerText = content[lang]['title'];
+            document.getElementById('cart-title').innerText = content[lang]['cartTitle'];
+            document.getElementById('checkout-button').innerText = content[lang]['checkoutButton'];
+
+            var navLinks = document.querySelectorAll('nav ul li a');
+            navLinks[0].innerText = content[lang]['nav']['home'];
+            navLinks[1].innerText = content[lang]['nav']['instruments'];
+            navLinks[2].innerText = content[lang]['nav']['contact'];
+
+            // 更新内容
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                if (section.style.display !== 'none') {
+                    updateContent(section.id);
+                }
+            });
+
+            // 更新购物车
+            updateCart();
+        }
+
+        // 显示指定板块
+        function showSection(sectionId) {
+            hideAllSections();
+            document.getElementById(sectionId).style.display = 'block';
+            updateContent(sectionId);
+        }
+
+        // 隐藏所有板块
+        function hideAllSections() {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+        }
+
+        // 更新内容
+        function updateContent(sectionId) {
+            if (sectionId === 'home' || sectionId === 'contact') {
+                document.querySelector('#' + sectionId + ' h2').innerText = content[currentLanguage][sectionId]['title'];
+                document.querySelector('#' + sectionId + ' p').innerText = content[currentLanguage][sectionId]['content'];
+            } else if (sectionId === 'instruments') {
+                document.querySelector('#instruments h2').innerText = content[currentLanguage]['instruments']['title'];
+                generateProductList();
             }
         }
 
-        function showInstruments(category) {
-            const instrumentList = document.getElementById('instrument-list');
-            instrumentList.innerHTML = ''; // Clear existing content
+        // 生成乐器菜单
+        function generateInstrumentMenu() {
+            var menu = document.getElementById('instrument-menu');
+            menu.innerHTML = '';
+            var categories = content[currentLanguage]['instruments']['categories'];
+            for (var category in categories) {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = '#';
+                a.innerText = category;
+                a.onclick = (function(cat) {
+                    return function() {
+                        showSection('instruments');
+                        filterProducts(cat);
+                    };
+                })(category);
+                li.appendChild(a);
 
-            instrumentData[category].forEach(instrument => {
-                const img = document.createElement('img');
-                img.src = instrument.img;
-                img.alt = instrument.name;
-                img.onclick = () => showDetails(instrument);
-
-                instrumentList.appendChild(img);
-            });
-
-            showSection('instruments');
+                var subUl = document.createElement('ul');
+                for (var subCategory in categories[category]) {
+                    var subLi = document.createElement('li');
+                    var subA = document.createElement('a');
+                    subA.href = '#';
+                    subA.innerText = subCategory;
+                    subA.onclick = (function(cat, subCat) {
+                        return function() {
+                            showSection('instruments');
+                            filterProducts(cat, subCat);
+                        };
+                    })(category, subCategory);
+                    subLi.appendChild(subA);
+                    subUl.appendChild(subLi);
+                }
+                li.appendChild(subUl);
+                menu.appendChild(li);
+            }
         }
 
-        function showDetails(instrument) {
-            document.getElementById('details-title').innerText = instrument.name;
-            document.getElementById('details-img').src = instrument.img;
-            document.getElementById('details-description').innerText = instrument.description;
-
-            showSection('details');
+        // 生成乐器列表
+        function generateProductList() {
+            var productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            var categories = content[currentLanguage]['instruments']['categories'];
+            for (var category in categories) {
+                for (var subCategory in categories[category]) {
+                    for (var productName in categories[category][subCategory]) {
+                        var product = categories[category][subCategory][productName];
+                        createProductCard(productName, product);
+                    }
+                }
+            }
         }
 
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('main section');
-            sections.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.remove('hidden');
+        // 创建乐器卡片
+        function createProductCard(name, product) {
+            var productList = document.getElementById('product-list');
+            var productDiv = document.createElement('div');
+            productDiv.className = 'product';
+
+            var h3 = document.createElement('h3');
+            h3.innerText = name;
+            productDiv.appendChild(h3);
+
+            var p = document.createElement('p');
+            p.innerText = product.description;
+            productDiv.appendChild(p);
+
+            var priceP = document.createElement('p');
+            priceP.innerText = content[currentLanguage]['total'] + ': ¥' + product.price;
+            productDiv.appendChild(priceP);
+
+            var button = document.createElement('button');
+            button.innerText = content[currentLanguage]['addToCart'];
+            button.onclick = function() {
+                addToCart(name, product.price);
+            };
+            productDiv.appendChild(button);
+
+            productList.appendChild(productDiv);
+        }
+
+        // 过滤乐器列表
+        function filterProducts(category, subCategory) {
+            var productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+            var categories = content[currentLanguage]['instruments']['categories'];
+            if (categories[category]) {
+                if (subCategory) {
+                    var products = categories[category][subCategory];
+                    for (var productName in products) {
+                        var product = products[productName];
+                        createProductCard(productName, product);
+                    }
                 } else {
-                    section.classList.add('hidden');
+                    for (var subCat in categories[category]) {
+                        var products = categories[category][subCat];
+                        for (var productName in products) {
+                            var product = products[productName];
+                            createProductCard(productName, product);
+                        }
+                    }
                 }
-            });
+            }
         }
 
-        function switchLanguage(lang) {
-            document.querySelectorAll("[id]").forEach(element => {
-                const key = element.id;
-                if (translations[lang][key]) {
-                    element.innerText = translations[lang][key];
-                }
-            });
+        // 添加到购物车
+        function addToCart(name, price) {
+            cart.push({name: name, price: price});
+            updateCart();
+            alert(name + ' ' + content[currentLanguage]['addToCart']);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
+        // 更新购物车
+        function updateCart() {
+            var cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            var total = 0;
+            if (cart.length === 0) {
+                var li = document.createElement('li');
+                li.innerText = content[currentLanguage]['emptyCart'];
+                cartItems.appendChild(li);
+            } else {
+                cart.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.innerText = item.name + ' - ¥' + item.price;
+                    cartItems.appendChild(li);
+                    total += item.price;
+                });
+                var totalLi = document.createElement('li');
+                totalLi.innerText = content[currentLanguage]['total'] + ': ¥' + total;
+                cartItems.appendChild(totalLi);
+            }
+        }
+
+        // 结算
+        function checkout() {
+            if (cart.length === 0) {
+                alert(content[currentLanguage]['emptyCart']);
+            } else {
+                alert(content[currentLanguage]['checkoutMessage']);
+                cart = [];
+                updateCart();
+            }
+        }
+
+        // 初始化页面
+        window.onload = function() {
+            switchLanguage('zh');
+            generateInstrumentMenu();
             showSection('home');
-        });
+        };
     </script>
 </body>
 </html>
