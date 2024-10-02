@@ -90,12 +90,12 @@
 
         .dropdown li:hover > .sub-dropdown {
             display: block;
-            top: 100%; /* Make the third-level menu appear below */
+            top: 100%;
             left: 0;
         }
 
         .sub-dropdown a {
-            font-size: 14px; /* Smaller font size for third-level menu */
+            font-size: 14px;
         }
 
         main {
@@ -133,9 +133,12 @@
             display: none;
         }
 
-        .details img {
-            max-width: 400px;
-            margin: 1rem 0;
+        .filter {
+            margin-bottom: 1rem;
+        }
+
+        .filter label {
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -157,9 +160,9 @@
                     <li>
                         <a href="#" id="dropdown-woodwinds">Woodwinds</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" id="flute" onclick="showInstruments('woodwinds')">Flute</a></li>
-                            <li><a href="#" id="clarinet" onclick="showInstruments('woodwinds')">Clarinet</a></li>
-                            <li><a href="#" id="oboe" onclick="showInstruments('woodwinds')">Oboe</a></li>
+                            <li><a href="#" onclick="showInstruments('flute')">Flute</a></li>
+                            <li><a href="#" onclick="showInstruments('clarinet')">Clarinet</a></li>
+                            <li><a href="#" onclick="showInstruments('oboe')">Oboe</a></li>
                             <li>
                                 <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
@@ -173,9 +176,9 @@
                     <li>
                         <a href="#" id="dropdown-brass">Brass</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('brass')">Trumpet</a></li>
-                            <li><a href="#" onclick="showInstruments('brass')">Trombone</a></li>
-                            <li><a href="#" onclick="showInstruments('brass')">Tuba</a></li>
+                            <li><a href="#" onclick="showInstruments('trumpet')">Trumpet</a></li>
+                            <li><a href="#" onclick="showInstruments('trombone')">Trombone</a></li>
+                            <li><a href="#" onclick="showInstruments('tuba')">Tuba</a></li>
                             <li>
                                 <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
@@ -189,9 +192,9 @@
                     <li>
                         <a href="#" id="dropdown-strings">Strings</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('strings')">Violin</a></li>
-                            <li><a href="#" onclick="showInstruments('strings')">Cello</a></li>
-                            <li><a href="#" onclick="showInstruments('strings')">Bass</a></li>
+                            <li><a href="#" onclick="showInstruments('violin')">Violin</a></li>
+                            <li><a href="#" onclick="showInstruments('cello')">Cello</a></li>
+                            <li><a href="#" onclick="showInstruments('bass')">Bass</a></li>
                             <li>
                                 <a href="#">Brands</a>
                                 <ul class="sub-dropdown">
@@ -216,6 +219,10 @@
 
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
+            <div class="filter">
+                <label for="filter">Filter by brand or type:</label>
+                <input type="text" id="filter" oninput="filterInstruments(this.value)">
+            </div>
             <div id="instrument-list" class="instrument-list">
                 <!-- Instruments will be displayed here -->
             </div>
@@ -246,15 +253,6 @@
                 "dropdown-woodwinds": "Woodwinds",
                 "dropdown-brass": "Brass",
                 "dropdown-strings": "Strings",
-                "flute": "Flute",
-                "clarinet": "Clarinet",
-                "oboe": "Oboe",
-                "trumpet": "Trumpet",
-                "trombone": "Trombone",
-                "tuba": "Tuba",
-                "violin": "Violin",
-                "cello": "Cello",
-                "bass": "Bass",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
                 "home-description": "Here you'll find information about musical instruments and more.",
@@ -270,15 +268,6 @@
                 "dropdown-woodwinds": "木管乐器",
                 "dropdown-brass": "铜管乐器",
                 "dropdown-strings": "弦乐器",
-                "flute": "长笛",
-                "clarinet": "单簧管",
-                "oboe": "双簧管",
-                "trumpet": "小号",
-                "trombone": "长号",
-                "tuba": "大号",
-                "violin": "小提琴",
-                "cello": "大提琴",
-                "bass": "低音提琴",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
@@ -290,43 +279,40 @@
         };
 
         const instrumentData = {
-            woodwinds: [
-                { name: "Flute", img: "flute.jpg", description: "A beautiful silver flute." },
-                { name: "Clarinet", img: "clarinet.jpg", description: "A smooth black clarinet." },
-                { name: "Oboe", img: "oboe.jpg", description: "An elegant wooden oboe." },
-                { name: "Piccolo", img: "piccolo.jpg", description: "A high-pitched piccolo." },
-                { name: "Bassoon", img: "bassoon.jpg", description: "A deep-toned bassoon." },
-                { name: "Saxophone", img: "saxophone.jpg", description: "A shiny golden saxophone." },
-                { name: "Contrabassoon", img: "contrabassoon.jpg", description: "A low-pitched contrabassoon." },
-                { name: "Recorder", img: "recorder.jpg", description: "A simple recorder for beginners." },
-                { name: "English Horn", img: "englishhorn.jpg", description: "A mellow English horn." },
-                { name: "Bass Clarinet", img: "bassclarinet.jpg", description: "A deep bass clarinet." }
+            flute: [
+                { name: "Yamaha Flute", img: "flute.jpg", description: "A beautiful silver Yamaha flute." },
+                { name: "Buffet Flute", img: "flute.jpg", description: "A smooth sounding Buffet flute." },
+                { name: "Selmer Flute", img: "flute.jpg", description: "A top quality Selmer flute." }
             ],
-            brass: [
-                { name: "Trumpet", img: "trumpet.jpg", description: "A bright golden trumpet." },
-                { name: "Trombone", img: "trombone.jpg", description: "A large and powerful trombone." },
-                { name: "Tuba", img: "tuba.jpg", description: "A heavy, deep-toned tuba." },
-                { name: "French Horn", img: "frenchhorn.jpg", description: "A circular French horn." },
-                { name: "Cornet", img: "cornet.jpg", description: "A smooth-toned cornet." },
-                { name: "Euphonium", img: "euphonium.jpg", description: "A rich-sounding euphonium." },
-                { name: "Baritone Horn", img: "baritonehorn.jpg", description: "A resonant baritone horn." },
-                { name: "Flugelhorn", img: "flugelhorn.jpg", description: "A mellow flugelhorn." },
-                { name: "Sousaphone", img: "sousaphone.jpg", description: "A marching sousaphone." },
-                { name: "Bugle", img: "bugle.jpg", description: "A simple and loud bugle." }
+            trumpet: [
+                { name: "Yamaha Trumpet", img: "trumpet.jpg", description: "A bright sounding Yamaha trumpet." },
+                { name: "Bach Trumpet", img: "trumpet.jpg", description: "A powerful Bach trumpet." },
+                { name: "Conn Trumpet", img: "trumpet.jpg", description: "A well-rounded Conn trumpet." }
             ],
-            strings: [
-                { name: "Violin", img: "violin.jpg", description: "A classic violin for soloists." },
-                { name: "Cello", img: "cello.jpg", description: "A deep-toned cello." },
-                { name: "Bass", img: "bass.jpg", description: "A large and powerful bass." },
-                { name: "Viola", img: "viola.jpg", description: "A rich-sounding viola." },
-                { name: "Harp", img: "harp.jpg", description: "A golden harp for symphonies." },
-                { name: "Guitar", img: "guitar.jpg", description: "A versatile acoustic guitar." },
-                { name: "Mandolin", img: "mandolin.jpg", description: "A small and plucky mandolin." },
-                { name: "Ukulele", img: "ukulele.jpg", description: "A bright and cheerful ukulele." },
-                { name: "Banjo", img: "banjo.jpg", description: "A rhythmic banjo for folk music." },
-                { name: "Double Bass", img: "doublebass.jpg", description: "A large double bass for orchestras." }
+            violin: [
+                { name: "Stradivarius Violin", img: "violin.jpg", description: "A classic Stradivarius violin." },
+                { name: "Yamaha Violin", img: "violin.jpg", description: "A versatile Yamaha violin." },
+                { name: "Eastman Violin", img: "violin.jpg", description: "A high-quality Eastman violin." }
             ]
         };
+
+        function filterInstruments(filter) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // Clear the list
+
+            for (const category in instrumentData) {
+                instrumentData[category].forEach(instrument => {
+                    if (instrument.name.toLowerCase().includes(filter.toLowerCase())) {
+                        const img = document.createElement('img');
+                        img.src = instrument.img;
+                        img.alt = instrument.name;
+                        img.onclick = () => showDetails(instrument);
+
+                        instrumentList.appendChild(img);
+                    }
+                });
+            }
+        }
 
         function showInstruments(category) {
             const instrumentList = document.getElementById('instrument-list');
