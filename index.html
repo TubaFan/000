@@ -4,126 +4,285 @@
     <meta charset="UTF-8">
     <title>我的个人网页</title>
     <style>
-        /* 样式部分 */
-        body {
-            font-family: Arial, sans-serif;
+        /* 重置样式 */
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        #language-switch {
+        /* 全局样式 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style-type: none;
+        }
+        /* 顶部导航栏 */
+        header {
+            background-color: #2c3e50;
+            padding: 20px;
             position: fixed;
-            top: 10px;
-            right: 10px;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo {
+            color: #ecf0f1;
+            font-size: 24px;
+            font-weight: bold;
         }
         nav {
-            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        nav ul {
-            list-style-type: none;
-            padding: 10px;
-            margin: 0;
+        .nav-links {
             display: flex;
         }
-        nav ul li {
+        .nav-links li {
             position: relative;
-            margin-right: 20px;
+            margin-left: 30px;
         }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px;
+        .nav-links a {
+            color: #ecf0f1;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s;
         }
-        nav ul li ul {
-            display: none;
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        /* 下拉菜单 */
+        .dropdown {
             position: absolute;
-            background-color: #444;
-            top: 30px;
+            top: 35px;
             left: 0;
-            list-style-type: none;
-            padding: 0;
+            background-color: #34495e;
+            display: none;
+            flex-direction: column;
+            min-width: 150px;
         }
-        nav ul li:hover > ul {
-            display: block;
-        }
-        nav ul li ul li {
-            width: 150px;
-        }
-        nav ul li ul li a {
+        .dropdown li {
             padding: 10px;
-            display: block;
         }
-        nav ul li ul li ul {
-            left: 150px;
-            top: 0;
+        .nav-links li:hover .dropdown {
+            display: flex;
         }
-        #content {
+        .dropdown a:hover {
+            color: #1abc9c;
+        }
+        /* 语言切换 */
+        .language-switch {
+            display: flex;
+            align-items: center;
+        }
+        .language-switch button {
+            background: none;
+            border: none;
+            color: #ecf0f1;
+            margin-left: 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .language-switch button:hover {
+            color: #3498db;
+        }
+        /* 主体内容 */
+        .container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
             padding: 20px;
         }
         .section {
             display: none;
         }
+        .section.active {
+            display: block;
+        }
+        /* 主页样式 */
+        #home {
+            text-align: center;
+        }
+        #home h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        /* 乐器商城样式 */
+        #product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .product-image {
+            width: 100%;
+            height: 180px;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .product-info .price {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        .product-info button {
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-info button:hover {
+            background-color: #d35400;
+        }
+        /* 购物车样式 */
         #cart {
             position: fixed;
-            top: 50px;
-            right: 10px;
-            background-color: #f8f8f8;
-            padding: 10px;
-            border: 1px solid #ddd;
+            top: 80px;
+            right: 20px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            max-height: 70vh;
+            overflow-y: auto;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         }
         #cart h3 {
-            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #2c3e50;
         }
         #cart-items {
             list-style-type: none;
             padding: 0;
-            margin: 0;
         }
         #cart-items li {
-            margin-bottom: 5px;
-        }
-        .product {
-            border: 1px solid #ddd;
-            padding: 10px;
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 10px;
+            font-size: 16px;
+            color: #2c3e50;
         }
-        .product h3 {
-            margin-top: 0;
+        #cart .total {
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 18px;
         }
-        .product button {
-            margin-top: 10px;
+        #cart button {
+            width: 100%;
+            background-color: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        #cart button:hover {
+            background-color: #229954;
+        }
+        /* 联系方式样式 */
+        #contact {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #contact h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        #contact p {
+            font-size: 18px;
+            color: #555;
+        }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+            #cart {
+                position: static;
+                width: 100%;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="language-switch">
-        <button onclick="switchLanguage('zh')">中文</button>
-        <button onclick="switchLanguage('en')">English</button>
-    </div>
+    <!-- 顶部导航栏 -->
+    <header>
+        <nav class="container">
+            <div class="logo" id="title">我的个人网页</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')">主页</a></li>
+                <li>
+                    <a href="#" onclick="showSection('instruments')">乐器商城</a>
+                    <ul class="dropdown" id="instrument-menu">
+                        <!-- 动态生成菜单 -->
+                    </ul>
+                </li>
+                <li><a href="#" onclick="showSection('contact')">联系方式</a></li>
+            </ul>
+            <div class="language-switch">
+                <button onclick="switchLanguage('zh')">中文</button>
+                <button onclick="switchLanguage('en')">English</button>
+            </div>
+        </nav>
+    </header>
 
+    <!-- 购物车 -->
     <div id="cart">
         <h3 id="cart-title">购物车</h3>
         <ul id="cart-items"></ul>
+        <div class="total" id="cart-total"></div>
         <button onclick="checkout()" id="checkout-button">结算</button>
     </div>
 
-    <h1 id="title">我的个人网页</h1>
-
-    <nav>
-        <ul>
-            <li><a href="#" onclick="showSection('home')">主页</a></li>
-            <li>
-                <a href="#" onclick="showSection('instruments')">乐器商城</a>
-                <ul id="instrument-menu">
-                    <!-- 动态生成菜单 -->
-                </ul>
-            </li>
-            <li><a href="#" onclick="showSection('contact')">联系方式</a></li>
-        </ul>
-    </nav>
-
-    <div id="content">
-        <!-- 内容区域 -->
-        <div id="home" class="section">
+    <!-- 主体内容 -->
+    <div class="container">
+        <div id="home" class="section active">
             <h2>欢迎来到我的个人主页！</h2>
             <p>这里是我的个人简介。</p>
         </div>
@@ -161,20 +320,24 @@
                                 '小提琴': {
                                     'price': 5000,
                                     'description': '小提琴是一种弦乐器。',
+                                    'image': 'https://example.com/violin.jpg'
                                 },
                                 '大提琴': {
                                     'price': 8000,
-                                    'description': '大提琴是一种低音弦乐器。'
+                                    'description': '大提琴是一种低音弦乐器。',
+                                    'image': 'https://example.com/cello.jpg'
                                 }
                             },
                             '弹拨乐器': {
                                 '吉他': {
                                     'price': 3000,
-                                    'description': '吉他是一种弹拨乐器。'
+                                    'description': '吉他是一种弹拨乐器。',
+                                    'image': 'https://example.com/guitar.jpg'
                                 },
                                 '古筝': {
                                     'price': 7000,
-                                    'description': '古筝是中国传统乐器。'
+                                    'description': '古筝是中国传统乐器。',
+                                    'image': 'https://example.com/guzheng.jpg'
                                 }
                             }
                         },
@@ -182,21 +345,25 @@
                             '木管乐器': {
                                 '长笛': {
                                     'price': 2000,
-                                    'description': '长笛是一种木管乐器。'
+                                    'description': '长笛是一种木管乐器。',
+                                    'image': 'https://example.com/flute.jpg'
                                 },
                                 '单簧管': {
                                     'price': 2500,
-                                    'description': '单簧管是一种单簧木管乐器。'
+                                    'description': '单簧管是一种单簧木管乐器。',
+                                    'image': 'https://example.com/clarinet.jpg'
                                 }
                             },
                             '铜管乐器': {
                                 '小号': {
                                     'price': 3500,
-                                    'description': '小号是一种铜管乐器。'
+                                    'description': '小号是一种铜管乐器。',
+                                    'image': 'https://example.com/trumpet.jpg'
                                 },
                                 '长号': {
                                     'price': 4000,
-                                    'description': '长号是一种低音铜管乐器。'
+                                    'description': '长号是一种低音铜管乐器。',
+                                    'image': 'https://example.com/trombone.jpg'
                                 }
                             }
                         }
@@ -214,7 +381,8 @@
                 'addToCart': '加入购物车',
                 'cart': '购物车',
                 'total': '总计',
-                'checkoutMessage': '感谢您的购买！'
+                'checkoutMessage': '感谢您的购买！',
+                'currency': '¥'
             },
             'en': {
                 'title': 'My Personal Website',
@@ -232,21 +400,25 @@
                             'Bowed Strings': {
                                 'Violin': {
                                     'price': 5000,
-                                    'description': 'The violin is a string instrument.'
+                                    'description': 'The violin is a string instrument.',
+                                    'image': 'https://example.com/violin.jpg'
                                 },
                                 'Cello': {
                                     'price': 8000,
-                                    'description': 'The cello is a bass string instrument.'
+                                    'description': 'The cello is a bass string instrument.',
+                                    'image': 'https://example.com/cello.jpg'
                                 }
                             },
                             'Plucked Strings': {
                                 'Guitar': {
                                     'price': 3000,
-                                    'description': 'The guitar is a plucked string instrument.'
+                                    'description': 'The guitar is a plucked string instrument.',
+                                    'image': 'https://example.com/guitar.jpg'
                                 },
                                 'Guzheng': {
                                     'price': 7000,
-                                    'description': 'The guzheng is a traditional Chinese instrument.'
+                                    'description': 'The guzheng is a traditional Chinese instrument.',
+                                    'image': 'https://example.com/guzheng.jpg'
                                 }
                             }
                         },
@@ -254,21 +426,25 @@
                             'Woodwind': {
                                 'Flute': {
                                     'price': 2000,
-                                    'description': 'The flute is a woodwind instrument.'
+                                    'description': 'The flute is a woodwind instrument.',
+                                    'image': 'https://example.com/flute.jpg'
                                 },
                                 'Clarinet': {
                                     'price': 2500,
-                                    'description': 'The clarinet is a single-reed woodwind instrument.'
+                                    'description': 'The clarinet is a single-reed woodwind instrument.',
+                                    'image': 'https://example.com/clarinet.jpg'
                                 }
                             },
                             'Brass': {
                                 'Trumpet': {
                                     'price': 3500,
-                                    'description': 'The trumpet is a brass instrument.'
+                                    'description': 'The trumpet is a brass instrument.',
+                                    'image': 'https://example.com/trumpet.jpg'
                                 },
                                 'Trombone': {
                                     'price': 4000,
-                                    'description': 'The trombone is a bass brass instrument.'
+                                    'description': 'The trombone is a bass brass instrument.',
+                                    'image': 'https://example.com/trombone.jpg'
                                 }
                             }
                         }
@@ -286,7 +462,8 @@
                 'addToCart': 'Add to Cart',
                 'cart': 'Cart',
                 'total': 'Total',
-                'checkoutMessage': 'Thank you for your purchase!'
+                'checkoutMessage': 'Thank you for your purchase!',
+                'currency': '$'
             }
         };
 
@@ -300,7 +477,7 @@
             document.getElementById('cart-title').innerText = content[lang]['cartTitle'];
             document.getElementById('checkout-button').innerText = content[lang]['checkoutButton'];
 
-            var navLinks = document.querySelectorAll('nav ul li a');
+            var navLinks = document.querySelectorAll('.nav-links > li > a');
             navLinks[0].innerText = content[lang]['nav']['home'];
             navLinks[1].innerText = content[lang]['nav']['instruments'];
             navLinks[2].innerText = content[lang]['nav']['contact'];
@@ -308,28 +485,26 @@
             // 更新内容
             var sections = document.querySelectorAll('.section');
             sections.forEach(function(section) {
-                if (section.style.display !== 'none') {
+                if (section.classList.contains('active')) {
                     updateContent(section.id);
                 }
             });
 
             // 更新购物车
             updateCart();
+
+            // 更新菜单
+            generateInstrumentMenu();
         }
 
         // 显示指定板块
         function showSection(sectionId) {
-            hideAllSections();
-            document.getElementById(sectionId).style.display = 'block';
-            updateContent(sectionId);
-        }
-
-        // 隐藏所有板块
-        function hideAllSections() {
             var sections = document.querySelectorAll('.section');
             sections.forEach(function(section) {
-                section.style.display = 'none';
+                section.classList.remove('active');
             });
+            document.getElementById(sectionId).classList.add('active');
+            updateContent(sectionId);
         }
 
         // 更新内容
@@ -362,6 +537,7 @@
                 li.appendChild(a);
 
                 var subUl = document.createElement('ul');
+                subUl.className = 'dropdown';
                 for (var subCategory in categories[category]) {
                     var subLi = document.createElement('li');
                     var subA = document.createElement('a');
@@ -399,29 +575,39 @@
         // 创建乐器卡片
         function createProductCard(name, product) {
             var productList = document.getElementById('product-list');
-            var productDiv = document.createElement('div');
-            productDiv.className = 'product';
+            var productCard = document.createElement('div');
+            productCard.className = 'product-card';
+
+            var productImage = document.createElement('div');
+            productImage.className = 'product-image';
+            productImage.style.backgroundImage = 'url(' + product.image + ')';
+            productCard.appendChild(productImage);
+
+            var productInfo = document.createElement('div');
+            productInfo.className = 'product-info';
 
             var h3 = document.createElement('h3');
             h3.innerText = name;
-            productDiv.appendChild(h3);
+            productInfo.appendChild(h3);
 
             var p = document.createElement('p');
             p.innerText = product.description;
-            productDiv.appendChild(p);
+            productInfo.appendChild(p);
 
-            var priceP = document.createElement('p');
-            priceP.innerText = content[currentLanguage]['total'] + ': ¥' + product.price;
-            productDiv.appendChild(priceP);
+            var priceP = document.createElement('div');
+            priceP.className = 'price';
+            priceP.innerText = content[currentLanguage]['currency'] + product.price;
+            productInfo.appendChild(priceP);
 
             var button = document.createElement('button');
             button.innerText = content[currentLanguage]['addToCart'];
             button.onclick = function() {
                 addToCart(name, product.price);
             };
-            productDiv.appendChild(button);
+            productInfo.appendChild(button);
 
-            productList.appendChild(productDiv);
+            productCard.appendChild(productInfo);
+            productList.appendChild(productCard);
         }
 
         // 过滤乐器列表
@@ -452,7 +638,6 @@
         function addToCart(name, price) {
             cart.push({name: name, price: price});
             updateCart();
-            alert(name + ' ' + content[currentLanguage]['addToCart']);
         }
 
         // 更新购物车
@@ -467,13 +652,11 @@
             } else {
                 cart.forEach(function(item) {
                     var li = document.createElement('li');
-                    li.innerText = item.name + ' - ¥' + item.price;
+                    li.innerText = item.name + ' - ' + content[currentLanguage]['currency'] + item.price;
                     cartItems.appendChild(li);
                     total += item.price;
                 });
-                var totalLi = document.createElement('li');
-                totalLi.innerText = content[currentLanguage]['total'] + ': ¥' + total;
-                cartItems.appendChild(totalLi);
+                document.getElementById('cart-total').innerText = content[currentLanguage]['total'] + ': ' + content[currentLanguage]['currency'] + total;
             }
         }
 
