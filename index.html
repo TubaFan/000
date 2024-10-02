@@ -46,6 +46,7 @@
 
         nav ul li {
             position: relative;
+            margin: 0 15px;
         }
 
         nav ul li a {
@@ -59,43 +60,44 @@
             background-color: #555;
         }
 
-        /* Dropdown Menu Styles */
-        .dropdown, .sub-dropdown {
-            position: absolute;
-            background-color: #fff;
-            display: none;
-            min-width: 200px;
-            z-index: 1;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
+        nav ul li:hover .dropdown {
+            display: block;
         }
 
-        .dropdown a, .sub-dropdown a {
-            padding: 10px 20px;
-            color: #333;
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            padding: 10px;
+            z-index: 1000;
+            list-style: none;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+        }
+
+        .dropdown li:hover .sub-dropdown {
+            display: block;
+        }
+
+        .sub-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #666;
+            left: 100%;
+            top: 0;
+            min-width: 200px;
+        }
+
+        .dropdown li a, .sub-dropdown li a {
+            color: white;
+            padding: 10px;
             text-decoration: none;
             display: block;
-            font-size: 16px;
-            transition: background-color 0.3s;
         }
 
-        .dropdown a:hover, .sub-dropdown a:hover {
-            background-color: #f0f0f0;
-        }
-
-        nav ul li:hover > .dropdown {
-            display: block;
-        }
-
-        .dropdown li:hover > .sub-dropdown {
-            display: block;
-            top: 100%;
-            left: 0;
-        }
-
-        .sub-dropdown a {
-            font-size: 14px;
+        .dropdown li a:hover, .sub-dropdown li a:hover {
+            background-color: #777;
         }
 
         main {
@@ -158,7 +160,7 @@
                 <a href="#" id="instruments-link">Instruments</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="#" id="dropdown-woodwinds">Woodwinds</a>
+                        <a href="#">Woodwinds</a>
                         <ul class="sub-dropdown">
                             <li><a href="#" onclick="showInstruments('flute')">Flute</a></li>
                             <li><a href="#" onclick="showInstruments('clarinet')">Clarinet</a></li>
@@ -174,7 +176,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-brass">Brass</a>
+                        <a href="#">Brass</a>
                         <ul class="sub-dropdown">
                             <li><a href="#" onclick="showInstruments('trumpet')">Trumpet</a></li>
                             <li><a href="#" onclick="showInstruments('trombone')">Trombone</a></li>
@@ -190,7 +192,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" id="dropdown-strings">Strings</a>
+                        <a href="#">Strings</a>
                         <ul class="sub-dropdown">
                             <li><a href="#" onclick="showInstruments('violin')">Violin</a></li>
                             <li><a href="#" onclick="showInstruments('cello')">Cello</a></li>
@@ -250,14 +252,10 @@
                 "site-title": "Fanyunqi's Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
-                "dropdown-woodwinds": "Woodwinds",
-                "dropdown-brass": "Brass",
-                "dropdown-strings": "Strings",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
                 "home-description": "Here you'll find information about musical instruments and more.",
                 "instruments-title": "Instruments",
-                "details-title": "Instrument Details",
                 "contact-title": "Contact Me",
                 "contact-description": "Feel free to reach out to me via email: "
             },
@@ -265,14 +263,10 @@
                 "site-title": "范云祺的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器介绍",
-                "dropdown-woodwinds": "木管乐器",
-                "dropdown-brass": "铜管乐器",
-                "dropdown-strings": "弦乐器",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
                 "instruments-title": "乐器介绍",
-                "details-title": "乐器详情",
                 "contact-title": "联系我",
                 "contact-description": "欢迎通过邮箱与我联系: "
             }
