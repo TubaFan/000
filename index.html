@@ -43,38 +43,63 @@
         }
         .nav-links {
             display: flex;
+            align-items: center;
         }
         .nav-links li {
             position: relative;
             margin-left: 30px;
         }
-        .nav-links a {
+        .nav-links > li > a {
             color: #ecf0f1;
             font-size: 16px;
             padding: 5px 0;
             transition: color 0.3s;
+            cursor: pointer;
         }
-        .nav-links a:hover {
+        .nav-links > li > a:hover {
             color: #3498db;
         }
         /* 下拉菜单 */
-        .dropdown {
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-toggle::after {
+            content: ' ▼';
+            font-size: 12px;
+        }
+        .dropdown-menu {
+            display: none;
             position: absolute;
             top: 35px;
             left: 0;
             background-color: #34495e;
-            display: none;
             flex-direction: column;
             min-width: 150px;
+            z-index: 999;
         }
-        .dropdown li {
+        .dropdown-menu li {
+            position: relative;
+        }
+        .dropdown-menu a {
+            color: #ecf0f1;
             padding: 10px;
+            display: block;
+            transition: background-color 0.3s;
         }
-        .nav-links li:hover .dropdown {
+        .dropdown-menu a:hover {
+            background-color: #2c3e50;
+        }
+        .nav-links li.active > .dropdown-menu {
             display: flex;
         }
-        .dropdown a:hover {
-            color: #1abc9c;
+        /* 子下拉菜单 */
+        .dropdown-menu .dropdown-toggle {
+            justify-content: space-between;
+        }
+        .dropdown-menu .dropdown-menu {
+            top: 0;
+            left: 150px;
         }
         /* 语言切换 */
         .language-switch {
@@ -258,8 +283,8 @@
             <ul class="nav-links">
                 <li><a href="#" onclick="showSection('home')">主页</a></li>
                 <li>
-                    <a href="#" onclick="showSection('instruments')">乐器商城</a>
-                    <ul class="dropdown" id="instrument-menu">
+                    <a href="#" class="dropdown-toggle" onclick="toggleMenu(event)">乐器商城</a>
+                    <ul class="dropdown-menu" id="instrument-menu">
                         <!-- 动态生成菜单 -->
                     </ul>
                 </li>
@@ -505,6 +530,9 @@
             });
             document.getElementById(sectionId).classList.add('active');
             updateContent(sectionId);
+
+            // 关闭所有打开的菜单
+            closeAllMenus();
         }
 
         // 更新内容
@@ -525,36 +553,96 @@
             var categories = content[currentLanguage]['instruments']['categories'];
             for (var category in categories) {
                 var li = document.createElement('li');
+
                 var a = document.createElement('a');
                 a.href = '#';
+                a.className = 'dropdown-toggle';
                 a.innerText = category;
-                a.onclick = (function(cat) {
-                    return function() {
-                        showSection('instruments');
-                        filterProducts(cat);
+                a.onclick = (function(cat, event) {
+                    return function(event) {
+                        event.preventDefault();
+                        toggleSubMenu(event.target);
                     };
                 })(category);
+
                 li.appendChild(a);
 
                 var subUl = document.createElement('ul');
-                subUl.className = 'dropdown';
+                subUl.className = 'dropdown-menu';
                 for (var subCategory in categories[category]) {
                     var subLi = document.createElement('li');
+
                     var subA = document.createElement('a');
                     subA.href = '#';
+                    subA.className = 'dropdown-toggle';
                     subA.innerText = subCategory;
-                    subA.onclick = (function(cat, subCat) {
-                        return function() {
-                            showSection('instruments');
-                            filterProducts(cat, subCat);
+                    subA.onclick = (function(cat, subCat, event) {
+                        return function(event) {
+                            event.preventDefault();
+                            toggleSubMenu(event.target);
                         };
                     })(category, subCategory);
+
                     subLi.appendChild(subA);
+
+                    var subSubUl = document.createElement('ul');
+                    subSubUl.className = 'dropdown-menu';
+
+                    for (var productName in categories[category][subCategory]) {
+                        var productLi = document.createElement('li');
+                        var productA = document.createElement('a');
+                        productA.href = '#';
+                        productA.innerText = productName;
+                        productA.onclick = (function(cat, subCat, prodName) {
+                            return function(event) {
+                                event.preventDefault();
+                                showSection('instruments');
+                                filterProducts(cat, subCat, prodName);
+                            };
+                        })(category, subCategory, productName);
+                        productLi.appendChild(productA);
+                        subSubUl.appendChild(productLi);
+                    }
+
+                    subLi.appendChild(subSubUl);
                     subUl.appendChild(subLi);
                 }
                 li.appendChild(subUl);
                 menu.appendChild(li);
             }
+        }
+
+        // 切换菜单显示
+        function toggleMenu(event) {
+            event.preventDefault();
+            var parentLi = event.target.parentElement;
+            parentLi.classList.toggle('active');
+            closeOtherMenus(parentLi);
+        }
+
+        // 切换子菜单显示
+        function toggleSubMenu(target) {
+            var parentLi = target.parentElement;
+            parentLi.classList.toggle('active');
+            closeOtherMenus(parentLi);
+        }
+
+        // 关闭其他菜单
+        function closeOtherMenus(currentLi) {
+            var allMenus = document.querySelectorAll('.nav-links li');
+            allMenus.forEach(function(li) {
+                if (li !== currentLi) {
+                    li.classList.remove('active');
+                }
+            });
+        }
+
+        // 关闭所有菜单
+        function closeAllMenus() {
+            var allMenus = document.querySelectorAll('.nav-links li');
+            allMenus.forEach(function(li) {
+                li.classList.remove('active');
+            });
         }
 
         // 生成乐器列表
@@ -611,23 +699,28 @@
         }
 
         // 过滤乐器列表
-        function filterProducts(category, subCategory) {
+        function filterProducts(category, subCategory, productName) {
             var productList = document.getElementById('product-list');
             productList.innerHTML = '';
             var categories = content[currentLanguage]['instruments']['categories'];
             if (categories[category]) {
                 if (subCategory) {
-                    var products = categories[category][subCategory];
-                    for (var productName in products) {
-                        var product = products[productName];
+                    if (productName) {
+                        var product = categories[category][subCategory][productName];
                         createProductCard(productName, product);
+                    } else {
+                        var products = categories[category][subCategory];
+                        for (var name in products) {
+                            var product = products[name];
+                            createProductCard(name, product);
+                        }
                     }
                 } else {
                     for (var subCat in categories[category]) {
                         var products = categories[category][subCat];
-                        for (var productName in products) {
-                            var product = products[productName];
-                            createProductCard(productName, product);
+                        for (var name in products) {
+                            var product = products[name];
+                            createProductCard(name, product);
                         }
                     }
                 }
@@ -649,6 +742,7 @@
                 var li = document.createElement('li');
                 li.innerText = content[currentLanguage]['emptyCart'];
                 cartItems.appendChild(li);
+                document.getElementById('cart-total').innerText = '';
             } else {
                 cart.forEach(function(item) {
                     var li = document.createElement('li');
@@ -670,6 +764,14 @@
                 updateCart();
             }
         }
+
+        // 点击页面其他地方时关闭菜单
+        document.addEventListener('click', function(event) {
+            var isClickInsideMenu = event.target.closest('.nav-links');
+            if (!isClickInsideMenu) {
+                closeAllMenus();
+            }
+        });
 
         // 初始化页面
         window.onload = function() {
