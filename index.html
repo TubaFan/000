@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">Fanyunqi's Personal Website</title>
     <style>
-        /* 样式设置 */
+        /* 全局样式 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f8f8f8;
             color: #333;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* 头部样式 */
         header {
             background-color: #333;
             color: white;
@@ -34,12 +40,21 @@
             background-color: #555;
             color: white;
             cursor: pointer;
+            border: none;
+        }
+
+        .language-switch button:hover {
+            background-color: #777;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            background-color: #444;
         }
 
         nav ul {
             display: flex;
             justify-content: center;
-            background-color: #444;
             padding: 0;
             margin: 0;
             list-style-type: none;
@@ -54,7 +69,6 @@
             display: block;
             padding: 1rem;
             color: white;
-            text-decoration: none;
         }
 
         nav ul li a:hover {
@@ -69,7 +83,6 @@
             display: none;
             position: absolute;
             background-color: #555;
-            padding: 0;
             z-index: 1000;
             list-style: none;
             left: 0;
@@ -79,6 +92,16 @@
 
         .dropdown li {
             position: relative;
+        }
+
+        .dropdown li a {
+            color: white;
+            padding: 10px;
+            display: block;
+        }
+
+        .dropdown li a:hover {
+            background-color: #666;
         }
 
         .dropdown li:hover .sub-dropdown {
@@ -92,21 +115,13 @@
             left: 100%;
             top: 0;
             min-width: 200px;
-            padding: 0;
         }
 
-        .dropdown li a, .sub-dropdown li a {
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-            white-space: nowrap;
-        }
-
-        .dropdown li a:hover, .sub-dropdown li a:hover {
+        .sub-dropdown li a:hover {
             background-color: #777;
         }
 
+        /* 主内容样式 */
         main {
             padding: 2rem;
             min-height: calc(100vh - 120px);
@@ -122,6 +137,7 @@
             text-align: center;
         }
 
+        /* 乐器列表样式 */
         .instrument-list {
             display: flex;
             flex-wrap: wrap;
@@ -132,11 +148,18 @@
             background-color: white;
             border: 1px solid #ccc;
             margin: 10px;
-            width: 200px;
+            width: 250px;
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             box-sizing: border-box;
             cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .instrument-item:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
         }
 
         .instrument-item img {
@@ -144,6 +167,53 @@
             height: auto;
         }
 
+        .instrument-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .instrument-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+
+        .buy-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .buy-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* 乐器详情样式 */
+        .details {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .details img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .details .buy-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* 页脚样式 */
         footer {
             background-color: #333;
             color: white;
@@ -154,10 +224,12 @@
             bottom: 0;
         }
 
+        /* 隐藏元素 */
         .hidden {
             display: none;
         }
 
+        /* 过滤器样式 */
         .filter {
             margin-bottom: 1rem;
             text-align: center;
@@ -165,6 +237,22 @@
 
         .filter label {
             margin-right: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            .instrument-item {
+                width: 100%;
+            }
+
+            .language-switch {
+                position: static;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -214,11 +302,13 @@
     </nav>
 
     <main>
+        <!-- 主页 -->
         <section id="home">
             <h2 id="home-title">Welcome to My Personal Website</h2>
             <p id="home-description">Here you'll find information about musical instruments and more.</p>
         </section>
 
+        <!-- 乐器列表 -->
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
             <div class="filter">
@@ -226,16 +316,24 @@
                 <input type="text" id="filter" oninput="filterInstruments(this.value)">
             </div>
             <div id="instrument-list" class="instrument-list">
-                <!-- Instruments will be displayed here -->
+                <!-- 乐器项将在这里生成 -->
+            </div>
+            <!-- 分页控件 -->
+            <div id="pagination" class="pagination">
+                <!-- 分页按钮将在这里生成 -->
             </div>
         </section>
 
+        <!-- 乐器详情 -->
         <section id="details" class="hidden details">
             <h2 id="details-title">Instrument Details</h2>
             <img id="details-img" src="" alt="Instrument Image">
             <p id="details-description">Description of the selected instrument.</p>
+            <p class="price" id="details-price"></p>
+            <button class="buy-button" id="buy-button">Add to Cart</button>
         </section>
 
+        <!-- 联系方式 -->
         <section id="contact" class="hidden">
             <h2 id="contact-title">Contact Me</h2>
             <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
@@ -248,6 +346,9 @@
 
     <script>
         let currentLanguage = 'en'; // 当前语言，默认为英文
+        let currentInstruments = []; // 当前显示的乐器列表
+        let currentPage = 1; // 当前页码
+        const itemsPerPage = 6; // 每页显示的乐器数量
 
         const translations = {
             en: {
@@ -281,7 +382,10 @@
                 "Conn": "Conn",
                 "Stradivarius": "Stradivarius",
                 "Eastman": "Eastman",
-                "Instrument Details": "Instrument Details"
+                "Instrument Details": "Instrument Details",
+                "Price": "Price",
+                "Add to Cart": "Add to Cart",
+                "No instruments found.": "No instruments found."
             },
             cn: {
                 "site-title": "范云祺的个人网站",
@@ -314,7 +418,10 @@
                 "Conn": "康恩",
                 "Stradivarius": "斯特拉迪瓦里",
                 "Eastman": "伊斯特曼",
-                "Instrument Details": "乐器详情"
+                "Instrument Details": "乐器详情",
+                "Price": "价格",
+                "Add to Cart": "加入购物车",
+                "No instruments found.": "未找到符合条件的乐器。"
             }
         };
 
@@ -327,26 +434,10 @@
                         en: "A beautiful silver Yamaha flute.",
                         cn: "一支美丽的银色雅马哈长笛。"
                     },
-                    brand: "Yamaha"
+                    brand: "Yamaha",
+                    price: "$500"
                 },
-                {
-                    name: { en: "Buffet Flute", cn: "布菲长笛" },
-                    img: "flute2.jpg",
-                    description: {
-                        en: "A smooth sounding Buffet flute.",
-                        cn: "音色圆润的布菲长笛。"
-                    },
-                    brand: "Buffet"
-                },
-                {
-                    name: { en: "Selmer Flute", cn: "塞尔玛长笛" },
-                    img: "flute3.jpg",
-                    description: {
-                        en: "A top quality Selmer flute.",
-                        cn: "顶级品质的塞尔玛长笛。"
-                    },
-                    brand: "Selmer"
-                }
+                // 添加更多长笛数据
             ],
             trumpet: [
                 {
@@ -356,26 +447,10 @@
                         en: "A bright sounding Yamaha trumpet.",
                         cn: "音色明亮的雅马哈小号。"
                     },
-                    brand: "Yamaha"
+                    brand: "Yamaha",
+                    price: "$600"
                 },
-                {
-                    name: { en: "Bach Trumpet", cn: "巴赫小号" },
-                    img: "trumpet2.jpg",
-                    description: {
-                        en: "A powerful Bach trumpet.",
-                        cn: "音量强大的巴赫小号。"
-                    },
-                    brand: "Bach"
-                },
-                {
-                    name: { en: "Conn Trumpet", cn: "康恩小号" },
-                    img: "trumpet3.jpg",
-                    description: {
-                        en: "A well-rounded Conn trumpet.",
-                        cn: "音色均衡的康恩小号。"
-                    },
-                    brand: "Conn"
-                }
+                // 添加更多小号数据
             ],
             violin: [
                 {
@@ -385,26 +460,10 @@
                         en: "A classic Stradivarius violin.",
                         cn: "经典的斯特拉迪瓦里小提琴。"
                     },
-                    brand: "Stradivarius"
+                    brand: "Stradivarius",
+                    price: "$2000"
                 },
-                {
-                    name: { en: "Yamaha Violin", cn: "雅马哈小提琴" },
-                    img: "violin2.jpg",
-                    description: {
-                        en: "A versatile Yamaha violin.",
-                        cn: "多功能的雅马哈小提琴。"
-                    },
-                    brand: "Yamaha"
-                },
-                {
-                    name: { en: "Eastman Violin", cn: "伊斯特曼小提琴" },
-                    img: "violin3.jpg",
-                    description: {
-                        en: "A high-quality Eastman violin.",
-                        cn: "高品质的伊斯特曼小提琴。"
-                    },
-                    brand: "Eastman"
-                }
+                // 添加更多小提琴数据
             ],
             // 可以继续添加其他乐器的数据
         };
@@ -413,29 +472,76 @@
             const instrumentList = document.getElementById('instrument-list');
             instrumentList.innerHTML = ''; // 清空列表
 
+            const filteredInstruments = [];
+
             for (const category in instrumentData) {
                 instrumentData[category].forEach(instrument => {
                     const instrumentName = instrument.name[currentLanguage];
                     const instrumentBrand = instrument.brand;
-                    if (instrumentName.toLowerCase().includes(filter.toLowerCase()) ||
-                        instrumentBrand.toLowerCase().includes(filter.toLowerCase())) {
-                        const item = createInstrumentItem(instrument);
-                        instrumentList.appendChild(item);
+                    if (
+                        instrumentName.toLowerCase().includes(filter.toLowerCase()) ||
+                        instrumentBrand.toLowerCase().includes(filter.toLowerCase())
+                    ) {
+                        filteredInstruments.push(instrument);
                     }
                 });
             }
+
+            if (filteredInstruments.length === 0) {
+                instrumentList.innerHTML = `<p>${translations[currentLanguage]["No instruments found."]}</p>`;
+                return;
+            }
+
+            currentInstruments = filteredInstruments;
+            currentPage = 1;
+            displayInstruments();
         }
 
         function showInstruments(category) {
             const instrumentList = document.getElementById('instrument-list');
             instrumentList.innerHTML = ''; // 清空现有内容
 
-            instrumentData[category].forEach(instrument => {
+            currentInstruments = instrumentData[category];
+            currentPage = 1;
+            displayInstruments();
+
+            showSection('instruments');
+        }
+
+        function displayInstruments() {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const instrumentsToShow = currentInstruments.slice(startIndex, endIndex);
+
+            instrumentsToShow.forEach(instrument => {
                 const item = createInstrumentItem(instrument);
                 instrumentList.appendChild(item);
             });
 
-            showSection('instruments');
+            displayPagination();
+        }
+
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(currentInstruments.length / itemsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.onclick = () => {
+                    currentPage = i;
+                    displayInstruments();
+                };
+                if (i === currentPage) {
+                    button.style.fontWeight = 'bold';
+                }
+                pagination.appendChild(button);
+            }
         }
 
         function createInstrumentItem(instrument) {
@@ -450,8 +556,17 @@
             const name = document.createElement('h3');
             name.innerText = instrument.name[currentLanguage];
 
+            const brand = document.createElement('p');
+            brand.innerText = instrument.brand;
+
+            const price = document.createElement('p');
+            price.className = 'price';
+            price.innerText = instrument.price;
+
             item.appendChild(img);
             item.appendChild(name);
+            item.appendChild(brand);
+            item.appendChild(price);
 
             return item;
         }
@@ -460,6 +575,8 @@
             document.getElementById('details-title').innerText = instrument.name[currentLanguage];
             document.getElementById('details-img').src = instrument.img;
             document.getElementById('details-description').innerText = instrument.description[currentLanguage];
+            document.getElementById('details-price').innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
+            document.getElementById('buy-button').innerText = translations[currentLanguage]["Add to Cart"];
 
             showSection('details');
         }
@@ -505,6 +622,11 @@
 
             // 保存用户的语言选择
             localStorage.setItem('selectedLanguage', lang);
+
+            // 如果当前在乐器列表页面，刷新列表以更新文本
+            if (!document.getElementById('instruments').classList.contains('hidden')) {
+                displayInstruments();
+            }
         }
 
         document.addEventListener("DOMContentLoaded", () => {
