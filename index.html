@@ -192,6 +192,44 @@
             margin: 10px 0 5px;
         }
 
+        /* 活动列表样式 */
+        .event-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .event-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            position: relative;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .event-item:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        .event-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .event-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .event-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
         /* 乐器列表样式 */
         .instrument-list {
             display: flex;
@@ -281,7 +319,7 @@
                 flex-direction: column;
             }
 
-            .instrument-item {
+            .instrument-item, .event-item {
                 width: 100%;
             }
 
@@ -333,7 +371,7 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#" id="event-link" onclick="showSection('event-registration')">Event Registration</a></li>
+            <li><a href="#" id="event-link" onclick="showSection('events')">Events</a></li>
             <li><a href="#" id="artists-link" onclick="showSection('artists')">Artists</a></li>
             <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
         </ul>
@@ -372,31 +410,54 @@
             </div>
         </section>
 
-        <!-- 活动报名 -->
-        <section id="event-registration" class="hidden">
-            <h2 id="event-title">Event Registration</h2>
-            <p id="event-description">Register for upcoming musical events and workshops.</p>
-            <form id="event-form">
-                <label for="name" id="name-label">Name:</label>
-                <input type="text" id="name" required><br><br>
-                <label for="email" id="email-label">Email:</label>
-                <input type="email" id="email" required><br><br>
-                <label for="event-select" id="event-select-label">Select Event:</label>
-                <select id="event-select">
-                    <option value="workshop1">Music Workshop 1</option>
-                    <option value="workshop2">Music Workshop 2</option>
-                    <option value="concert">Concert</option>
-                </select><br><br>
-                <button type="submit" id="submit-button">Submit</button>
-            </form>
-            <p id="registration-success" class="hidden">Thank you for registering!</p>
+        <!-- 活动展示 -->
+        <section id="events" class="hidden">
+            <h2 id="event-title">Events</h2>
+            <p id="event-description">Explore upcoming musical events and workshops.</p>
+            <div class="event-list">
+                <!-- 活动项 -->
+                <div class="event-item">
+                    <img src="event1.jpg" alt="Event 1">
+                    <h3>Music Workshop 1</h3>
+                    <p>Date: 2024-11-15</p>
+                    <p>Location: Concert Hall A</p>
+                    <p>Description of the event.</p>
+                    <button onclick="eventDetails(0)">Learn More</button>
+                </div>
+                <div class="event-item">
+                    <img src="event2.jpg" alt="Event 2">
+                    <h3>Music Workshop 2</h3>
+                    <p>Date: 2024-12-05</p>
+                    <p>Location: Concert Hall B</p>
+                    <p>Description of the event.</p>
+                    <button onclick="eventDetails(1)">Learn More</button>
+                </div>
+                <div class="event-item">
+                    <img src="event3.jpg" alt="Event 3">
+                    <h3>Grand Concert</h3>
+                    <p>Date: 2025-01-20</p>
+                    <p>Location: Main Auditorium</p>
+                    <p>Description of the event.</p>
+                    <button onclick="eventDetails(2)">Learn More</button>
+                </div>
+                <!-- 添加更多活动 -->
+            </div>
+        </section>
+
+        <!-- 活动详情 -->
+        <section id="event-details" class="hidden">
+            <h2 id="event-details-title">Event Details</h2>
+            <img id="event-details-img" src="" alt="Event Image">
+            <p id="event-details-date"></p>
+            <p id="event-details-location"></p>
+            <p id="event-details-description"></p>
         </section>
 
         <!-- 艺术家 -->
         <section id="artists" class="hidden">
             <h2 id="artists-title">Artists</h2>
             <div class="artist-list">
-                <!-- 您可以在这里添加艺术家的信息 -->
+                <!-- 艺术家项 -->
                 <div class="artist-item">
                     <img src="artist1.jpg" alt="Artist 1">
                     <h3>Artist 1</h3>
@@ -457,7 +518,7 @@
                 "site-title": "Fanyunqi's Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
-                "event-link": "Event Registration",
+                "event-link": "Events",
                 "artists-link": "Artists",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
@@ -465,13 +526,9 @@
                 "intro-title": "About Me",
                 "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
                 "featured-title": "Featured Instruments",
-                "event-title": "Event Registration",
-                "event-description": "Register for upcoming musical events and workshops.",
-                "name-label": "Name:",
-                "email-label": "Email:",
-                "event-select-label": "Select Event:",
-                "submit-button": "Submit",
-                "registration-success": "Thank you for registering!",
+                "event-title": "Events",
+                "event-description": "Explore upcoming musical events and workshops.",
+                "event-details-title": "Event Details",
                 "artists-title": "Artists",
                 "instruments-title": "Instruments",
                 "contact-title": "Contact Me",
@@ -499,13 +556,17 @@
                 "Eastman": "Eastman",
                 "Instrument Details": "Instrument Details",
                 "Price": "Price",
-                "No instruments found.": "No instruments found."
+                "No instruments found.": "No instruments found.",
+                "Date": "Date",
+                "Location": "Location",
+                "Description": "Description",
+                "Learn More": "Learn More"
             },
             cn: {
                 "site-title": "范云祺的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器浏览",
-                "event-link": "活动报名",
+                "event-link": "活动",
                 "artists-link": "艺术家",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
@@ -513,13 +574,9 @@
                 "intro-title": "关于我",
                 "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
                 "featured-title": "推荐乐器",
-                "event-title": "活动报名",
-                "event-description": "报名参加即将举行的音乐活动和工作坊。",
-                "name-label": "姓名：",
-                "email-label": "邮箱：",
-                "event-select-label": "选择活动：",
-                "submit-button": "提交",
-                "registration-success": "感谢您的报名！",
+                "event-title": "活动",
+                "event-description": "探索即将举行的音乐活动和工作坊。",
+                "event-details-title": "活动详情",
                 "artists-title": "艺术家",
                 "instruments-title": "乐器浏览",
                 "contact-title": "联系我",
@@ -547,7 +604,11 @@
                 "Eastman": "伊斯特曼",
                 "Instrument Details": "乐器详情",
                 "Price": "价格",
-                "No instruments found.": "未找到符合条件的乐器。"
+                "No instruments found.": "未找到符合条件的乐器。",
+                "Date": "日期",
+                "Location": "地点",
+                "Description": "描述",
+                "Learn More": "了解更多"
             }
         };
 
@@ -590,6 +651,40 @@
             instrumentData['trumpet'][0],
             instrumentData['violin'][0],
             instrumentData['flute'][0]
+        ];
+
+        // 活动数据
+        const eventData = [
+            {
+                title: { en: "Music Workshop 1", cn: "音乐工作坊 1" },
+                img: "event1.jpg",
+                date: "2024-11-15",
+                location: { en: "Concert Hall A", cn: "音乐厅 A" },
+                description: {
+                    en: "Description of Music Workshop 1.",
+                    cn: "音乐工作坊 1 的描述。"
+                }
+            },
+            {
+                title: { en: "Music Workshop 2", cn: "音乐工作坊 2" },
+                img: "event2.jpg",
+                date: "2024-12-05",
+                location: { en: "Concert Hall B", cn: "音乐厅 B" },
+                description: {
+                    en: "Description of Music Workshop 2.",
+                    cn: "音乐工作坊 2 的描述。"
+                }
+            },
+            {
+                title: { en: "Grand Concert", cn: "大型音乐会" },
+                img: "event3.jpg",
+                date: "2025-01-20",
+                location: { en: "Main Auditorium", cn: "主礼堂" },
+                description: {
+                    en: "Description of the Grand Concert.",
+                    cn: "大型音乐会的描述。"
+                }
+            }
         ];
 
         function capitalize(str) {
@@ -708,6 +803,17 @@
             showSection('details');
         }
 
+        function eventDetails(index) {
+            const event = eventData[index];
+            document.getElementById('event-details-title').innerText = event.title[currentLanguage];
+            document.getElementById('event-details-img').src = event.img;
+            document.getElementById('event-details-date').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
+            document.getElementById('event-details-location').innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+            document.getElementById('event-details-description').innerText = `${translations[currentLanguage]["Description"]}: ${event.description[currentLanguage]}`;
+
+            showSection('event-details');
+        }
+
         function showSection(sectionId) {
             const sections = document.querySelectorAll('main section');
             sections.forEach(section => {
@@ -755,38 +861,36 @@
                 displayInstruments();
             }
 
-            // 更新表单和提示文本
-            if (document.getElementById('event-registration')) {
+            // 更新活动页面
+            if (document.getElementById('events')) {
                 document.getElementById('event-title').innerText = translations[lang]['event-title'];
                 document.getElementById('event-description').innerText = translations[lang]['event-description'];
-                document.getElementById('name-label').innerText = translations[lang]['name-label'];
-                document.getElementById('email-label').innerText = translations[lang]['email-label'];
-                document.getElementById('event-select-label').innerText = translations[lang]['event-select-label'];
-                document.getElementById('submit-button').innerText = translations[lang]['submit-button'];
-                document.getElementById('registration-success').innerText = translations[lang]['registration-success'];
+                const eventItems = document.querySelectorAll('.event-item');
+                eventItems.forEach((item, index) => {
+                    const event = eventData[index];
+                    item.querySelector('h3').innerText = event.title[lang];
+                    item.querySelector('p:nth-of-type(1)').innerText = `${translations[lang]["Date"]}: ${event.date}`;
+                    item.querySelector('p:nth-of-type(2)').innerText = `${translations[lang]["Location"]}: ${event.location[lang]}`;
+                    item.querySelector('p:nth-of-type(3)').innerText = event.description[lang];
+                    item.querySelector('button').innerText = translations[lang]["Learn More"];
+                });
             }
 
-            if (document.getElementById('artists')) {
-                document.getElementById('artists-title').innerText = translations[lang]['artists-title'];
-                // 如果有艺术家的其他文本，需要在这里更新
+            // 更新活动详情页面
+            if (!document.getElementById('event-details').classList.contains('hidden')) {
+                // 重新显示当前活动详情，以更新语言
+                const currentEventTitle = document.getElementById('event-details-title').innerText;
+                const currentEventIndex = eventData.findIndex(event => event.title[currentLanguage] === currentEventTitle);
+                if (currentEventIndex !== -1) {
+                    eventDetails(currentEventIndex);
+                }
             }
         }
 
-        // 表单提交事件处理
         document.addEventListener("DOMContentLoaded", () => {
             const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
             switchLanguage(savedLanguage);
             showSection('home');
-
-            const eventForm = document.getElementById('event-form');
-            if (eventForm) {
-                eventForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    // 简单的表单验证和提交处理
-                    document.getElementById('registration-success').classList.remove('hidden');
-                    eventForm.reset();
-                });
-            }
         });
     </script>
 </body>
