@@ -192,44 +192,6 @@
             margin: 10px 0 5px;
         }
 
-        /* 活动列表样式 */
-        .event-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .event-item {
-            background-color: white;
-            border: 1px solid #ccc;
-            margin: 10px;
-            width: 300px;
-            text-align: center;
-            padding: 15px;
-            box-sizing: border-box;
-            position: relative;
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-
-        .event-item:hover {
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
-        }
-
-        .event-item img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .event-item h3 {
-            margin: 10px 0 5px;
-        }
-
-        .event-item p {
-            margin: 5px 0;
-            color: #666;
-        }
-
         /* 乐器列表样式 */
         .instrument-list {
             display: flex;
@@ -287,6 +249,82 @@
             margin-bottom: 20px;
         }
 
+        /* 活动列表样式 */
+        .event-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .event-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .event-item:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        .event-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .event-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .event-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        /* 留学项目样式 */
+        .study-abroad-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .study-abroad-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .study-abroad-item:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        .study-abroad-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .study-abroad-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .study-abroad-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
         /* 页脚样式 */
         footer {
             background-color: #333;
@@ -319,7 +357,9 @@
                 flex-direction: column;
             }
 
-            .instrument-item, .event-item {
+            .instrument-item,
+            .event-item,
+            .study-abroad-item {
                 width: 100%;
             }
 
@@ -371,7 +411,8 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="#" id="event-link" onclick="showSection('events')">Events</a></li>
+            <li><a href="#" id="event-link" onclick="showSection('event')">Events</a></li>
+            <li><a href="#" id="study-abroad-link" onclick="showSection('study-abroad')">Study Abroad</a></li>
             <li><a href="#" id="artists-link" onclick="showSection('artists')">Artists</a></li>
             <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
         </ul>
@@ -411,7 +452,7 @@
         </section>
 
         <!-- 活动展示 -->
-        <section id="events" class="hidden">
+        <section id="event" class="hidden">
             <h2 id="event-title">Events</h2>
             <p id="event-description">Explore upcoming musical events and workshops.</p>
             <div class="event-list">
@@ -419,28 +460,18 @@
                 <div class="event-item">
                     <img src="event1.jpg" alt="Event 1">
                     <h3>Music Workshop 1</h3>
-                    <p>Date: 2024-11-15</p>
+                    <p>Date: 2024-11-10</p>
                     <p>Location: Concert Hall A</p>
-                    <p>Description of the event.</p>
-                    <button onclick="eventDetails(0)">Learn More</button>
+                    <p><a href="#" onclick="showEventDetails(0)">Learn More</a></p>
                 </div>
                 <div class="event-item">
                     <img src="event2.jpg" alt="Event 2">
                     <h3>Music Workshop 2</h3>
                     <p>Date: 2024-12-05</p>
-                    <p>Location: Concert Hall B</p>
-                    <p>Description of the event.</p>
-                    <button onclick="eventDetails(1)">Learn More</button>
+                    <p>Location: Music Center B</p>
+                    <p><a href="#" onclick="showEventDetails(1)">Learn More</a></p>
                 </div>
-                <div class="event-item">
-                    <img src="event3.jpg" alt="Event 3">
-                    <h3>Grand Concert</h3>
-                    <p>Date: 2025-01-20</p>
-                    <p>Location: Main Auditorium</p>
-                    <p>Description of the event.</p>
-                    <button onclick="eventDetails(2)">Learn More</button>
-                </div>
-                <!-- 添加更多活动 -->
+                <!-- 添加更多活动项 -->
             </div>
         </section>
 
@@ -448,9 +479,41 @@
         <section id="event-details" class="hidden">
             <h2 id="event-details-title">Event Details</h2>
             <img id="event-details-img" src="" alt="Event Image">
+            <p id="event-details-description">Detailed information about the event.</p>
             <p id="event-details-date"></p>
             <p id="event-details-location"></p>
-            <p id="event-details-description"></p>
+            <!-- 可以添加报名按钮或链接 -->
+        </section>
+
+        <!-- 留学项目 -->
+        <section id="study-abroad" class="hidden">
+            <h2 id="study-abroad-title">Study Abroad Programs</h2>
+            <p id="study-abroad-description">Discover study abroad opportunities in music education.</p>
+            <div class="study-abroad-list">
+                <!-- 留学项目项 -->
+                <div class="study-abroad-item">
+                    <img src="study1.jpg" alt="Study Abroad Program 1">
+                    <h3>Program 1</h3>
+                    <p>Country: Germany</p>
+                    <p><a href="#" onclick="showStudyDetails(0)">Learn More</a></p>
+                </div>
+                <div class="study-abroad-item">
+                    <img src="study2.jpg" alt="Study Abroad Program 2">
+                    <h3>Program 2</h3>
+                    <p>Country: France</p>
+                    <p><a href="#" onclick="showStudyDetails(1)">Learn More</a></p>
+                </div>
+                <!-- 添加更多留学项目项 -->
+            </div>
+        </section>
+
+        <!-- 留学项目详情 -->
+        <section id="study-details" class="hidden">
+            <h2 id="study-details-title">Study Abroad Details</h2>
+            <img id="study-details-img" src="" alt="Study Abroad Image">
+            <p id="study-details-description">Detailed information about the study abroad program.</p>
+            <p id="study-details-country"></p>
+            <!-- 可以添加申请按钮或链接 -->
         </section>
 
         <!-- 艺术家 -->
@@ -519,6 +582,7 @@
                 "home-link": "Home",
                 "instruments-link": "Instruments",
                 "event-link": "Events",
+                "study-abroad-link": "Study Abroad",
                 "artists-link": "Artists",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
@@ -529,6 +593,9 @@
                 "event-title": "Events",
                 "event-description": "Explore upcoming musical events and workshops.",
                 "event-details-title": "Event Details",
+                "study-abroad-title": "Study Abroad Programs",
+                "study-abroad-description": "Discover study abroad opportunities in music education.",
+                "study-details-title": "Study Abroad Details",
                 "artists-title": "Artists",
                 "instruments-title": "Instruments",
                 "contact-title": "Contact Me",
@@ -557,16 +624,19 @@
                 "Instrument Details": "Instrument Details",
                 "Price": "Price",
                 "No instruments found.": "No instruments found.",
+                "Learn More": "Learn More",
                 "Date": "Date",
                 "Location": "Location",
-                "Description": "Description",
-                "Learn More": "Learn More"
+                "Country": "Country",
+                "Event Description": "Event Description",
+                "Study Description": "Program Description"
             },
             cn: {
                 "site-title": "范云祺的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器浏览",
                 "event-link": "活动",
+                "study-abroad-link": "留学项目",
                 "artists-link": "艺术家",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
@@ -577,6 +647,9 @@
                 "event-title": "活动",
                 "event-description": "探索即将举行的音乐活动和工作坊。",
                 "event-details-title": "活动详情",
+                "study-abroad-title": "留学项目",
+                "study-abroad-description": "发现音乐教育方面的留学机会。",
+                "study-details-title": "留学项目详情",
                 "artists-title": "艺术家",
                 "instruments-title": "乐器浏览",
                 "contact-title": "联系我",
@@ -605,10 +678,12 @@
                 "Instrument Details": "乐器详情",
                 "Price": "价格",
                 "No instruments found.": "未找到符合条件的乐器。",
+                "Learn More": "了解更多",
                 "Date": "日期",
                 "Location": "地点",
-                "Description": "描述",
-                "Learn More": "了解更多"
+                "Country": "国家",
+                "Event Description": "活动描述",
+                "Study Description": "项目描述"
             }
         };
 
@@ -656,35 +731,73 @@
         // 活动数据
         const eventData = [
             {
-                title: { en: "Music Workshop 1", cn: "音乐工作坊 1" },
+                title: {
+                    en: "Music Workshop 1",
+                    cn: "音乐工作坊 1"
+                },
                 img: "event1.jpg",
-                date: "2024-11-15",
-                location: { en: "Concert Hall A", cn: "音乐厅 A" },
+                date: "2024-11-10",
+                location: {
+                    en: "Concert Hall A",
+                    cn: "音乐厅 A"
+                },
                 description: {
-                    en: "Description of Music Workshop 1.",
-                    cn: "音乐工作坊 1 的描述。"
+                    en: "An immersive workshop on classical music.",
+                    cn: "关于古典音乐的沉浸式工作坊。"
                 }
             },
             {
-                title: { en: "Music Workshop 2", cn: "音乐工作坊 2" },
+                title: {
+                    en: "Music Workshop 2",
+                    cn: "音乐工作坊 2"
+                },
                 img: "event2.jpg",
                 date: "2024-12-05",
-                location: { en: "Concert Hall B", cn: "音乐厅 B" },
+                location: {
+                    en: "Music Center B",
+                    cn: "音乐中心 B"
+                },
                 description: {
-                    en: "Description of Music Workshop 2.",
-                    cn: "音乐工作坊 2 的描述。"
+                    en: "Explore contemporary music trends.",
+                    cn: "探索当代音乐趋势。"
+                }
+            }
+            // 可以添加更多活动数据
+        ];
+
+        // 留学项目数据
+        const studyAbroadData = [
+            {
+                title: {
+                    en: "Program 1",
+                    cn: "项目 1"
+                },
+                img: "study1.jpg",
+                country: {
+                    en: "Germany",
+                    cn: "德国"
+                },
+                description: {
+                    en: "Study classical music in Germany.",
+                    cn: "在德国学习古典音乐。"
                 }
             },
             {
-                title: { en: "Grand Concert", cn: "大型音乐会" },
-                img: "event3.jpg",
-                date: "2025-01-20",
-                location: { en: "Main Auditorium", cn: "主礼堂" },
+                title: {
+                    en: "Program 2",
+                    cn: "项目 2"
+                },
+                img: "study2.jpg",
+                country: {
+                    en: "France",
+                    cn: "法国"
+                },
                 description: {
-                    en: "Description of the Grand Concert.",
-                    cn: "大型音乐会的描述。"
+                    en: "Learn about French musical heritage.",
+                    cn: "了解法国的音乐遗产。"
                 }
             }
+            // 可以添加更多留学项目数据
         ];
 
         function capitalize(str) {
@@ -803,15 +916,25 @@
             showSection('details');
         }
 
-        function eventDetails(index) {
+        function showEventDetails(index) {
             const event = eventData[index];
             document.getElementById('event-details-title').innerText = event.title[currentLanguage];
             document.getElementById('event-details-img').src = event.img;
+            document.getElementById('event-details-description').innerText = event.description[currentLanguage];
             document.getElementById('event-details-date').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
             document.getElementById('event-details-location').innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
-            document.getElementById('event-details-description').innerText = `${translations[currentLanguage]["Description"]}: ${event.description[currentLanguage]}`;
 
             showSection('event-details');
+        }
+
+        function showStudyDetails(index) {
+            const program = studyAbroadData[index];
+            document.getElementById('study-details-title').innerText = program.title[currentLanguage];
+            document.getElementById('study-details-img').src = program.img;
+            document.getElementById('study-details-description').innerText = program.description[currentLanguage];
+            document.getElementById('study-details-country').innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+
+            showSection('study-details');
         }
 
         function showSection(sectionId) {
@@ -861,30 +984,36 @@
                 displayInstruments();
             }
 
-            // 更新活动页面
-            if (document.getElementById('events')) {
-                document.getElementById('event-title').innerText = translations[lang]['event-title'];
-                document.getElementById('event-description').innerText = translations[lang]['event-description'];
-                const eventItems = document.querySelectorAll('.event-item');
-                eventItems.forEach((item, index) => {
-                    const event = eventData[index];
-                    item.querySelector('h3').innerText = event.title[lang];
-                    item.querySelector('p:nth-of-type(1)').innerText = `${translations[lang]["Date"]}: ${event.date}`;
-                    item.querySelector('p:nth-of-type(2)').innerText = `${translations[lang]["Location"]}: ${event.location[lang]}`;
-                    item.querySelector('p:nth-of-type(3)').innerText = event.description[lang];
-                    item.querySelector('button').innerText = translations[lang]["Learn More"];
-                });
-            }
+            // 更新活动和留学项目的文本
+            updateEventTexts();
+            updateStudyAbroadTexts();
+        }
 
-            // 更新活动详情页面
-            if (!document.getElementById('event-details').classList.contains('hidden')) {
-                // 重新显示当前活动详情，以更新语言
-                const currentEventTitle = document.getElementById('event-details-title').innerText;
-                const currentEventIndex = eventData.findIndex(event => event.title[currentLanguage] === currentEventTitle);
-                if (currentEventIndex !== -1) {
-                    eventDetails(currentEventIndex);
-                }
-            }
+        function updateEventTexts() {
+            document.getElementById('event-title').innerText = translations[currentLanguage]['event-title'];
+            document.getElementById('event-description').innerText = translations[currentLanguage]['event-description'];
+
+            const eventItems = document.querySelectorAll('.event-item');
+            eventItems.forEach((item, index) => {
+                const event = eventData[index];
+                item.querySelector('h3').innerText = event.title[currentLanguage];
+                item.querySelector('p').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
+                item.querySelectorAll('p')[1].innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+                item.querySelector('a').innerText = translations[currentLanguage]["Learn More"];
+            });
+        }
+
+        function updateStudyAbroadTexts() {
+            document.getElementById('study-abroad-title').innerText = translations[currentLanguage]['study-abroad-title'];
+            document.getElementById('study-abroad-description').innerText = translations[currentLanguage]['study-abroad-description'];
+
+            const studyItems = document.querySelectorAll('.study-abroad-item');
+            studyItems.forEach((item, index) => {
+                const program = studyAbroadData[index];
+                item.querySelector('h3').innerText = program.title[currentLanguage];
+                item.querySelector('p').innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+                item.querySelector('a').innerText = translations[currentLanguage]["Learn More"];
+            });
         }
 
         document.addEventListener("DOMContentLoaded", () => {
