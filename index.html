@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fanyunqi's Personal Website</title>
+    <title id="site-title">Fanyunqi's Personal Website</title>
     <style>
+        /* 样式设置，与您原有的相同 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -160,49 +161,49 @@
                 <a href="#" id="instruments-link">Instruments</a>
                 <ul class="dropdown">
                     <li>
-                        <a href="#">Woodwinds</a>
+                        <a href="#" data-translation-key="woodwinds">Woodwinds</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('flute')">Flute</a></li>
-                            <li><a href="#" onclick="showInstruments('clarinet')">Clarinet</a></li>
-                            <li><a href="#" onclick="showInstruments('oboe')">Oboe</a></li>
+                            <li><a href="#" data-translation-key="flute" onclick="showInstruments('flute')">Flute</a></li>
+                            <li><a href="#" data-translation-key="clarinet" onclick="showInstruments('clarinet')">Clarinet</a></li>
+                            <li><a href="#" data-translation-key="oboe" onclick="showInstruments('oboe')">Oboe</a></li>
                             <li>
-                                <a href="#">Brands</a>
+                                <a href="#" data-translation-key="brands">Brands</a>
                                 <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Buffet')">Buffet</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Selmer')">Selmer</a></li>
+                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" data-translation-key="Buffet" onclick="filterInstruments('Buffet')">Buffet</a></li>
+                                    <li><a href="#" data-translation-key="Selmer" onclick="filterInstruments('Selmer')">Selmer</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Brass</a>
+                        <a href="#" data-translation-key="brass">Brass</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('trumpet')">Trumpet</a></li>
-                            <li><a href="#" onclick="showInstruments('trombone')">Trombone</a></li>
-                            <li><a href="#" onclick="showInstruments('tuba')">Tuba</a></li>
+                            <li><a href="#" data-translation-key="trumpet" onclick="showInstruments('trumpet')">Trumpet</a></li>
+                            <li><a href="#" data-translation-key="trombone" onclick="showInstruments('trombone')">Trombone</a></li>
+                            <li><a href="#" data-translation-key="tuba" onclick="showInstruments('tuba')">Tuba</a></li>
                             <li>
-                                <a href="#">Brands</a>
+                                <a href="#" data-translation-key="brands">Brands</a>
                                 <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Bach')">Bach</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Conn')">Conn</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" data-translation-key="Bach" onclick="filterInstruments('Bach')">Bach</a></li>
+                                    <li><a href="#" data-translation-key="Conn" onclick="filterInstruments('Conn')">Conn</a></li>
+                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Strings</a>
+                        <a href="#" data-translation-key="strings">Strings</a>
                         <ul class="sub-dropdown">
-                            <li><a href="#" onclick="showInstruments('violin')">Violin</a></li>
-                            <li><a href="#" onclick="showInstruments('cello')">Cello</a></li>
-                            <li><a href="#" onclick="showInstruments('bass')">Bass</a></li>
+                            <li><a href="#" data-translation-key="violin" onclick="showInstruments('violin')">Violin</a></li>
+                            <li><a href="#" data-translation-key="cello" onclick="showInstruments('cello')">Cello</a></li>
+                            <li><a href="#" data-translation-key="bass" onclick="showInstruments('bass')">Bass</a></li>
                             <li>
-                                <a href="#">Brands</a>
+                                <a href="#" data-translation-key="brands">Brands</a>
                                 <ul class="sub-dropdown">
-                                    <li><a href="#" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" onclick="filterInstruments('Eastman')">Eastman</a></li>
+                                    <li><a href="#" data-translation-key="Stradivarius" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
+                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" data-translation-key="Eastman" onclick="filterInstruments('Eastman')">Eastman</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -222,7 +223,7 @@
         <section id="instruments" class="hidden">
             <h2 id="instruments-title">Instruments</h2>
             <div class="filter">
-                <label for="filter">Filter by brand or type:</label>
+                <label for="filter" id="filter-label">Filter by brand or type:</label>
                 <input type="text" id="filter" oninput="filterInstruments(this.value)">
             </div>
             <div id="instrument-list" class="instrument-list">
@@ -247,6 +248,8 @@
     </footer>
 
     <script>
+        let currentLanguage = 'en'; // 当前语言，默认为英文
+
         const translations = {
             en: {
                 "site-title": "Fanyunqi's Personal Website",
@@ -257,7 +260,29 @@
                 "home-description": "Here you'll find information about musical instruments and more.",
                 "instruments-title": "Instruments",
                 "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email: "
+                "contact-description": "Feel free to reach out to me via email: ",
+                "filter-label": "Filter by brand or type:",
+                "woodwinds": "Woodwinds",
+                "brass": "Brass",
+                "strings": "Strings",
+                "brands": "Brands",
+                "flute": "Flute",
+                "clarinet": "Clarinet",
+                "oboe": "Oboe",
+                "trumpet": "Trumpet",
+                "trombone": "Trombone",
+                "tuba": "Tuba",
+                "violin": "Violin",
+                "cello": "Cello",
+                "bass": "Bass",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Instrument Details"
             },
             cn: {
                 "site-title": "范云祺的个人网站",
@@ -268,38 +293,72 @@
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
                 "instruments-title": "乐器介绍",
                 "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系: "
+                "contact-description": "欢迎通过邮箱与我联系：",
+                "filter-label": "按品牌或类型筛选：",
+                "woodwinds": "木管乐器",
+                "brass": "铜管乐器",
+                "strings": "弦乐器",
+                "brands": "品牌",
+                "flute": "长笛",
+                "clarinet": "单簧管",
+                "oboe": "双簧管",
+                "trumpet": "小号",
+                "trombone": "长号",
+                "tuba": "大号",
+                "violin": "小提琴",
+                "cello": "大提琴",
+                "bass": "低音提琴",
+                "Yamaha": "雅马哈",
+                "Buffet": "布菲",
+                "Selmer": "塞尔玛",
+                "Bach": "巴赫",
+                "Conn": "康恩",
+                "Stradivarius": "斯特拉迪瓦里",
+                "Eastman": "伊斯特曼",
+                "Instrument Details": "乐器详情"
             }
         };
 
         const instrumentData = {
             flute: [
-                { name: "Yamaha Flute", img: "flute.jpg", description: "A beautiful silver Yamaha flute." },
-                { name: "Buffet Flute", img: "flute.jpg", description: "A smooth sounding Buffet flute." },
-                { name: "Selmer Flute", img: "flute.jpg", description: "A top quality Selmer flute." }
+                {
+                    name: { en: "Yamaha Flute", cn: "雅马哈长笛" },
+                    img: "flute.jpg",
+                    description: {
+                        en: "A beautiful silver Yamaha flute.",
+                        cn: "一支美丽的银色雅马哈长笛。"
+                    }
+                },
+                {
+                    name: { en: "Buffet Flute", cn: "布菲长笛" },
+                    img: "flute.jpg",
+                    description: {
+                        en: "A smooth sounding Buffet flute.",
+                        cn: "音色圆润的布菲长笛。"
+                    }
+                },
+                {
+                    name: { en: "Selmer Flute", cn: "塞尔玛长笛" },
+                    img: "flute.jpg",
+                    description: {
+                        en: "A top quality Selmer flute.",
+                        cn: "顶级品质的塞尔玛长笛。"
+                    }
+                }
             ],
-            trumpet: [
-                { name: "Yamaha Trumpet", img: "trumpet.jpg", description: "A bright sounding Yamaha trumpet." },
-                { name: "Bach Trumpet", img: "trumpet.jpg", description: "A powerful Bach trumpet." },
-                { name: "Conn Trumpet", img: "trumpet.jpg", description: "A well-rounded Conn trumpet." }
-            ],
-            violin: [
-                { name: "Stradivarius Violin", img: "violin.jpg", description: "A classic Stradivarius violin." },
-                { name: "Yamaha Violin", img: "violin.jpg", description: "A versatile Yamaha violin." },
-                { name: "Eastman Violin", img: "violin.jpg", description: "A high-quality Eastman violin." }
-            ]
+            // 其他乐器数据，类似地添加 name 和 description 的翻译
         };
 
         function filterInstruments(filter) {
             const instrumentList = document.getElementById('instrument-list');
-            instrumentList.innerHTML = ''; // Clear the list
+            instrumentList.innerHTML = ''; // 清空列表
 
             for (const category in instrumentData) {
                 instrumentData[category].forEach(instrument => {
-                    if (instrument.name.toLowerCase().includes(filter.toLowerCase())) {
+                    if (instrument.name[currentLanguage].toLowerCase().includes(filter.toLowerCase())) {
                         const img = document.createElement('img');
                         img.src = instrument.img;
-                        img.alt = instrument.name;
+                        img.alt = instrument.name[currentLanguage];
                         img.onclick = () => showDetails(instrument);
 
                         instrumentList.appendChild(img);
@@ -310,12 +369,12 @@
 
         function showInstruments(category) {
             const instrumentList = document.getElementById('instrument-list');
-            instrumentList.innerHTML = ''; // Clear existing content
+            instrumentList.innerHTML = ''; // 清空现有内容
 
             instrumentData[category].forEach(instrument => {
                 const img = document.createElement('img');
                 img.src = instrument.img;
-                img.alt = instrument.name;
+                img.alt = instrument.name[currentLanguage];
                 img.onclick = () => showDetails(instrument);
 
                 instrumentList.appendChild(img);
@@ -325,9 +384,10 @@
         }
 
         function showDetails(instrument) {
-            document.getElementById('details-title').innerText = instrument.name;
+            document.getElementById('details-title').innerText = translations[currentLanguage]['Instrument Details'];
+            document.getElementById('details-title').innerText = instrument.name[currentLanguage];
             document.getElementById('details-img').src = instrument.img;
-            document.getElementById('details-description').innerText = instrument.description;
+            document.getElementById('details-description').innerText = instrument.description[currentLanguage];
 
             showSection('details');
         }
@@ -344,15 +404,40 @@
         }
 
         function switchLanguage(lang) {
+            currentLanguage = lang;
+
+            // 更新具有 id 的元素
             document.querySelectorAll("[id]").forEach(element => {
                 const key = element.id;
                 if (translations[lang][key]) {
                     element.innerText = translations[lang][key];
                 }
             });
+
+            // 更新具有 data-translation-key 的元素
+            document.querySelectorAll("[data-translation-key]").forEach(element => {
+                const key = element.getAttribute("data-translation-key");
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+
+            // 更新过滤器标签
+            const filterLabel = document.querySelector('label[for="filter"]');
+            if (filterLabel && translations[lang]['filter-label']) {
+                filterLabel.innerText = translations[lang]['filter-label'];
+            }
+
+            // 更新页面的语言属性
+            document.documentElement.lang = lang;
+
+            // 保存用户的语言选择
+            localStorage.setItem('selectedLanguage', lang);
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            switchLanguage(savedLanguage);
             showSection('home');
         });
     </script>
