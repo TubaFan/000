@@ -69,12 +69,16 @@
             display: none;
             position: absolute;
             background-color: #555;
-            padding: 10px;
+            padding: 0;
             z-index: 1000;
             list-style: none;
             left: 0;
             top: 100%;
             min-width: 200px;
+        }
+
+        .dropdown li {
+            position: relative;
         }
 
         .dropdown li:hover .sub-dropdown {
@@ -88,6 +92,7 @@
             left: 100%;
             top: 0;
             min-width: 200px;
+            padding: 0;
         }
 
         .dropdown li a, .sub-dropdown li a {
@@ -95,6 +100,7 @@
             padding: 10px;
             text-decoration: none;
             display: block;
+            white-space: nowrap;
         }
 
         .dropdown li a:hover, .sub-dropdown li a:hover {
@@ -158,7 +164,7 @@
         <ul>
             <li><a href="#" id="home-link" onclick="showSection('home')">Home</a></li>
             <li>
-                <a href="#" id="instruments-link">Instruments</a>
+                <a href="#" id="instruments-link" data-translation-key="instruments-link">Instruments</a>
                 <ul class="dropdown">
                     <li>
                         <a href="#" data-translation-key="woodwinds">Woodwinds</a>
@@ -346,7 +352,59 @@
                     }
                 }
             ],
-            // 其他乐器数据，类似地添加 name 和 description 的翻译
+            trumpet: [
+                {
+                    name: { en: "Yamaha Trumpet", cn: "雅马哈小号" },
+                    img: "trumpet.jpg",
+                    description: {
+                        en: "A bright sounding Yamaha trumpet.",
+                        cn: "音色明亮的雅马哈小号。"
+                    }
+                },
+                {
+                    name: { en: "Bach Trumpet", cn: "巴赫小号" },
+                    img: "trumpet.jpg",
+                    description: {
+                        en: "A powerful Bach trumpet.",
+                        cn: "音量强大的巴赫小号。"
+                    }
+                },
+                {
+                    name: { en: "Conn Trumpet", cn: "康恩小号" },
+                    img: "trumpet.jpg",
+                    description: {
+                        en: "A well-rounded Conn trumpet.",
+                        cn: "音色均衡的康恩小号。"
+                    }
+                }
+            ],
+            violin: [
+                {
+                    name: { en: "Stradivarius Violin", cn: "斯特拉迪瓦里小提琴" },
+                    img: "violin.jpg",
+                    description: {
+                        en: "A classic Stradivarius violin.",
+                        cn: "经典的斯特拉迪瓦里小提琴。"
+                    }
+                },
+                {
+                    name: { en: "Yamaha Violin", cn: "雅马哈小提琴" },
+                    img: "violin.jpg",
+                    description: {
+                        en: "A versatile Yamaha violin.",
+                        cn: "多功能的雅马哈小提琴。"
+                    }
+                },
+                {
+                    name: { en: "Eastman Violin", cn: "伊斯特曼小提琴" },
+                    img: "violin.jpg",
+                    description: {
+                        en: "A high-quality Eastman violin.",
+                        cn: "高品质的伊斯特曼小提琴。"
+                    }
+                }
+            ]
+            // 可以继续添加其他乐器的数据，并添加中文翻译
         };
 
         function filterInstruments(filter) {
@@ -385,7 +443,6 @@
 
         function showDetails(instrument) {
             document.getElementById('details-title').innerText = translations[currentLanguage]['Instrument Details'];
-            document.getElementById('details-title').innerText = instrument.name[currentLanguage];
             document.getElementById('details-img').src = instrument.img;
             document.getElementById('details-description').innerText = instrument.description[currentLanguage];
 
