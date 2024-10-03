@@ -427,46 +427,108 @@
 
         const instrumentData = {
             flute: [
+                // 添加12个长笛的占位乐器
                 {
-                    name: { en: "Yamaha Flute", cn: "雅马哈长笛" },
+                    name: { en: "Flute 111", cn: "长笛 111" },
                     img: "flute1.jpg",
                     description: {
-                        en: "A beautiful silver Yamaha flute.",
-                        cn: "一支美丽的银色雅马哈长笛。"
+                        en: "Description for Flute 111",
+                        cn: "长笛 111 的描述"
                     },
-                    brand: "Yamaha",
-                    price: "$500"
+                    brand: "Brand 1",
+                    price: "$111"
                 },
-                // 添加更多长笛数据
+                {
+                    name: { en: "Flute 222", cn: "长笛 222" },
+                    img: "flute2.jpg",
+                    description: {
+                        en: "Description for Flute 222",
+                        cn: "长笛 222 的描述"
+                    },
+                    brand: "Brand 2",
+                    price: "$222"
+                },
+                // ...继续添加到12个
             ],
             trumpet: [
+                // 添加12个小号的占位乐器
                 {
-                    name: { en: "Yamaha Trumpet", cn: "雅马哈小号" },
+                    name: { en: "Trumpet 111", cn: "小号 111" },
                     img: "trumpet1.jpg",
                     description: {
-                        en: "A bright sounding Yamaha trumpet.",
-                        cn: "音色明亮的雅马哈小号。"
+                        en: "Description for Trumpet 111",
+                        cn: "小号 111 的描述"
                     },
-                    brand: "Yamaha",
-                    price: "$600"
+                    brand: "Brand 1",
+                    price: "$111"
                 },
-                // 添加更多小号数据
+                {
+                    name: { en: "Trumpet 222", cn: "小号 222" },
+                    img: "trumpet2.jpg",
+                    description: {
+                        en: "Description for Trumpet 222",
+                        cn: "小号 222 的描述"
+                    },
+                    brand: "Brand 2",
+                    price: "$222"
+                },
+                // ...继续添加到12个
             ],
             violin: [
+                // 添加12个小提琴的占位乐器
                 {
-                    name: { en: "Stradivarius Violin", cn: "斯特拉迪瓦里小提琴" },
+                    name: { en: "Violin 111", cn: "小提琴 111" },
                     img: "violin1.jpg",
                     description: {
-                        en: "A classic Stradivarius violin.",
-                        cn: "经典的斯特拉迪瓦里小提琴。"
+                        en: "Description for Violin 111",
+                        cn: "小提琴 111 的描述"
                     },
-                    brand: "Stradivarius",
-                    price: "$2000"
+                    brand: "Brand 1",
+                    price: "$111"
                 },
-                // 添加更多小提琴数据
+                {
+                    name: { en: "Violin 222", cn: "小提琴 222" },
+                    img: "violin2.jpg",
+                    description: {
+                        en: "Description for Violin 222",
+                        cn: "小提琴 222 的描述"
+                    },
+                    brand: "Brand 2",
+                    price: "$222"
+                },
+                // ...继续添加到12个
             ],
-            // 可以继续添加其他乐器的数据
+            // 其他乐器类别同样添加12个占位乐器
         };
+
+        // 为每个乐器类别自动生成占位乐器
+        const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+
+        categories.forEach(category => {
+            if (!instrumentData[category]) {
+                instrumentData[category] = [];
+            }
+            for (let i = 1; i <= 12; i++) {
+                const code = i.toString().padStart(3, '0');
+                instrumentData[category].push({
+                    name: {
+                        en: `${capitalize(category)} ${code}`,
+                        cn: `${translations['cn'][category]} ${code}`
+                    },
+                    img: `${category}${i}.jpg`, // 图片命名为 category1.jpg, category2.jpg 等
+                    description: {
+                        en: `Description for ${capitalize(category)} ${code}`,
+                        cn: `${translations['cn'][category]} ${code} 的描述`
+                    },
+                    brand: `Brand ${i}`,
+                    price: `$${(100 + i * 10)}`
+                });
+            }
+        });
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
 
         function filterInstruments(filter) {
             const instrumentList = document.getElementById('instrument-list');
