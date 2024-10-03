@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">Fanyunqi's Personal Website</title>
     <style>
-        /* 样式设置，与您原有的相同 */
+        /* 样式设置 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -122,10 +122,26 @@
             text-align: center;
         }
 
-        .instrument-list img {
-            max-width: 150px;
-            cursor: pointer;
+        .instrument-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .instrument-item {
+            background-color: white;
+            border: 1px solid #ccc;
             margin: 10px;
+            width: 200px;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .instrument-item img {
+            max-width: 100%;
+            height: auto;
         }
 
         footer {
@@ -144,6 +160,7 @@
 
         .filter {
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .filter label {
@@ -172,14 +189,6 @@
                             <li><a href="#" data-translation-key="flute" onclick="showInstruments('flute')">Flute</a></li>
                             <li><a href="#" data-translation-key="clarinet" onclick="showInstruments('clarinet')">Clarinet</a></li>
                             <li><a href="#" data-translation-key="oboe" onclick="showInstruments('oboe')">Oboe</a></li>
-                            <li>
-                                <a href="#" data-translation-key="brands">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" data-translation-key="Buffet" onclick="filterInstruments('Buffet')">Buffet</a></li>
-                                    <li><a href="#" data-translation-key="Selmer" onclick="filterInstruments('Selmer')">Selmer</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <li>
@@ -188,14 +197,6 @@
                             <li><a href="#" data-translation-key="trumpet" onclick="showInstruments('trumpet')">Trumpet</a></li>
                             <li><a href="#" data-translation-key="trombone" onclick="showInstruments('trombone')">Trombone</a></li>
                             <li><a href="#" data-translation-key="tuba" onclick="showInstruments('tuba')">Tuba</a></li>
-                            <li>
-                                <a href="#" data-translation-key="brands">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" data-translation-key="Bach" onclick="filterInstruments('Bach')">Bach</a></li>
-                                    <li><a href="#" data-translation-key="Conn" onclick="filterInstruments('Conn')">Conn</a></li>
-                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                     <li>
@@ -204,14 +205,6 @@
                             <li><a href="#" data-translation-key="violin" onclick="showInstruments('violin')">Violin</a></li>
                             <li><a href="#" data-translation-key="cello" onclick="showInstruments('cello')">Cello</a></li>
                             <li><a href="#" data-translation-key="bass" onclick="showInstruments('bass')">Bass</a></li>
-                            <li>
-                                <a href="#" data-translation-key="brands">Brands</a>
-                                <ul class="sub-dropdown">
-                                    <li><a href="#" data-translation-key="Stradivarius" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
-                                    <li><a href="#" data-translation-key="Yamaha" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
-                                    <li><a href="#" data-translation-key="Eastman" onclick="filterInstruments('Eastman')">Eastman</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -293,11 +286,11 @@
             cn: {
                 "site-title": "范云祺的个人网站",
                 "home-link": "主页",
-                "instruments-link": "乐器介绍",
+                "instruments-link": "乐器浏览",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
                 "home-description": "在这里你可以找到关于乐器的相关信息。",
-                "instruments-title": "乐器介绍",
+                "instruments-title": "乐器浏览",
                 "contact-title": "联系我",
                 "contact-description": "欢迎通过邮箱与我联系：",
                 "filter-label": "按品牌或类型筛选：",
@@ -329,82 +322,91 @@
             flute: [
                 {
                     name: { en: "Yamaha Flute", cn: "雅马哈长笛" },
-                    img: "flute.jpg",
+                    img: "flute1.jpg",
                     description: {
                         en: "A beautiful silver Yamaha flute.",
                         cn: "一支美丽的银色雅马哈长笛。"
-                    }
+                    },
+                    brand: "Yamaha"
                 },
                 {
                     name: { en: "Buffet Flute", cn: "布菲长笛" },
-                    img: "flute.jpg",
+                    img: "flute2.jpg",
                     description: {
                         en: "A smooth sounding Buffet flute.",
                         cn: "音色圆润的布菲长笛。"
-                    }
+                    },
+                    brand: "Buffet"
                 },
                 {
                     name: { en: "Selmer Flute", cn: "塞尔玛长笛" },
-                    img: "flute.jpg",
+                    img: "flute3.jpg",
                     description: {
                         en: "A top quality Selmer flute.",
                         cn: "顶级品质的塞尔玛长笛。"
-                    }
+                    },
+                    brand: "Selmer"
                 }
             ],
             trumpet: [
                 {
                     name: { en: "Yamaha Trumpet", cn: "雅马哈小号" },
-                    img: "trumpet.jpg",
+                    img: "trumpet1.jpg",
                     description: {
                         en: "A bright sounding Yamaha trumpet.",
                         cn: "音色明亮的雅马哈小号。"
-                    }
+                    },
+                    brand: "Yamaha"
                 },
                 {
                     name: { en: "Bach Trumpet", cn: "巴赫小号" },
-                    img: "trumpet.jpg",
+                    img: "trumpet2.jpg",
                     description: {
                         en: "A powerful Bach trumpet.",
                         cn: "音量强大的巴赫小号。"
-                    }
+                    },
+                    brand: "Bach"
                 },
                 {
                     name: { en: "Conn Trumpet", cn: "康恩小号" },
-                    img: "trumpet.jpg",
+                    img: "trumpet3.jpg",
                     description: {
                         en: "A well-rounded Conn trumpet.",
                         cn: "音色均衡的康恩小号。"
-                    }
+                    },
+                    brand: "Conn"
                 }
             ],
             violin: [
                 {
                     name: { en: "Stradivarius Violin", cn: "斯特拉迪瓦里小提琴" },
-                    img: "violin.jpg",
+                    img: "violin1.jpg",
                     description: {
                         en: "A classic Stradivarius violin.",
                         cn: "经典的斯特拉迪瓦里小提琴。"
-                    }
+                    },
+                    brand: "Stradivarius"
                 },
                 {
                     name: { en: "Yamaha Violin", cn: "雅马哈小提琴" },
-                    img: "violin.jpg",
+                    img: "violin2.jpg",
                     description: {
                         en: "A versatile Yamaha violin.",
                         cn: "多功能的雅马哈小提琴。"
-                    }
+                    },
+                    brand: "Yamaha"
                 },
                 {
                     name: { en: "Eastman Violin", cn: "伊斯特曼小提琴" },
-                    img: "violin.jpg",
+                    img: "violin3.jpg",
                     description: {
                         en: "A high-quality Eastman violin.",
                         cn: "高品质的伊斯特曼小提琴。"
-                    }
+                    },
+                    brand: "Eastman"
                 }
-            ]
-            // 可以继续添加其他乐器的数据，并添加中文翻译
+            ],
+            // 可以继续添加其他乐器的数据
         };
 
         function filterInstruments(filter) {
@@ -413,13 +415,12 @@
 
             for (const category in instrumentData) {
                 instrumentData[category].forEach(instrument => {
-                    if (instrument.name[currentLanguage].toLowerCase().includes(filter.toLowerCase())) {
-                        const img = document.createElement('img');
-                        img.src = instrument.img;
-                        img.alt = instrument.name[currentLanguage];
-                        img.onclick = () => showDetails(instrument);
-
-                        instrumentList.appendChild(img);
+                    const instrumentName = instrument.name[currentLanguage];
+                    const instrumentBrand = instrument.brand;
+                    if (instrumentName.toLowerCase().includes(filter.toLowerCase()) ||
+                        instrumentBrand.toLowerCase().includes(filter.toLowerCase())) {
+                        const item = createInstrumentItem(instrument);
+                        instrumentList.appendChild(item);
                     }
                 });
             }
@@ -430,19 +431,33 @@
             instrumentList.innerHTML = ''; // 清空现有内容
 
             instrumentData[category].forEach(instrument => {
-                const img = document.createElement('img');
-                img.src = instrument.img;
-                img.alt = instrument.name[currentLanguage];
-                img.onclick = () => showDetails(instrument);
-
-                instrumentList.appendChild(img);
+                const item = createInstrumentItem(instrument);
+                instrumentList.appendChild(item);
             });
 
             showSection('instruments');
         }
 
+        function createInstrumentItem(instrument) {
+            const item = document.createElement('div');
+            item.className = 'instrument-item';
+            item.onclick = () => showDetails(instrument);
+
+            const img = document.createElement('img');
+            img.src = instrument.img;
+            img.alt = instrument.name[currentLanguage];
+
+            const name = document.createElement('h3');
+            name.innerText = instrument.name[currentLanguage];
+
+            item.appendChild(img);
+            item.appendChild(name);
+
+            return item;
+        }
+
         function showDetails(instrument) {
-            document.getElementById('details-title').innerText = translations[currentLanguage]['Instrument Details'];
+            document.getElementById('details-title').innerText = instrument.name[currentLanguage];
             document.getElementById('details-img').src = instrument.img;
             document.getElementById('details-description').innerText = instrument.description[currentLanguage];
 
