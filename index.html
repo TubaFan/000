@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Yunqi Fan Personal Website</title>
+    <title id="site-title">Fanyunqi's Personal Website</title>
     <style>
         /* 全局样式 */
         body {
@@ -129,12 +129,67 @@
         }
 
         #home {
-            background-image: url('0R7A8449.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
+            background-color: #fff;
+            color: #333;
             padding: 3rem;
             text-align: center;
+        }
+
+        #home h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro, .featured-instruments {
+            margin-top: 2rem;
+        }
+
+        .intro h3, .featured-instruments h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .featured-instruments .instrument-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .featured-instruments .instrument-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .featured-instruments .instrument-item:hover {
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        .featured-instruments .instrument-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .featured-instruments .instrument-item h4 {
+            margin: 10px 0 5px;
         }
 
         /* 乐器列表样式 */
@@ -182,19 +237,6 @@
             margin: 10px 0;
         }
 
-        .buy-button {
-            background-color: #e74c3c;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .buy-button:hover {
-            background-color: #c0392b;
-        }
-
         /* 乐器详情样式 */
         .details {
             max-width: 800px;
@@ -205,12 +247,6 @@
             max-width: 100%;
             height: auto;
             margin-bottom: 20px;
-        }
-
-        .details .buy-button {
-            display: block;
-            width: 100%;
-            text-align: center;
         }
 
         /* 页脚样式 */
@@ -305,7 +341,34 @@
         <!-- 主页 -->
         <section id="home">
             <h2 id="home-title">Welcome to My Personal Website</h2>
-            <p id="home-description">Here you'll find information about musical instruments and more.</p>
+            <p id="home-description">Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.</p>
+
+            <!-- 关于我 -->
+            <div class="intro">
+                <h3 id="intro-title">About Me</h3>
+                <p id="intro-text">I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.</p>
+            </div>
+
+            <!-- 推荐乐器 -->
+            <div class="featured-instruments">
+                <h3 id="featured-title">Featured Instruments</h3>
+                <div class="instrument-list">
+                    <!-- 推荐的乐器项 -->
+                    <!-- 您可以手动添加一些乐器，或者使用已有的函数生成 -->
+                    <div class="instrument-item" onclick="showDetails(featuredInstruments[0])">
+                        <img src="trumpet1.jpg" alt="Featured Instrument">
+                        <h4>Trumpet 111</h4>
+                    </div>
+                    <div class="instrument-item" onclick="showDetails(featuredInstruments[1])">
+                        <img src="violin1.jpg" alt="Featured Instrument">
+                        <h4>Violin 111</h4>
+                    </div>
+                    <div class="instrument-item" onclick="showDetails(featuredInstruments[2])">
+                        <img src="flute1.jpg" alt="Featured Instrument">
+                        <h4>Flute 111</h4>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- 乐器列表 -->
@@ -330,7 +393,6 @@
             <img id="details-img" src="" alt="Instrument Image">
             <p id="details-description">Description of the selected instrument.</p>
             <p class="price" id="details-price"></p>
-            <button class="buy-button" id="buy-button">Add to Cart</button>
         </section>
 
         <!-- 联系方式 -->
@@ -352,15 +414,18 @@
 
         const translations = {
             en: {
-                "site-title": "Yunqi Fan Personal Website",
+                "site-title": "Fanyunqi's Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
                 "contact-link": "Contact",
                 "home-title": "Welcome to My Personal Website",
-                "home-description": "Here you'll find information about musical instruments and more.",
+                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
+                "intro-title": "About Me",
+                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
+                "featured-title": "Featured Instruments",
                 "instruments-title": "Instruments",
                 "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email:fanyunqi236@gmail.com ",
+                "contact-description": "Feel free to reach out to me via email: ",
                 "filter-label": "Filter by brand or type:",
                 "woodwinds": "Woodwinds",
                 "brass": "Brass",
@@ -384,19 +449,21 @@
                 "Eastman": "Eastman",
                 "Instrument Details": "Instrument Details",
                 "Price": "Price",
-                "Add to Cart": "Add to Cart",
                 "No instruments found.": "No instruments found."
             },
             cn: {
-                "site-title": "范云麒的个人网站",
+                "site-title": "范云祺的个人网站",
                 "home-link": "主页",
                 "instruments-link": "乐器浏览",
                 "contact-link": "联系方式",
                 "home-title": "欢迎来到我的个人网站",
-                "home-description": "在这里你可以找到关于乐器的相关信息。",
+                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
+                "intro-title": "关于我",
+                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
+                "featured-title": "推荐乐器",
                 "instruments-title": "乐器浏览",
                 "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系：fanyunqi236@gmail.com",
+                "contact-description": "欢迎通过邮箱与我联系：",
                 "filter-label": "按品牌或类型筛选：",
                 "woodwinds": "木管乐器",
                 "brass": "铜管乐器",
@@ -420,94 +487,26 @@
                 "Eastman": "伊斯特曼",
                 "Instrument Details": "乐器详情",
                 "Price": "价格",
-                "Add to Cart": "加入购物车",
                 "No instruments found.": "未找到符合条件的乐器。"
             }
         };
 
         const instrumentData = {
-            flute: [
-                // 添加12个长笛的占位乐器
-                {
-                    name: { en: "Flute 111", cn: "长笛 111" },
-                    img: "flute1.jpg",
-                    description: {
-                        en: "Description for Flute 111",
-                        cn: "长笛 111 的描述"
-                    },
-                    brand: "Brand 1",
-                    price: "$111"
-                },
-                {
-                    name: { en: "Flute 222", cn: "长笛 222" },
-                    img: "flute2.jpg",
-                    description: {
-                        en: "Description for Flute 222",
-                        cn: "长笛 222 的描述"
-                    },
-                    brand: "Brand 2",
-                    price: "$222"
-                },
-                // ...继续添加到12个
-            ],
-            trumpet: [
-                // 添加12个小号的占位乐器
-                {
-                    name: { en: "Trumpet 111", cn: "小号 111" },
-                    img: "trumpet1.jpg",
-                    description: {
-                        en: "Description for Trumpet 111",
-                        cn: "小号 111 的描述"
-                    },
-                    brand: "Brand 1",
-                    price: "$111"
-                },
-                {
-                    name: { en: "Trumpet 222", cn: "小号 222" },
-                    img: "trumpet2.jpg",
-                    description: {
-                        en: "Description for Trumpet 222",
-                        cn: "小号 222 的描述"
-                    },
-                    brand: "Brand 2",
-                    price: "$222"
-                },
-                // ...继续添加到12个
-            ],
-            violin: [
-                // 添加12个小提琴的占位乐器
-                {
-                    name: { en: "Violin 111", cn: "小提琴 111" },
-                    img: "violin1.jpg",
-                    description: {
-                        en: "Description for Violin 111",
-                        cn: "小提琴 111 的描述"
-                    },
-                    brand: "Brand 1",
-                    price: "$111"
-                },
-                {
-                    name: { en: "Violin 222", cn: "小提琴 222" },
-                    img: "violin2.jpg",
-                    description: {
-                        en: "Description for Violin 222",
-                        cn: "小提琴 222 的描述"
-                    },
-                    brand: "Brand 2",
-                    price: "$222"
-                },
-                // ...继续添加到12个
-            ],
-            // 其他乐器类别同样添加12个占位乐器
+            flute: [],
+            trumpet: [],
+            violin: [],
+            clarinet: [],
+            oboe: [],
+            trombone: [],
+            tuba: [],
+            cello: [],
+            bass: []
         };
 
         // 为每个乐器类别自动生成占位乐器
         const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
 
         categories.forEach(category => {
-            if (!instrumentData[category]) {
-                instrumentData[category] = [];
-            }
             for (let i = 1; i <= 12; i++) {
                 const code = i.toString().padStart(3, '0');
                 instrumentData[category].push({
@@ -525,6 +524,13 @@
                 });
             }
         });
+
+        // 推荐乐器列表
+        const featuredInstruments = [
+            instrumentData['trumpet'][0],
+            instrumentData['violin'][0],
+            instrumentData['flute'][0]
+        ];
 
         function capitalize(str) {
             return str.charAt(0).toUpperCase() + str.slice(1);
@@ -638,7 +644,6 @@
             document.getElementById('details-img').src = instrument.img;
             document.getElementById('details-description').innerText = instrument.description[currentLanguage];
             document.getElementById('details-price').innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
-            document.getElementById('buy-button').innerText = translations[currentLanguage]["Add to Cart"];
 
             showSection('details');
         }
