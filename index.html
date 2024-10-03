@@ -2,165 +2,359 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title id="title">Welcome to My Personal Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanyunqi's Personal Website</title>
     <style>
-        /* 简单的样式设置 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-        }
-        nav {
-            background-color: #333;
-            overflow: hidden;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 14px 16px;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-        nav ul li a, nav button {
-            color: #f2f2f2;
-            text-decoration: none;
-            padding: 6px 8px;
-            background-color: #333;
-            border: none;
-            cursor: pointer;
-        }
-        nav button:hover, nav ul li a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        section {
-            padding: 20px;
-        }
-        h2, h3 {
+            background-color: #f0f0f0;
             color: #333;
         }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .language-switch {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .language-switch button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        }
+
+        nav ul li:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            padding: 10px;
+            z-index: 1000;
+            list-style: none;
+            left: 0;
+            top: 100%;
+            min-width: 200px;
+        }
+
+        .dropdown li:hover .sub-dropdown {
+            display: block;
+        }
+
+        .sub-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #666;
+            left: 100%;
+            top: 0;
+            min-width: 200px;
+        }
+
+        .dropdown li a, .sub-dropdown li a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown li a:hover, .sub-dropdown li a:hover {
+            background-color: #777;
+        }
+
+        main {
+            padding: 2rem;
+            min-height: calc(100vh - 120px);
+            box-sizing: border-box;
+        }
+
+        #home {
+            background-image: url('0R7A8449.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .instrument-list img {
+            max-width: 150px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .filter {
+            margin-bottom: 1rem;
+        }
+
+        .filter label {
+            margin-right: 10px;
+        }
     </style>
+</head>
+<body>
+    <header>
+        <div class="language-switch">
+            <button onclick="switchLanguage('en')">English</button>
+            <button onclick="switchLanguage('cn')">中文</button>
+        </div>
+        <h1 id="site-title">Fanyunqi's Personal Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" id="home-link" onclick="showSection('home')">Home</a></li>
+            <li>
+                <a href="#" id="instruments-link">Instruments</a>
+                <ul class="dropdown">
+                    <li>
+                        <a href="#">Woodwinds</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" onclick="showInstruments('flute')">Flute</a></li>
+                            <li><a href="#" onclick="showInstruments('clarinet')">Clarinet</a></li>
+                            <li><a href="#" onclick="showInstruments('oboe')">Oboe</a></li>
+                            <li>
+                                <a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Buffet')">Buffet</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Selmer')">Selmer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Brass</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" onclick="showInstruments('trumpet')">Trumpet</a></li>
+                            <li><a href="#" onclick="showInstruments('trombone')">Trombone</a></li>
+                            <li><a href="#" onclick="showInstruments('tuba')">Tuba</a></li>
+                            <li>
+                                <a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Bach')">Bach</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Conn')">Conn</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Strings</a>
+                        <ul class="sub-dropdown">
+                            <li><a href="#" onclick="showInstruments('violin')">Violin</a></li>
+                            <li><a href="#" onclick="showInstruments('cello')">Cello</a></li>
+                            <li><a href="#" onclick="showInstruments('bass')">Bass</a></li>
+                            <li>
+                                <a href="#">Brands</a>
+                                <ul class="sub-dropdown">
+                                    <li><a href="#" onclick="filterInstruments('Stradivarius')">Stradivarius</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Yamaha')">Yamaha</a></li>
+                                    <li><a href="#" onclick="filterInstruments('Eastman')">Eastman</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#" id="contact-link" onclick="showSection('contact')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home">
+            <h2 id="home-title">Welcome to My Personal Website</h2>
+            <p id="home-description">Here you'll find information about musical instruments and more.</p>
+        </section>
+
+        <section id="instruments" class="hidden">
+            <h2 id="instruments-title">Instruments</h2>
+            <div class="filter">
+                <label for="filter">Filter by brand or type:</label>
+                <input type="text" id="filter" oninput="filterInstruments(this.value)">
+            </div>
+            <div id="instrument-list" class="instrument-list">
+                <!-- Instruments will be displayed here -->
+            </div>
+        </section>
+
+        <section id="details" class="hidden details">
+            <h2 id="details-title">Instrument Details</h2>
+            <img id="details-img" src="" alt="Instrument Image">
+            <p id="details-description">Description of the selected instrument.</p>
+        </section>
+
+        <section id="contact" class="hidden">
+            <h2 id="contact-title">Contact Me</h2>
+            <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
+    </footer>
+
     <script>
         const translations = {
             en: {
-                'title': "Welcome to My Personal Website",
-                'about-link': "About Me",
-                'portfolio-link': "Portfolio",
-                'contact-link': "Contact",
-                'about-title': "About Me",
-                'about-content': "Hello! I'm a website design and development engineer. I love creating beautiful and functional websites. Currently, I'm studying music performance.",
-                'portfolio-title': "Portfolio",
-                'portfolio-content': "Here are some of the instruments I work with:",
-                'tuba-title': "Tuba",
-                'tuba-description': "The tuba is the largest and lowest-pitched musical instrument in the brass family. It is often used in orchestras and brass bands.",
-                'guitar-title': "Guitar",
-                'guitar-description': "The guitar is a popular musical instrument that is used in various genres, from classical to rock music. It has six strings and is played by strumming or plucking.",
-                'piano-title': "Piano",
-                'piano-description': "The piano is a classical keyboard instrument that is widely used in solo performances, ensemble performances, and accompaniment.",
-                'contact-title': "Contact",
-                'contact-content': "You can contact me via email at: example@example.com"
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Here you'll find information about musical instruments and more.",
+                "instruments-title": "Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email: "
             },
-            zh: {
-                'title': "欢迎来到我的个人网站",
-                'about-link': "关于我",
-                'portfolio-link': "作品集",
-                'contact-link': "联系方式",
-                'about-title': "关于我",
-                'about-content': "你好！我是一个网站设计与开发工程师，我喜欢创建美观且实用的网站。目前我正在学习音乐表演。",
-                'portfolio-title': "作品集",
-                'portfolio-content': "以下是我使用的乐器：",
-                'tuba-title': "大号",
-                'tuba-description': "大号是铜管乐器家族中最大且音域最低的乐器，通常用于管弦乐队和铜管乐队。",
-                'guitar-title': "吉他",
-                'guitar-description': "吉他是一种流行的乐器，应用于从古典音乐到摇滚乐等各种音乐风格。它有六根弦，通过拨弦或弹奏来演奏。",
-                'piano-title': "钢琴",
-                'piano-description': "钢琴是一种经典的键盘乐器，广泛用于独奏、合奏和伴奏表演。",
-                'contact-title': "联系方式",
-                'contact-content': "你可以通过邮箱联系我：example@example.com"
+            cn: {
+                "site-title": "范云祺的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器介绍",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "在这里你可以找到关于乐器的相关信息。",
+                "instruments-title": "乐器介绍",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系: "
             }
         };
 
-        function switchLanguage(language) {
-            const elements = translations[language];
-            for (let id in elements) {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.innerText = elements[id];
-                }
+        const instrumentData = {
+            flute: [
+                { name: "Yamaha Flute", img: "flute.jpg", description: "A beautiful silver Yamaha flute." },
+                { name: "Buffet Flute", img: "flute.jpg", description: "A smooth sounding Buffet flute." },
+                { name: "Selmer Flute", img: "flute.jpg", description: "A top quality Selmer flute." }
+            ],
+            trumpet: [
+                { name: "Yamaha Trumpet", img: "trumpet.jpg", description: "A bright sounding Yamaha trumpet." },
+                { name: "Bach Trumpet", img: "trumpet.jpg", description: "A powerful Bach trumpet." },
+                { name: "Conn Trumpet", img: "trumpet.jpg", description: "A well-rounded Conn trumpet." }
+            ],
+            violin: [
+                { name: "Stradivarius Violin", img: "violin.jpg", description: "A classic Stradivarius violin." },
+                { name: "Yamaha Violin", img: "violin.jpg", description: "A versatile Yamaha violin." },
+                { name: "Eastman Violin", img: "violin.jpg", description: "A high-quality Eastman violin." }
+            ]
+        };
+
+        function filterInstruments(filter) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // Clear the list
+
+            for (const category in instrumentData) {
+                instrumentData[category].forEach(instrument => {
+                    if (instrument.name.toLowerCase().includes(filter.toLowerCase())) {
+                        const img = document.createElement('img');
+                        img.src = instrument.img;
+                        img.alt = instrument.name;
+                        img.onclick = () => showDetails(instrument);
+
+                        instrumentList.appendChild(img);
+                    }
+                });
             }
-            // 更新页面的语言属性
-            document.documentElement.lang = language;
-            // 保存用户的语言选择
-            localStorage.setItem('selectedLanguage', language);
         }
 
-        // 页面加载时自动设置语言
-        window.onload = function() {
-            const savedLanguage = localStorage.getItem('selectedLanguage');
-            let language = 'en'; // 默认语言
+        function showInstruments(category) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // Clear existing content
 
-            if (savedLanguage) {
-                language = savedLanguage;
-            } else {
-                // 自动检测浏览器语言
-                let userLang = navigator.language || navigator.userLanguage; 
-                userLang = userLang.substr(0, 2); // 获取前两位语言代码
-                language = translations[userLang] ? userLang : 'en';
-            }
+            instrumentData[category].forEach(instrument => {
+                const img = document.createElement('img');
+                img.src = instrument.img;
+                img.alt = instrument.name;
+                img.onclick = () => showDetails(instrument);
 
-            switchLanguage(language);
-        };
+                instrumentList.appendChild(img);
+            });
+
+            showSection('instruments');
+        }
+
+        function showDetails(instrument) {
+            document.getElementById('details-title').innerText = instrument.name;
+            document.getElementById('details-img').src = instrument.img;
+            document.getElementById('details-description').innerText = instrument.description;
+
+            showSection('details');
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        function switchLanguage(lang) {
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            showSection('home');
+        });
     </script>
-</head>
-<body>
-    <!-- 导航栏 -->
-    <nav>
-        <ul>
-            <li><a href="#about" id="about-link">About Me</a></li>
-            <li><a href="#portfolio" id="portfolio-link">Portfolio</a></li>
-            <li><a href="#contact" id="contact-link">Contact</a></li>
-        </ul>
-        <!-- 语言切换按钮 -->
-        <button onclick="switchLanguage('en')">English</button>
-        <button onclick="switchLanguage('zh')">中文</button>
-    </nav>
-
-    <!-- 关于我 -->
-    <section id="about">
-        <h2 id="about-title">About Me</h2>
-        <p id="about-content">Hello! I'm a website design and development engineer...</p>
-    </section>
-
-    <!-- 作品集 -->
-    <section id="portfolio">
-        <h2 id="portfolio-title">Portfolio</h2>
-        <p id="portfolio-content">Here are some of the instruments I work with:</p>
-        
-        <!-- 大号 -->
-        <div>
-            <h3 id="tuba-title">Tuba</h3>
-            <p id="tuba-description">The tuba is the largest and lowest-pitched musical instrument...</p>
-        </div>
-
-        <!-- 吉他 -->
-        <div>
-            <h3 id="guitar-title">Guitar</h3>
-            <p id="guitar-description">The guitar is a popular musical instrument...</p>
-        </div>
-
-        <!-- 钢琴 -->
-        <div>
-            <h3 id="piano-title">Piano</h3>
-            <p id="piano-description">The piano is a classical keyboard instrument...</p>
-        </div>
-    </section>
-
-    <!-- 联系方式 -->
-    <section id="contact">
-        <h2 id="contact-title">Contact</h2>
-        <p id="contact-content">You can contact me via email at: example@example.com</p>
-    </section>
 </body>
 </html>
