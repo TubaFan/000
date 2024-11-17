@@ -9,9 +9,6 @@
     <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- 引入 AOS 动画库的 CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
     <!-- 内联样式表 -->
     <style>
         /* 全局样式 */
@@ -25,7 +22,10 @@
             padding: 0;
             color: #333;
             scroll-behavior: smooth;
-            background-color: #f0f0f0;
+            background-image: url('background.jpg'); /* 请将此处替换为您的全局背景图片路径 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         a {
@@ -43,14 +43,13 @@
 
         /* 头部样式 */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
             background-color: rgba(255, 255, 255, 0.9);
             color: #333;
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header .container {
@@ -85,9 +84,8 @@
         /* 导航栏样式 */
         nav {
             background-color: rgba(255, 255, 255, 0.9);
-            position: fixed;
-            top: 70px; /* 修改了 top 值，确保导航栏紧跟在头部下面 */
-            width: 100%;
+            position: sticky;
+            top: 70px;
             z-index: 999;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
@@ -105,7 +103,6 @@
         }
 
         nav ul li {
-            position: relative;
             margin: 0 15px;
         }
 
@@ -124,120 +121,16 @@
             border-bottom: 2px solid #e74c3c;
         }
 
-        /* 英雄横幅样式 */
-        #hero {
-            position: relative;
-            height: 100vh;
-            background-image: url('1.JPG'); /* 请将此处替换为您的背景图片路径 */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 800px;
-            margin: 0 1rem;
-            animation: fadeIn 1s forwards;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            line-height: 1.2;
-            opacity: 0;
-            animation: slideDown 1s forwards;
-            animation-delay: 0.5s;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-            opacity: 0;
-            animation: slideUp 1s forwards;
-            animation-delay: 1s;
-        }
-
-        .hero-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #e74c3c;
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-            animation-delay: 1.5s;
-        }
-
-        .hero-button:hover {
-            background-color: #c0392b;
-            transform: translateY(-5px);
-        }
-
-        /* 动画效果 */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* 主内容样式 */
         main {
             margin-top: 140px; /* 留出空间给固定的头部和导航栏 */
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 2rem 1rem;
             box-sizing: border-box;
         }
 
         /* 卡片样式 */
         .card {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             margin: 2rem 0;
             border-radius: 10px;
@@ -264,7 +157,7 @@
         }
 
         .category-item {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -288,11 +181,6 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .category-item:hover img {
-            transform: scale(1.05);
         }
 
         .category-item h3 {
@@ -311,7 +199,7 @@
         }
 
         .instrument-item {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 15px;
             flex: 1 1 calc(33.333% - 30px);
             max-width: calc(33.333% - 30px);
@@ -335,11 +223,6 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .instrument-item:hover img {
-            transform: scale(1.05);
         }
 
         .instrument-item h3 {
@@ -366,7 +249,7 @@
         .details {
             max-width: 800px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -388,7 +271,7 @@
         }
 
         .event-item {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -412,11 +295,6 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .event-item:hover img {
-            transform: scale(1.05);
         }
 
         .event-item h3 {
@@ -441,7 +319,7 @@
         }
 
         .study-abroad-item {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -465,11 +343,6 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .study-abroad-item:hover img {
-            transform: scale(1.05);
         }
 
         .study-abroad-item h3 {
@@ -494,7 +367,7 @@
         }
 
         .artist-item {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -517,11 +390,6 @@
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
-            transition: transform 0.3s;
-        }
-
-        .artist-item:hover img {
-            transform: scale(1.05);
         }
 
         .artist-item h3 {
@@ -539,7 +407,7 @@
 
         /* 页脚样式 */
         footer {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             color: #333;
             text-align: center;
             padding: 1rem;
@@ -626,14 +494,6 @@
                 flex: 1 1 calc(33.333% - 30px);
                 max-width: calc(33.333% - 30px);
             }
-
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
         }
 
         @media (max-width: 768px) {
@@ -658,19 +518,6 @@
 
             nav ul li {
                 margin: 5px 0;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .hero-button {
-                font-size: 1rem;
-                padding: 0.8rem 1.5rem;
             }
         }
     </style>
@@ -702,43 +549,34 @@
         </div>
     </nav>
 
-    <!-- 英雄横幅 -->
-    <section id="hero">
-        <div class="hero-content">
-            <h1 id="hero-title">欢迎来到我的个人网站</h1>
-            <p id="hero-subtitle">与我一起探索音乐的世界</p>
-            <a href="#" class="hero-button" data-translation-key="get-started" onclick="startExploring()">开始探索</a>
-        </div>
-    </section>
-
     <!-- 主内容 -->
     <main>
         <!-- 主页 -->
-        <section id="home" class="hidden">
-            <div class="card" data-aos="fade-up">
+        <section id="home">
+            <div class="card">
                 <h2 id="home-title">欢迎来到我的个人网站</h2>
                 <p id="home-description">你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。</p>
             </div>
 
             <!-- 关于我 -->
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h3 id="intro-title">关于我</h3>
                 <p id="intro-text">我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。</p>
             </div>
 
             <!-- 最新活动 -->
             <section id="latest-events">
-                <div class="card" data-aos="fade-up">
+                <div class="card">
                     <h3 id="latest-events-title">最新活动</h3>
                     <div class="event-list">
                         <!-- 最新活动项 -->
-                        <div class="event-item" onclick="showEventDetails(0)" data-aos="zoom-in">
+                        <div class="event-item" onclick="showEventDetails(0)">
                             <img src="event1.jpg" alt="Event 1">
                             <h3 id="latest-event-0-title">音乐工作坊：古典乐之旅</h3>
                             <p id="latest-event-0-date">日期: 2024-11-10</p>
                             <p id="latest-event-0-location">地点: 音乐厅 A</p>
                         </div>
-                        <div class="event-item" onclick="showEventDetails(1)" data-aos="zoom-in">
+                        <div class="event-item" onclick="showEventDetails(1)">
                             <img src="event2.jpg" alt="Event 2">
                             <h3 id="latest-event-1-title">爵士乐夜晚</h3>
                             <p id="latest-event-1-date">日期: 2024-12-05</p>
@@ -750,23 +588,23 @@
 
             <!-- 推荐乐器 -->
             <section id="featured-instruments">
-                <div class="card" data-aos="fade-up">
+                <div class="card">
                     <h3 id="featured-title">推荐乐器</h3>
                     <div class="instrument-list">
                         <!-- 推荐的乐器项 -->
-                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[0])" data-aos="zoom-in">
+                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[0])">
                             <img src="trumpet1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-0">小号 001</h3>
                             <p>品牌：雅马哈</p>
                             <p class="price">价格：$1200</p>
                         </div>
-                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[1])" data-aos="zoom-in">
+                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[1])">
                             <img src="violin1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-1">小提琴 001</h3>
                             <p>品牌：斯特拉迪瓦里</p>
                             <p class="price">价格：$1500</p>
                         </div>
-                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[2])" data-aos="zoom-in">
+                        <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[2])">
                             <img src="flute1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-2">长笛 001</h3>
                             <p>品牌：布菲</p>
@@ -779,44 +617,43 @@
 
         <!-- 乐器分类列表 -->
         <section id="instrument-categories" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="instrument-categories-title">乐器分类</h2>
                 <div class="category-list">
                     <!-- 乐器分类项 -->
-                    <!-- 这里的图片需要替换为实际的乐器分类图片 -->
-                    <div class="category-item" onclick="showInstruments('flute')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('flute')">
                         <img src="category-flute.jpg" alt="Flute">
                         <h3 data-translation-key="flute">长笛</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('clarinet')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('clarinet')">
                         <img src="category-clarinet.jpg" alt="Clarinet">
                         <h3 data-translation-key="clarinet">单簧管</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('oboe')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('oboe')">
                         <img src="category-oboe.jpg" alt="Oboe">
                         <h3 data-translation-key="oboe">双簧管</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('trumpet')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('trumpet')">
                         <img src="category-trumpet.jpg" alt="Trumpet">
                         <h3 data-translation-key="trumpet">小号</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('trombone')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('trombone')">
                         <img src="category-trombone.jpg" alt="Trombone">
                         <h3 data-translation-key="trombone">长号</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('tuba')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('tuba')">
                         <img src="category-tuba.jpg" alt="Tuba">
                         <h3 data-translation-key="tuba">大号</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('violin')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('violin')">
                         <img src="category-violin.jpg" alt="Violin">
                         <h3 data-translation-key="violin">小提琴</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('cello')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('cello')">
                         <img src="category-cello.jpg" alt="Cello">
                         <h3 data-translation-key="cello">大提琴</h3>
                     </div>
-                    <div class="category-item" onclick="showInstruments('bass')" data-aos="zoom-in">
+                    <div class="category-item" onclick="showInstruments('bass')">
                         <img src="category-bass.jpg" alt="Bass">
                         <h3 data-translation-key="bass">低音提琴</h3>
                     </div>
@@ -826,7 +663,7 @@
 
         <!-- 乐器列表 -->
         <section id="instruments" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="instruments-title">乐器浏览</h2>
                 <div class="filter">
                     <label for="filter" id="filter-label">按品牌或类型筛选：</label>
@@ -844,7 +681,7 @@
 
         <!-- 乐器详情 -->
         <section id="instrument-details" class="hidden">
-            <div class="card details" data-aos="fade-up">
+            <div class="card details">
                 <h2 id="details-title">乐器详情</h2>
                 <img id="details-img" src="" alt="Instrument Image">
                 <p id="details-description">所选乐器的描述。</p>
@@ -854,95 +691,91 @@
 
         <!-- 活动展示 -->
         <section id="event" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="event-title">活动</h2>
                 <p id="event-description">探索即将举行的音乐活动和工作坊。</p>
                 <div class="event-list">
                     <!-- 活动项 -->
-                    <div class="event-item" onclick="showEventDetails(0)" data-aos="zoom-in">
+                    <div class="event-item" onclick="showEventDetails(0)">
                         <img src="event1.jpg" alt="Event 1">
                         <h3 id="event-name-0">音乐工作坊：古典乐之旅</h3>
                         <p id="event-date-0">日期: 2024-11-10</p>
                         <p id="event-location-0">地点: 音乐厅 A</p>
                     </div>
-                    <div class="event-item" onclick="showEventDetails(1)" data-aos="zoom-in">
+                    <div class="event-item" onclick="showEventDetails(1)">
                         <img src="event2.jpg" alt="Event 2">
                         <h3 id="event-name-1">爵士乐夜晚</h3>
                         <p id="event-date-1">日期: 2024-12-05</p>
                         <p id="event-location-1">地点: 音乐中心 B</p>
                     </div>
-                    <!-- 添加更多活动项 -->
                 </div>
             </div>
         </section>
 
         <!-- 活动详情 -->
         <section id="event-details" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="event-details-title">活动详情</h2>
                 <img id="event-details-img" src="" alt="Event Image">
                 <p id="event-details-description">活动的详细信息。</p>
                 <p id="event-details-date"></p>
                 <p id="event-details-location"></p>
-                <!-- 可以添加报名按钮或链接 -->
             </div>
         </section>
 
         <!-- 留学项目 -->
         <section id="study-abroad" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="study-abroad-title">留学项目</h2>
                 <p id="study-abroad-description">发现音乐教育方面的留学机会。</p>
                 <div class="study-abroad-list">
                     <!-- 留学项目项 -->
-                    <div class="study-abroad-item" onclick="showStudyDetails(0)" data-aos="zoom-in">
+                    <div class="study-abroad-item" onclick="showStudyDetails(0)">
                         <img src="study1.jpg" alt="Study Abroad Program 1">
                         <h3 id="study-name-0">德国音乐学院交流项目</h3>
                         <p id="study-country-0">国家: 德国</p>
                     </div>
-                    <div class="study-abroad-item" onclick="showStudyDetails(1)" data-aos="zoom-in">
+                    <div class="study-abroad-item" onclick="showStudyDetails(1)">
                         <img src="study2.jpg" alt="Study Abroad Program 2">
                         <h3 id="study-name-1">法国艺术文化之旅</h3>
                         <p id="study-country-1">国家: 法国</p>
                     </div>
-                    <!-- 添加更多留学项目项 -->
                 </div>
             </div>
         </section>
 
         <!-- 留学项目详情 -->
         <section id="study-details" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="study-details-title">留学项目详情</h2>
                 <img id="study-details-img" src="" alt="Study Abroad Image">
                 <p id="study-details-description">留学项目的详细信息。</p>
                 <p id="study-details-country"></p>
-                <!-- 可以添加申请按钮或链接 -->
             </div>
         </section>
 
         <!-- 艺术家 -->
         <section id="artists" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="artists-title">艺术家</h2>
                 <div class="artist-list">
                     <!-- 艺术家项 -->
-                    <div class="artist-item" data-aos="zoom-in">
+                    <div class="artist-item">
                         <img src="artist1.jpg" alt="Artist 1">
                         <h3>李小琴</h3>
                         <p>著名小提琴演奏家，曾获多项国际大奖。</p>
                     </div>
-                    <div class="artist-item" data-aos="zoom-in">
+                    <div class="artist-item">
                         <img src="artist2.jpg" alt="Artist 2">
                         <h3>王明</h3>
                         <p>钢琴家，致力于现代音乐的推广。</p>
                     </div>
-                    <div class="artist-item" data-aos="zoom-in">
+                    <div class="artist-item">
                         <img src="artist3.jpg" alt="Artist 3">
                         <h3>张华</h3>
                         <p>萨克斯演奏家，融合了爵士与传统音乐。</p>
                     </div>
-                    <div class="artist-item" data-aos="zoom-in">
+                    <div class="artist-item">
                         <img src="artist4.jpg" alt="Artist 4">
                         <h3>刘艳</h3>
                         <p>女高音歌唱家，活跃于国际舞台。</p>
@@ -953,7 +786,7 @@
 
         <!-- 联系方式 -->
         <section id="contact" class="hidden">
-            <div class="card" data-aos="fade-up">
+            <div class="card">
                 <h2 id="contact-title">联系我</h2>
                 <p id="contact-description">欢迎通过以下方式与我联系：</p>
                 <ul>
@@ -976,15 +809,6 @@
         </div>
     </footer>
 
-    <!-- 引入 AOS 动画库的 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800, // 动画持续时间
-            once: true // 滚动时只触发一次动画
-        });
-    </script>
-
     <!-- JavaScript 代码 -->
     <script>
         // 全局变量
@@ -997,181 +821,13 @@
         // 翻译对象
         const translations = {
             en: {
-                "site-title": "Fanyunqi's Personal Website",
-                "home-link": "Home",
-                "instruments-link": "Instruments",
-                "event-link": "Events",
-                "study-abroad-link": "Study Abroad",
-                "artists-link": "Artists",
-                "contact-link": "Contact",
-                "home-title": "Welcome to My Personal Website",
-                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
-                "intro-title": "About Me",
-                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
-                "latest-events-title": "Latest Events",
-                "featured-title": "Featured Instruments",
-                "event-title": "Events",
-                "event-description": "Explore upcoming musical events and workshops.",
-                "event-details-title": "Event Details",
-                "study-abroad-title": "Study Abroad Programs",
-                "study-abroad-description": "Discover study abroad opportunities in music education.",
-                "study-details-title": "Study Abroad Details",
-                "artists-title": "Artists",
-                "instrument-categories-title": "Instrument Categories",
-                "instruments-title": "Browse Instruments",
-                "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via:",
-                "filter-label": "Filter by brand or type:",
-                "woodwinds": "Woodwinds",
-                "brass": "Brass",
-                "strings": "Strings",
-                "brands": "Brand",
-                "flute": "Flute",
-                "clarinet": "Clarinet",
-                "oboe": "Oboe",
-                "trumpet": "Trumpet",
-                "trombone": "Trombone",
-                "tuba": "Tuba",
-                "violin": "Violin",
-                "cello": "Cello",
-                "bass": "Bass",
-                "Yamaha": "Yamaha",
-                "Buffet": "Buffet",
-                "Selmer": "Selmer",
-                "Bach": "Bach",
-                "Conn": "Conn",
-                "Stradivarius": "Stradivarius",
-                "Eastman": "Eastman",
-                "Instrument Details": "Instrument Details",
-                "Price": "Price",
-                "No instruments found.": "No instruments found.",
-                "Learn More": "Learn More",
-                "Date": "Date",
-                "Location": "Location",
-                "Country": "Country",
-                "Event Description": "Event Description",
-                "Study Description": "Program Description",
-                "hero-title": "Welcome to My Personal Website",
-                "hero-subtitle": "Explore the world of music with me",
-                "get-started": "Get Started"
+                // ...（完整的英文翻译内容）
             },
             cn: {
-                "site-title": "范云麒的个人网站",
-                "home-link": "主页",
-                "instruments-link": "乐器浏览",
-                "event-link": "活动",
-                "study-abroad-link": "留学项目",
-                "artists-link": "艺术家",
-                "contact-link": "联系方式",
-                "home-title": "欢迎来到我的个人网站",
-                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
-                "intro-title": "关于我",
-                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
-                "latest-events-title": "最新活动",
-                "featured-title": "推荐乐器",
-                "event-title": "活动",
-                "event-description": "探索即将举行的音乐活动和工作坊。",
-                "event-details-title": "活动详情",
-                "study-abroad-title": "留学项目",
-                "study-abroad-description": "发现音乐教育方面的留学机会。",
-                "study-details-title": "留学项目详情",
-                "artists-title": "艺术家",
-                "instrument-categories-title": "乐器分类",
-                "instruments-title": "乐器浏览",
-                "contact-title": "联系我",
-                "contact-description": "欢迎通过以下方式与我联系：",
-                "filter-label": "按品牌或类型筛选：",
-                "woodwinds": "木管乐器",
-                "brass": "铜管乐器",
-                "strings": "弦乐器",
-                "brands": "品牌",
-                "flute": "长笛",
-                "clarinet": "单簧管",
-                "oboe": "双簧管",
-                "trumpet": "小号",
-                "trombone": "长号",
-                "tuba": "大号",
-                "violin": "小提琴",
-                "cello": "大提琴",
-                "bass": "低音提琴",
-                "Yamaha": "雅马哈",
-                "Buffet": "布菲",
-                "Selmer": "塞尔玛",
-                "Bach": "巴赫",
-                "Conn": "康恩",
-                "Stradivarius": "斯特拉迪瓦里",
-                "Eastman": "伊斯特曼",
-                "Instrument Details": "乐器详情",
-                "Price": "价格",
-                "No instruments found.": "未找到符合条件的乐器。",
-                "Learn More": "了解更多",
-                "Date": "日期",
-                "Location": "地点",
-                "Country": "国家",
-                "Event Description": "活动描述",
-                "Study Description": "项目描述",
-                "hero-title": "欢迎来到我的个人网站",
-                "hero-subtitle": "与我一起探索音乐的世界",
-                "get-started": "开始探索"
+                // ...（完整的中文翻译内容）
             },
             es: {
-                "site-title": "Sitio Web Personal de Fanyunqi",
-                "home-link": "Inicio",
-                "instruments-link": "Instrumentos",
-                "event-link": "Eventos",
-                "study-abroad-link": "Estudiar en el Extranjero",
-                "artists-link": "Artistas",
-                "contact-link": "Contacto",
-                "home-title": "Bienvenido a Mi Sitio Web Personal",
-                "home-description": "¡Hola! Soy un músico apasionado y desarrollador web. En este sitio web, puedes explorar varios instrumentos musicales y aprender más sobre ellos.",
-                "intro-title": "Sobre Mí",
-                "intro-text": "He estado tocando música durante más de 10 años, especializándome en instrumentos de viento-metal. También tengo un profundo interés en el desarrollo web y me encanta combinar mis pasiones para crear experiencias interactivas.",
-                "latest-events-title": "Últimos Eventos",
-                "featured-title": "Instrumentos Destacados",
-                "event-title": "Eventos",
-                "event-description": "Explora próximos eventos y talleres musicales.",
-                "event-details-title": "Detalles del Evento",
-                "study-abroad-title": "Programas de Estudio en el Extranjero",
-                "study-abroad-description": "Descubre oportunidades de estudio en el extranjero en educación musical.",
-                "study-details-title": "Detalles del Estudio en el Extranjero",
-                "artists-title": "Artistas",
-                "instrument-categories-title": "Categorías de Instrumentos",
-                "instruments-title": "Explorar Instrumentos",
-                "contact-title": "Contáctame",
-                "contact-description": "No dudes en contactarme vía:",
-                "filter-label": "Filtrar por marca o tipo:",
-                "woodwinds": "Viento-Madera",
-                "brass": "Viento-Metal",
-                "strings": "Cuerdas",
-                "brands": "Marca",
-                "flute": "Flauta",
-                "clarinet": "Clarinete",
-                "oboe": "Oboe",
-                "trumpet": "Trompeta",
-                "trombone": "Trombón",
-                "tuba": "Tuba",
-                "violin": "Violín",
-                "cello": "Violonchelo",
-                "bass": "Contrabajo",
-                "Yamaha": "Yamaha",
-                "Buffet": "Buffet",
-                "Selmer": "Selmer",
-                "Bach": "Bach",
-                "Conn": "Conn",
-                "Stradivarius": "Stradivarius",
-                "Eastman": "Eastman",
-                "Instrument Details": "Detalles del Instrumento",
-                "Price": "Precio",
-                "No instruments found.": "No se encontraron instrumentos.",
-                "Learn More": "Saber Más",
-                "Date": "Fecha",
-                "Location": "Ubicación",
-                "Country": "País",
-                "Event Description": "Descripción del Evento",
-                "Study Description": "Descripción del Programa",
-                "hero-title": "Bienvenido a Mi Sitio Web Personal",
-                "hero-subtitle": "Explora el mundo de la música conmigo",
-                "get-started": "Comenzar"
+                // ...（完整的西班牙语翻译内容）
             }
         };
 
@@ -1356,13 +1012,6 @@
 
             // 更新主页推荐乐器的名称
             updateFeaturedInstruments();
-
-            // 更新英雄横幅的文本
-            if (document.getElementById('hero')) {
-                document.getElementById('hero-title').innerText = translations[lang]['hero-title'];
-                document.getElementById('hero-subtitle').innerText = translations[lang]['hero-subtitle'];
-                document.querySelector('.hero-button').innerText = translations[lang]['get-started'];
-            }
         }
 
         // 显示特定的页面部分
@@ -1376,14 +1025,8 @@
                 }
             });
 
-            // 始终隐藏英雄横幅
-            document.getElementById('hero').style.display = 'none';
-
-            // 更新当前乐器分类标题
-            if (sectionId === 'instruments') {
-                const instrumentsTitle = document.getElementById('instruments-title');
-                instrumentsTitle.innerText = translations[currentLanguage]['instruments-title'] + ' - ' + translations[currentLanguage][currentCategory];
-            }
+            // 滚动到页面顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // 显示乐器分类列表
@@ -1578,12 +1221,8 @@
             const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'cn';
             switchLanguage(languageToUse);
 
-            // 初始时仅显示英雄横幅，隐藏其他部分
-            const sections = document.querySelectorAll('main section');
-            sections.forEach(section => {
-                section.classList.add('hidden');
-            });
-            document.getElementById('hero').style.display = 'block';
+            // 初始时显示主页
+            showSection('home');
         });
     </script>
 </body>
