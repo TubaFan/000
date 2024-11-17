@@ -686,10 +686,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 初始时显示主页
     showSection('home');
 });
-/* 确保包含以下内容 */
-
 .hidden {
     display: none;
 }
-
-/* 其他样式保持不变 */
