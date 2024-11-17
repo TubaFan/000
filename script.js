@@ -185,8 +185,24 @@ const instrumentData = {
         },
         // 可以添加更多单簧管数据
     ],
-    // 其他乐器类别的数据...
-    oboe: [],
+    oboe: [
+        {
+            name: {
+                en: "Oboe 001",
+                cn: "双簧管 001",
+                es: "Oboe 001"
+            },
+            img: "images/oboe1.jpg",
+            description: {
+                en: "An elegant oboe with rich tonal quality.",
+                cn: "一款优雅的双簧管，具有丰富的音色。",
+                es: "Un oboe elegante con rica calidad tonal."
+            },
+            brand: "Conn",
+            price: "$1100"
+        },
+        // 可以添加更多双簧管数据
+    ],
     trumpet: [
         {
             name: {
@@ -205,8 +221,42 @@ const instrumentData = {
         },
         // 可以添加更多小号数据
     ],
-    trombone: [],
-    tuba: [],
+    trombone: [
+        {
+            name: {
+                en: "Trombone 001",
+                cn: "长号 001",
+                es: "Trombón 001"
+            },
+            img: "images/trombone1.jpg",
+            description: {
+                en: "A sturdy trombone suitable for both jazz and classical music.",
+                cn: "一款坚固的长号，适用于爵士乐和古典音乐。",
+                es: "Un trombón resistente adecuado para jazz y música clásica."
+            },
+            brand: "Conn",
+            price: "$1300"
+        },
+        // 可以添加更多长号数据
+    ],
+    tuba: [
+        {
+            name: {
+                en: "Tuba 001",
+                cn: "大号 001",
+                es: "Tuba 001"
+            },
+            img: "images/tuba1.jpg",
+            description: {
+                en: "A deep-sounding tuba perfect for orchestras and bands.",
+                cn: "一款音色深沉的大号，适用于管弦乐队和乐队。",
+                es: "Una tuba con sonido profundo perfecta para orquestas y bandas."
+            },
+            brand: "Bach",
+            price: "$2000"
+        },
+        // 可以添加更多大号数据
+    ],
     violin: [
         {
             name: {
@@ -225,8 +275,42 @@ const instrumentData = {
         },
         // 可以添加更多小提琴数据
     ],
-    cello: [],
-    bass: []
+    cello: [
+        {
+            name: {
+                en: "Cello 001",
+                cn: "大提琴 001",
+                es: "Violonchelo 001"
+            },
+            img: "images/cello1.jpg",
+            description: {
+                en: "A rich-sounding cello suitable for orchestral performances.",
+                cn: "一款音色丰富的大提琴，适用于管弦乐表演。",
+                es: "Un violonchelo con sonido rico adecuado para presentaciones orquestales."
+            },
+            brand: "Eastman",
+            price: "$1800"
+        },
+        // 可以添加更多大提琴数据
+    ],
+    bass: [
+        {
+            name: {
+                en: "Bass 001",
+                cn: "低音提琴 001",
+                es: "Contrabajo 001"
+            },
+            img: "images/bass1.jpg",
+            description: {
+                en: "A robust bass perfect for orchestras and jazz ensembles.",
+                cn: "一款结实的低音提琴，适用于管弦乐队和爵士乐团。",
+                es: "Un contrabajo robusto perfecto para orquestas y conjuntos de jazz."
+            },
+            brand: "Yamaha",
+            price: "$1600"
+        },
+        // 可以添加更多低音提琴数据
+    }
 };
 
 // 推荐乐器列表
@@ -323,11 +407,6 @@ const studyAbroadData = [
 // 工具函数
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function startExploring() {
-    showSection('home');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // 语言切换函数
