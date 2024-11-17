@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">范云麒的个人网站</title>
-    <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-WhXQv4oeObP5nOS+G6uxEBtyPxB/l9OENH6D+w9lLgnb7IyX5Iw7nUtwKlHZJ4Qw" crossorigin="anonymous">
+    <!-- 引入 Google Fonts，仅加载必要的字体和权重 -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* 全局样式 */
         *, *::before, *::after {
@@ -66,7 +64,7 @@
         }
 
         .logo img {
-            height: 50px; /* LOGO 的高度，可以根据需要调整 */
+            height: 50px;
             width: auto;
         }
 
@@ -82,7 +80,7 @@
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 10px;
         }
 
         nav ul li a {
@@ -222,6 +220,7 @@
             height: 150px;
             object-fit: cover;
             border-radius: 8px;
+            loading="lazy" /* 实现图片懒加载 */
         }
 
         /* 乐器列表 */
@@ -249,6 +248,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            loading="lazy" /* 实现图片懒加载 */
         }
 
         .instrument-item h3 {
@@ -316,7 +316,7 @@
         <div class="container">
             <div class="logo">
                 <!-- LOGO 图片的占位符，您可以替换为实际的LOGO图片 -->
-                <img src="https://via.placeholder.com/50" alt="Logo">
+                <img src="https://via.placeholder.com/50" alt="Logo" loading="lazy">
             </div>
             <nav>
                 <ul>
@@ -351,39 +351,39 @@
             <div class="category-list">
                 <!-- 乐器分类项示例 -->
                 <div class="category-item" onclick="showInstruments('flute')">
-                    <img src="https://via.placeholder.com/200x150?text=Flute" alt="Flute">
+                    <img src="https://via.placeholder.com/200x150?text=Flute" alt="Flute" loading="lazy">
                     <h3 data-translation-key="flute">长笛</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('clarinet')">
-                    <img src="https://via.placeholder.com/200x150?text=Clarinet" alt="Clarinet">
+                    <img src="https://via.placeholder.com/200x150?text=Clarinet" alt="Clarinet" loading="lazy">
                     <h3 data-translation-key="clarinet">单簧管</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('oboe')">
-                    <img src="https://via.placeholder.com/200x150?text=Oboe" alt="Oboe">
+                    <img src="https://via.placeholder.com/200x150?text=Oboe" alt="Oboe" loading="lazy">
                     <h3 data-translation-key="oboe">双簧管</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('trumpet')">
-                    <img src="https://via.placeholder.com/200x150?text=Trumpet" alt="Trumpet">
+                    <img src="https://via.placeholder.com/200x150?text=Trumpet" alt="Trumpet" loading="lazy">
                     <h3 data-translation-key="trumpet">小号</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('trombone')">
-                    <img src="https://via.placeholder.com/200x150?text=Trombone" alt="Trombone">
+                    <img src="https://via.placeholder.com/200x150?text=Trombone" alt="Trombone" loading="lazy">
                     <h3 data-translation-key="trombone">长号</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('tuba')">
-                    <img src="https://via.placeholder.com/200x150?text=Tuba" alt="Tuba">
+                    <img src="https://via.placeholder.com/200x150?text=Tuba" alt="Tuba" loading="lazy">
                     <h3 data-translation-key="tuba">大号</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('violin')">
-                    <img src="https://via.placeholder.com/200x150?text=Violin" alt="Violin">
+                    <img src="https://via.placeholder.com/200x150?text=Violin" alt="Violin" loading="lazy">
                     <h3 data-translation-key="violin">小提琴</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('cello')">
-                    <img src="https://via.placeholder.com/200x150?text=Cello" alt="Cello">
+                    <img src="https://via.placeholder.com/200x150?text=Cello" alt="Cello" loading="lazy">
                     <h3 data-translation-key="cello">大提琴</h3>
                 </div>
                 <div class="category-item" onclick="showInstruments('bass')">
-                    <img src="https://via.placeholder.com/200x150?text=Bass" alt="Bass">
+                    <img src="https://via.placeholder.com/200x150?text=Bass" alt="Bass" loading="lazy">
                     <h3 data-translation-key="bass">低音提琴</h3>
                 </div>
             </div>
@@ -408,7 +408,7 @@
         <!-- 乐器详情 -->
         <section id="instrument-details" class="hidden">
             <h2 id="details-title">乐器详情</h2>
-            <img id="details-img" src="" alt="Instrument Image" style="width: 100%; max-width: 600px; border-radius: 8px;">
+            <img id="details-img" src="" alt="Instrument Image" style="width: 100%; max-width: 600px; border-radius: 8px;" loading="lazy">
             <p id="details-description">所选乐器的描述。</p>
             <p id="details-price" style="font-weight: bold; color: #e74c3c;">价格：$0</p>
             <button onclick="showSection('instrument-categories')">返回分类</button>
@@ -421,13 +421,13 @@
             <div style="display: flex; flex-wrap: wrap; gap: 20px;">
                 <!-- 活动项示例 -->
                 <div class="event-item" onclick="showEventDetails(0)" style="flex: 1 1 300px; cursor: pointer;">
-                    <img src="https://via.placeholder.com/300x200?text=Event+1" alt="Event 1" style="width: 100%; border-radius: 8px;">
+                    <img src="https://via.placeholder.com/300x200?text=Event+1" alt="Event 1" style="width: 100%; border-radius: 8px;" loading="lazy">
                     <h3 id="event-name-0">音乐工作坊：古典乐之旅</h3>
                     <p id="event-date-0">日期: 2024-11-10</p>
                     <p id="event-location-0">地点: 音乐厅 A</p>
                 </div>
                 <div class="event-item" onclick="showEventDetails(1)" style="flex: 1 1 300px; cursor: pointer;">
-                    <img src="https://via.placeholder.com/300x200?text=Event+2" alt="Event 2" style="width: 100%; border-radius: 8px;">
+                    <img src="https://via.placeholder.com/300x200?text=Event+2" alt="Event 2" style="width: 100%; border-radius: 8px;" loading="lazy">
                     <h3 id="event-name-1">爵士乐夜晚</h3>
                     <p id="event-date-1">日期: 2024-12-05</p>
                     <p id="event-location-1">地点: 音乐中心 B</p>
@@ -438,7 +438,7 @@
         <!-- 活动详情 -->
         <section id="event-details" class="hidden">
             <h2 id="event-details-title">活动详情</h2>
-            <img id="event-details-img" src="" alt="Event Image" style="width: 100%; max-width: 600px; border-radius: 8px;">
+            <img id="event-details-img" src="" alt="Event Image" style="width: 100%; max-width: 600px; border-radius: 8px;" loading="lazy">
             <p id="event-details-description">活动的详细信息。</p>
             <p id="event-details-date" style="font-weight: bold;">日期: </p>
             <p id="event-details-location" style="font-weight: bold;">地点: </p>
@@ -452,12 +452,12 @@
             <div style="display: flex; flex-wrap: wrap; gap: 20px;">
                 <!-- 留学项目项示例 -->
                 <div class="study-abroad-item" onclick="showStudyDetails(0)" style="flex: 1 1 300px; cursor: pointer;">
-                    <img src="https://via.placeholder.com/300x200?text=Study+1" alt="Study Abroad Program 1" style="width: 100%; border-radius: 8px;">
+                    <img src="https://via.placeholder.com/300x200?text=Study+1" alt="Study Abroad Program 1" style="width: 100%; border-radius: 8px;" loading="lazy">
                     <h3 id="study-name-0">德国音乐学院交流项目</h3>
                     <p id="study-country-0">国家: 德国</p>
                 </div>
                 <div class="study-abroad-item" onclick="showStudyDetails(1)" style="flex: 1 1 300px; cursor: pointer;">
-                    <img src="https://via.placeholder.com/300x200?text=Study+2" alt="Study Abroad Program 2" style="width: 100%; border-radius: 8px;">
+                    <img src="https://via.placeholder.com/300x200?text=Study+2" alt="Study Abroad Program 2" style="width: 100%; border-radius: 8px;" loading="lazy">
                     <h3 id="study-name-1">法国艺术文化之旅</h3>
                     <p id="study-country-1">国家: 法国</p>
                 </div>
@@ -467,7 +467,7 @@
         <!-- 留学项目详情 -->
         <section id="study-details" class="hidden">
             <h2 id="study-details-title">留学项目详情</h2>
-            <img id="study-details-img" src="" alt="Study Abroad Image" style="width: 100%; max-width: 600px; border-radius: 8px;">
+            <img id="study-details-img" src="" alt="Study Abroad Image" style="width: 100%; max-width: 600px; border-radius: 8px;" loading="lazy">
             <p id="study-details-description">留学项目的详细信息。</p>
             <p id="study-details-country" style="font-weight: bold;">国家: </p>
             <button onclick="showSection('study-abroad')">返回留学项目</button>
@@ -479,22 +479,22 @@
             <div style="display: flex; flex-wrap: wrap; gap: 20px;">
                 <!-- 艺术家项示例 -->
                 <div style="flex: 1 1 200px; text-align: center;">
-                    <img src="https://via.placeholder.com/200" alt="Artist 1" style="width: 100%; border-radius: 50%;">
+                    <img src="https://via.placeholder.com/200" alt="Artist 1" style="width: 100%; border-radius: 50%;" loading="lazy">
                     <h3>李小琴</h3>
                     <p>著名小提琴演奏家，曾获多项国际大奖。</p>
                 </div>
                 <div style="flex: 1 1 200px; text-align: center;">
-                    <img src="https://via.placeholder.com/200" alt="Artist 2" style="width: 100%; border-radius: 50%;">
+                    <img src="https://via.placeholder.com/200" alt="Artist 2" style="width: 100%; border-radius: 50%;" loading="lazy">
                     <h3>王明</h3>
                     <p>钢琴家，致力于现代音乐的推广。</p>
                 </div>
                 <div style="flex: 1 1 200px; text-align: center;">
-                    <img src="https://via.placeholder.com/200" alt="Artist 3" style="width: 100%; border-radius: 50%;">
+                    <img src="https://via.placeholder.com/200" alt="Artist 3" style="width: 100%; border-radius: 50%;" loading="lazy">
                     <h3>张华</h3>
                     <p>萨克斯演奏家，融合了爵士与传统音乐。</p>
                 </div>
                 <div style="flex: 1 1 200px; text-align: center;">
-                    <img src="https://via.placeholder.com/200" alt="Artist 4" style="width: 100%; border-radius: 50%;">
+                    <img src="https://via.placeholder.com/200" alt="Artist 4" style="width: 100%; border-radius: 50%;" loading="lazy">
                     <h3>刘艳</h3>
                     <p>女高音歌唱家，活跃于国际舞台。</p>
                 </div>
@@ -935,11 +935,6 @@
             // 可以添加更多留学项目数据
         ];
 
-        // 工具函数
-        function capitalize(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-
         // 语言切换函数
         function switchLanguage(lang) {
             currentLanguage = lang;
@@ -980,9 +975,6 @@
             // 更新活动和留学项目的文本
             updateEventTexts();
             updateStudyAbroadTexts();
-
-            // 更新主页推荐乐器的名称
-            updateFeaturedInstruments();
 
             // 更新导航栏链接文本
             updateNavLinks();
@@ -1086,6 +1078,7 @@
             const img = document.createElement('img');
             img.src = instrument.img;
             img.alt = instrument.name[currentLanguage];
+            img.loading = "lazy";
 
             const name = document.createElement('h3');
             name.innerText = instrument.name[currentLanguage];
@@ -1165,12 +1158,6 @@
             });
         }
 
-        // 更新主页推荐乐器
-        function updateFeaturedInstruments() {
-            // 在当前示例中没有具体的推荐乐器部分，请根据需要添加
-            // 如果有，请在此处更新它们的文本
-        }
-
         // 显示分页控件
         function displayPagination() {
             const pagination = document.getElementById('pagination');
@@ -1188,14 +1175,6 @@
                 };
                 pagination.appendChild(button);
             }
-        }
-
-        // 更新动态内容
-        function updateDynamicContent() {
-            updateNavLinks();
-            updateEventTexts();
-            updateStudyAbroadTexts();
-            updateFeaturedInstruments();
         }
 
         // 页面加载后初始化
