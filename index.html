@@ -1,38 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="cn">
 <head>
-    <!-- 元信息 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">范云麒的个人网站</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        .hidden {
+            display: none;
+        }
 
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-WhXQv4oeObP5nOS+G6uxEBtyPxB/l9OENH6D+w9lLgnb7IyX5Iw7nUtwKlHZJ4Qw" crossorigin="anonymous">
+        header {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-    <!-- 自定义样式表 -->
-    <link rel="stylesheet" href="styles.css">
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .language-switch button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        main {
+            padding-top: 60px; /* 留出固定头部的空间 */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* 示例内容样式 */
+        section {
+            margin-bottom: 40px;
+        }
+
+        h1, h2 {
+            color: #e74c3c;
+        }
+    </style>
 </head>
 <body>
-    <!-- 头部 -->
     <header>
         <div class="container">
             <div class="logo">
-                <!-- LOGO 图片的占位符，替换 'logo.png' 为您的 LOGO 图片路径 -->
-                <img src="images/logo.png" alt="Logo">
-                <!-- 可选的 LOGO 旁边的文字 -->
-                <!-- <div class="logo-text" id="site-title">范云麒的个人网站</div> -->
+                <!-- 使用占位符图片作为LOGO -->
+                <img src="https://via.placeholder.com/50" alt="Logo">
             </div>
             <nav>
                 <ul>
                     <li><a href="#" id="home-link" onclick="showSection('home')">主页</a></li>
-                    <li><a href="#" id="instruments-link" onclick="showSection('instrument-categories')">乐器浏览</a></li>
-                    <li><a href="#" id="event-link" onclick="showSection('event')">活动</a></li>
-                    <li><a href="#" id="study-abroad-link" onclick="showSection('study-abroad')">留学项目</a></li>
-                    <li><a href="#" id="artists-link" onclick="showSection('artists')">艺术家</a></li>
-                    <li><a href="#" id="contact-link" onclick="showSection('contact')">联系方式</a></li>
+                    <li><a href="#" id="about-link" onclick="showSection('about')">关于我</a></li>
                 </ul>
             </nav>
             <div class="language-switch">
@@ -43,220 +105,102 @@
         </div>
     </header>
 
-    <!-- 主内容 -->
     <main>
-        <!-- 主页 -->
         <section id="home">
-            <div class="hero">
-                <div class="hero-content">
-                    <h1 id="home-title">欢迎来到我的个人网站</h1>
-                    <p id="home-description">你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。</p>
-                    <button class="hero-button" onclick="showSection('instrument-categories')">开始探索</button>
-                </div>
-            </div>
-
-            <!-- 关于我 -->
-            <div class="card">
-                <h2 id="intro-title">关于我</h2>
-                <p id="intro-text">我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。</p>
-            </div>
+            <h1 id="home-title">欢迎来到我的个人网站</h1>
+            <p id="home-description">这是主页内容。</p>
         </section>
 
-        <!-- 乐器分类列表 -->
-        <section id="instrument-categories" class="hidden">
-            <div class="card">
-                <h2 id="instrument-categories-title">乐器分类</h2>
-                <div class="category-list">
-                    <!-- 乐器分类项 -->
-                    <div class="category-item" onclick="showInstruments('flute')">
-                        <img src="images/category-flute.jpg" alt="Flute">
-                        <h3 data-translation-key="flute">长笛</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('clarinet')">
-                        <img src="images/category-clarinet.jpg" alt="Clarinet">
-                        <h3 data-translation-key="clarinet">单簧管</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('oboe')">
-                        <img src="images/category-oboe.jpg" alt="Oboe">
-                        <h3 data-translation-key="oboe">双簧管</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('trumpet')">
-                        <img src="images/category-trumpet.jpg" alt="Trumpet">
-                        <h3 data-translation-key="trumpet">小号</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('trombone')">
-                        <img src="images/category-trombone.jpg" alt="Trombone">
-                        <h3 data-translation-key="trombone">长号</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('tuba')">
-                        <img src="images/category-tuba.jpg" alt="Tuba">
-                        <h3 data-translation-key="tuba">大号</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('violin')">
-                        <img src="images/category-violin.jpg" alt="Violin">
-                        <h3 data-translation-key="violin">小提琴</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('cello')">
-                        <img src="images/category-cello.jpg" alt="Cello">
-                        <h3 data-translation-key="cello">大提琴</h3>
-                    </div>
-                    <div class="category-item" onclick="showInstruments('bass')">
-                        <img src="images/category-bass.jpg" alt="Bass">
-                        <h3 data-translation-key="bass">低音提琴</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 乐器列表 -->
-        <section id="instruments" class="hidden">
-            <div class="card">
-                <h2 id="instruments-title">乐器浏览</h2>
-                <div class="filter">
-                    <label for="filter" id="filter-label">按品牌或类型筛选：</label>
-                    <input type="text" id="filter" oninput="filterInstruments(this.value)" placeholder="输入品牌或类型...">
-                </div>
-                <div id="instrument-list" class="instrument-list">
-                    <!-- 乐器项将在这里生成 -->
-                </div>
-                <!-- 分页控件 -->
-                <div id="pagination" class="pagination">
-                    <!-- 分页按钮将在这里生成 -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 乐器详情 -->
-        <section id="instrument-details" class="hidden">
-            <div class="card details">
-                <h2 id="details-title">乐器详情</h2>
-                <img id="details-img" src="" alt="Instrument Image">
-                <p id="details-description">所选乐器的描述。</p>
-                <p class="price" id="details-price"></p>
-            </div>
-        </section>
-
-        <!-- 活动展示 -->
-        <section id="event" class="hidden">
-            <div class="card">
-                <h2 id="event-title">活动</h2>
-                <p id="event-description">探索即将举行的音乐活动和工作坊。</p>
-                <div class="event-list">
-                    <!-- 活动项 -->
-                    <div class="event-item" onclick="showEventDetails(0)">
-                        <img src="images/event1.jpg" alt="Event 1">
-                        <h3 id="event-name-0">音乐工作坊：古典乐之旅</h3>
-                        <p id="event-date-0">日期: 2024-11-10</p>
-                        <p id="event-location-0">地点: 音乐厅 A</p>
-                    </div>
-                    <div class="event-item" onclick="showEventDetails(1)">
-                        <img src="images/event2.jpg" alt="Event 2">
-                        <h3 id="event-name-1">爵士乐夜晚</h3>
-                        <p id="event-date-1">日期: 2024-12-05</p>
-                        <p id="event-location-1">地点: 音乐中心 B</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 活动详情 -->
-        <section id="event-details" class="hidden">
-            <div class="card">
-                <h2 id="event-details-title">活动详情</h2>
-                <img id="event-details-img" src="" alt="Event Image">
-                <p id="event-details-description">活动的详细信息。</p>
-                <p id="event-details-date"></p>
-                <p id="event-details-location"></p>
-            </div>
-        </section>
-
-        <!-- 留学项目 -->
-        <section id="study-abroad" class="hidden">
-            <div class="card">
-                <h2 id="study-abroad-title">留学项目</h2>
-                <p id="study-abroad-description">发现音乐教育方面的留学机会。</p>
-                <div class="study-abroad-list">
-                    <!-- 留学项目项 -->
-                    <div class="study-abroad-item" onclick="showStudyDetails(0)">
-                        <img src="images/study1.jpg" alt="Study Abroad Program 1">
-                        <h3 id="study-name-0">德国音乐学院交流项目</h3>
-                        <p id="study-country-0">国家: 德国</p>
-                    </div>
-                    <div class="study-abroad-item" onclick="showStudyDetails(1)">
-                        <img src="images/study2.jpg" alt="Study Abroad Program 2">
-                        <h3 id="study-name-1">法国艺术文化之旅</h3>
-                        <p id="study-country-1">国家: 法国</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 留学项目详情 -->
-        <section id="study-details" class="hidden">
-            <div class="card">
-                <h2 id="study-details-title">留学项目详情</h2>
-                <img id="study-details-img" src="" alt="Study Abroad Image">
-                <p id="study-details-description">留学项目的详细信息。</p>
-                <p id="study-details-country"></p>
-            </div>
-        </section>
-
-        <!-- 艺术家 -->
-        <section id="artists" class="hidden">
-            <div class="card">
-                <h2 id="artists-title">艺术家</h2>
-                <div class="artist-list">
-                    <!-- 艺术家项 -->
-                    <div class="artist-item">
-                        <img src="images/artist1.jpg" alt="Artist 1">
-                        <h3>李小琴</h3>
-                        <p>著名小提琴演奏家，曾获多项国际大奖。</p>
-                    </div>
-                    <div class="artist-item">
-                        <img src="images/artist2.jpg" alt="Artist 2">
-                        <h3>王明</h3>
-                        <p>钢琴家，致力于现代音乐的推广。</p>
-                    </div>
-                    <div class="artist-item">
-                        <img src="images/artist3.jpg" alt="Artist 3">
-                        <h3>张华</h3>
-                        <p>萨克斯演奏家，融合了爵士与传统音乐。</p>
-                    </div>
-                    <div class="artist-item">
-                        <img src="images/artist4.jpg" alt="Artist 4">
-                        <h3>刘艳</h3>
-                        <p>女高音歌唱家，活跃于国际舞台。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 联系方式 -->
-        <section id="contact" class="hidden">
-            <div class="card">
-                <h2 id="contact-title">联系我</h2>
-                <p id="contact-description">欢迎通过以下方式与我联系：</p>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> Email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></li>
-                    <li><i class="fas fa-phone"></i> 电话: +86 123-4567-8901</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 地址: 上海市浦东新区张江高科技园区</li>
-                </ul>
-            </div>
+        <section id="about" class="hidden">
+            <h2 id="about-title">关于我</h2>
+            <p id="about-description">这是关于我的内容。</p>
         </section>
     </main>
 
-    <!-- 页脚 -->
     <footer>
         <p>&copy; 2024 范云麒。保留所有权利。</p>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <!-- 添加更多社交媒体链接 -->
-        </div>
     </footer>
 
-    <!-- 引入 JavaScript 文件 -->
-    <script src="script.js"></script>
+    <script>
+        // 全局变量
+        let currentLanguage = 'cn'; // 当前语言，默认为中文
+
+        // 翻译对象
+        const translations = {
+            en: {
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "about-link": "About Me",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "This is the home content.",
+                "about-title": "About Me",
+                "about-description": "This is the about me content."
+            },
+            cn: {
+                "site-title": "范云麒的个人网站",
+                "home-link": "主页",
+                "about-link": "关于我",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "这是主页内容。",
+                "about-title": "关于我",
+                "about-description": "这是关于我的内容。"
+            },
+            es: {
+                "site-title": "Sitio Web Personal de Fanyunqi",
+                "home-link": "Inicio",
+                "about-link": "Sobre Mí",
+                "home-title": "Bienvenido a Mi Sitio Web Personal",
+                "home-description": "Este es el contenido de inicio.",
+                "about-title": "Sobre Mí",
+                "about-description": "Este es el contenido sobre mí."
+            }
+        };
+
+        // 语言切换函数
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+
+            // 更新具有 id 的元素
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+
+            // 更新页面的语言属性
+            document.documentElement.lang = lang;
+
+            // 保存用户的语言选择
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // 显示特定的页面部分
+        function showSection(sectionId) {
+            console.log(`Showing section: ${sectionId}`); // 调试信息
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // 滚动到页面顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 页面加载后初始化
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'cn';
+            const supportedLanguages = ['en', 'cn', 'es'];
+            const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'cn';
+            switchLanguage(languageToUse);
+
+            // 初始时显示主页
+            showSection('home');
+        });
+    </script>
 </body>
 </html>
