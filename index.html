@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #333;
-            background-image: url('1.JPG'); /* 添加背景图片 */
-            background-size: cover; /* 让背景图片覆盖整个屏幕 */
-            background-repeat: no-repeat; /* 防止背景图片重复 */
-            background-position: center center; /* 背景图片居中显示 */
         }
 
         a {
@@ -24,7 +24,7 @@
 
         /* 头部样式 */
         header {
-            background-color: rgba(51, 51, 51, 0.8); /* 添加透明度 */
+            background-color: rgba(51, 51, 51, 0.8);
             color: white;
             padding: 1rem;
             text-align: center;
@@ -52,7 +52,7 @@
 
         /* 导航栏样式 */
         nav {
-            background-color: rgba(68, 68, 68, 0.8); /* 添加透明度 */
+            background-color: rgba(68, 68, 68, 0.8);
         }
 
         nav ul {
@@ -75,7 +75,7 @@
         }
 
         nav ul li a:hover {
-            background-color: rgba(85, 85, 85, 0.8); /* 添加透明度 */
+            background-color: #555;
         }
 
         nav ul li:hover .dropdown {
@@ -85,7 +85,7 @@
         .dropdown {
             display: none;
             position: absolute;
-            background-color: rgba(85, 85, 85, 0.9); /* 添加透明度 */
+            background-color: #555;
             z-index: 1000;
             list-style: none;
             left: 0;
@@ -104,7 +104,7 @@
         }
 
         .dropdown li a:hover {
-            background-color: rgba(102, 102, 102, 0.9); /* 添加透明度 */
+            background-color: #666;
         }
 
         .dropdown li:hover .sub-dropdown {
@@ -114,14 +114,14 @@
         .sub-dropdown {
             display: none;
             position: absolute;
-            background-color: rgba(102, 102, 102, 0.9); /* 添加透明度 */
+            background-color: #666;
             left: 100%;
             top: 0;
             min-width: 200px;
         }
 
         .sub-dropdown li a:hover {
-            background-color: rgba(119, 119, 119, 0.9); /* 添加透明度 */
+            background-color: #777;
         }
 
         /* 主内容样式 */
@@ -132,7 +132,7 @@
         }
 
         #home {
-            background-color: rgba(255, 255, 255, 0.8); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.8);
             color: #333;
             padding: 3rem;
             text-align: center;
@@ -169,7 +169,7 @@
         }
 
         .featured-instruments .instrument-item {
-            background-color: rgba(255, 255, 255, 0.9); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             margin: 10px;
             width: 200px;
@@ -203,7 +203,7 @@
         }
 
         .instrument-item {
-            background-color: rgba(255, 255, 255, 0.9); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             margin: 10px;
             width: 250px;
@@ -244,8 +244,9 @@
         .details {
             max-width: 800px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 2rem;
+            border-radius: 8px;
         }
 
         .details img {
@@ -262,7 +263,7 @@
         }
 
         .event-item {
-            background-color: rgba(255, 255, 255, 0.9); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             margin: 10px;
             width: 300px;
@@ -300,7 +301,7 @@
         }
 
         .study-abroad-item {
-            background-color: rgba(255, 255, 255, 0.9); /* 添加半透明背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
             margin: 10px;
             width: 300px;
@@ -332,7 +333,7 @@
 
         /* 页脚样式 */
         footer {
-            background-color: rgba(51, 51, 51, 0.8); /* 添加透明度 */
+            background-color: rgba(51, 51, 51, 0.8);
             color: white;
             text-align: center;
             padding: 1rem;
@@ -354,6 +355,18 @@
 
         .filter label {
             margin-right: 10px;
+        }
+
+        /* 分页控件样式 */
+        .pagination {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
 
         /* 响应式设计 */
@@ -380,7 +393,7 @@
         <div class="language-switch">
             <button onclick="switchLanguage('en')">English</button>
             <button onclick="switchLanguage('cn')">中文</button>
-            <button onclick="switchLanguage('es')">Español</button> <!-- 添加西班牙语按钮 -->
+            <button onclick="switchLanguage('es')">Español</button>
         </div>
         <h1 id="site-title">Fanyunqi's Personal Website</h1>
     </header>
@@ -443,15 +456,15 @@
                     <!-- 推荐的乐器项 -->
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[0])">
                         <img src="trumpet1.jpg" alt="Featured Instrument">
-                        <h4 id="featured-instrument-name-0">Trumpet 001</h4>
+                        <h4>Trumpet 001</h4>
                     </div>
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[1])">
                         <img src="violin1.jpg" alt="Featured Instrument">
-                        <h4 id="featured-instrument-name-1">Violin 001</h4>
+                        <h4>Violin 001</h4>
                     </div>
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[2])">
                         <img src="flute1.jpg" alt="Featured Instrument">
-                        <h4 id="featured-instrument-name-2">Flute 001</h4>
+                        <h4>Flute 001</h4>
                     </div>
                 </div>
             </div>
@@ -465,17 +478,17 @@
                 <!-- 活动项 -->
                 <div class="event-item">
                     <img src="event1.jpg" alt="Event 1">
-                    <h3 id="event-name-0">Music Workshop 1</h3>
-                    <p id="event-date-0">Date: 2024-11-10</p>
-                    <p id="event-location-0">Location: Concert Hall A</p>
-                    <p><a href="#" onclick="showEventDetails(0)" data-translation-key="Learn More">Learn More</a></p>
+                    <h3>Music Workshop 1</h3>
+                    <p>Date: 2024-11-10</p>
+                    <p>Location: Concert Hall A</p>
+                    <p><a href="#" onclick="showEventDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
                 </div>
                 <div class="event-item">
                     <img src="event2.jpg" alt="Event 2">
-                    <h3 id="event-name-1">Music Workshop 2</h3>
-                    <p id="event-date-1">Date: 2024-12-05</p>
-                    <p id="event-location-1">Location: Music Center B</p>
-                    <p><a href="#" onclick="showEventDetails(1)" data-translation-key="Learn More">Learn More</a></p>
+                    <h3>Music Workshop 2</h3>
+                    <p>Date: 2024-12-05</p>
+                    <p>Location: Music Center B</p>
+                    <p><a href="#" onclick="showEventDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
                 </div>
                 <!-- 添加更多活动项 -->
             </div>
@@ -499,15 +512,15 @@
                 <!-- 留学项目项 -->
                 <div class="study-abroad-item">
                     <img src="study1.jpg" alt="Study Abroad Program 1">
-                    <h3 id="study-name-0">Program 1</h3>
-                    <p id="study-country-0">Country: Germany</p>
-                    <p><a href="#" onclick="showStudyDetails(0)" data-translation-key="Learn More">Learn More</a></p>
+                    <h3>Program 1</h3>
+                    <p>Country: Germany</p>
+                    <p><a href="#" onclick="showStudyDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
                 </div>
                 <div class="study-abroad-item">
                     <img src="study2.jpg" alt="Study Abroad Program 2">
-                    <h3 id="study-name-1">Program 2</h3>
-                    <p id="study-country-1">Country: France</p>
-                    <p><a href="#" onclick="showStudyDetails(1)" data-translation-key="Learn More">Learn More</a></p>
+                    <h3>Program 2</h3>
+                    <p>Country: France</p>
+                    <p><a href="#" onclick="showStudyDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
                 </div>
                 <!-- 添加更多留学项目项 -->
             </div>
@@ -575,181 +588,541 @@
     <footer>
         <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
     </footer>
-<script>
-    let currentLanguage = 'en'; // 当前语言，默认为英文
-    let currentInstruments = []; // 当前显示的乐器列表
-    let currentPage = 1; // 当前页码
-    const itemsPerPage = 6; // 每页显示的乐器数量
 
-    const translations = {
-        en: {
-            "site-title": "Fanyunqi's Personal Website",
-            // ...（所有英文翻译，已在前面提供）
-            "Learn More": "Learn More",
-            "Date": "Date",
-            "Location": "Location",
-            "Country": "Country",
-            "No instruments found.": "No instruments found."
-        },
-        cn: {
-            "site-title": "范云麒的个人网站",
-            // ...（所有中文翻译，已在前面提供）
-            "Learn More": "了解更多",
-            "Date": "日期",
-            "Location": "地点",
-            "Country": "国家",
-            "No instruments found.": "未找到符合条件的乐器。"
-        },
-        es: { // 添加西班牙语翻译
-            "site-title": "Sitio Web Personal de Fanyunqi",
-            // ...（所有西班牙语翻译，已在前面提供）
-            "Learn More": "Aprende Más",
-            "Date": "Fecha",
-            "Location": "Ubicación",
-            "Country": "País",
-            "No instruments found.": "No se encontraron instrumentos."
-        }
-    };
+    <script>
+        let currentLanguage = 'en'; // 当前语言，默认为英文
+        let currentInstruments = []; // 当前显示的乐器列表
+        let currentPage = 1; // 当前页码
+        const itemsPerPage = 6; // 每页显示的乐器数量
 
-    // 乐器数据（简化示例）
-    const instrumentData = {
-        flute: [],
-        trumpet: [],
-        violin: [],
-        clarinet: [],
-        oboe: [],
-        trombone: [],
-        tuba: [],
-        cello: [],
-        bass: []
-    };
+        const translations = {
+            en: {
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "event-link": "Events",
+                "study-abroad-link": "Study Abroad",
+                "artists-link": "Artists",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
+                "intro-title": "About Me",
+                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
+                "featured-title": "Featured Instruments",
+                "event-title": "Events",
+                "event-description": "Explore upcoming musical events and workshops.",
+                "event-details-title": "Event Details",
+                "study-abroad-title": "Study Abroad Programs",
+                "study-abroad-description": "Discover study abroad opportunities in music education.",
+                "study-details-title": "Study Abroad Details",
+                "artists-title": "Artists",
+                "instruments-title": "Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email: ",
+                "filter-label": "Filter by brand or type:",
+                "woodwinds": "Woodwinds",
+                "brass": "Brass",
+                "strings": "Strings",
+                "brands": "Brands",
+                "flute": "Flute",
+                "clarinet": "Clarinet",
+                "oboe": "Oboe",
+                "trumpet": "Trumpet",
+                "trombone": "Trombone",
+                "tuba": "Tuba",
+                "violin": "Violin",
+                "cello": "Cello",
+                "bass": "Bass",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Instrument Details",
+                "Price": "Price",
+                "No instruments found.": "No instruments found.",
+                "Learn More": "Learn More",
+                "Date": "Date",
+                "Location": "Location",
+                "Country": "Country",
+                "Event Description": "Event Description",
+                "Study Description": "Program Description"
+            },
+            cn: {
+                "site-title": "范云麒的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器浏览",
+                "event-link": "活动",
+                "study-abroad-link": "留学项目",
+                "artists-link": "艺术家",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
+                "intro-title": "关于我",
+                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
+                "featured-title": "推荐乐器",
+                "event-title": "活动",
+                "event-description": "探索即将举行的音乐活动和工作坊。",
+                "event-details-title": "活动详情",
+                "study-abroad-title": "留学项目",
+                "study-abroad-description": "发现音乐教育方面的留学机会。",
+                "study-details-title": "留学项目详情",
+                "artists-title": "艺术家",
+                "instruments-title": "乐器浏览",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系：",
+                "filter-label": "按品牌或类型筛选：",
+                "woodwinds": "木管乐器",
+                "brass": "铜管乐器",
+                "strings": "弦乐器",
+                "brands": "品牌",
+                "flute": "长笛",
+                "clarinet": "单簧管",
+                "oboe": "双簧管",
+                "trumpet": "小号",
+                "trombone": "长号",
+                "tuba": "大号",
+                "violin": "小提琴",
+                "cello": "大提琴",
+                "bass": "低音提琴",
+                "Yamaha": "雅马哈",
+                "Buffet": "布菲",
+                "Selmer": "塞尔玛",
+                "Bach": "巴赫",
+                "Conn": "康恩",
+                "Stradivarius": "斯特拉迪瓦里",
+                "Eastman": "伊斯特曼",
+                "Instrument Details": "乐器详情",
+                "Price": "价格",
+                "No instruments found.": "未找到符合条件的乐器。",
+                "Learn More": "了解更多",
+                "Date": "日期",
+                "Location": "地点",
+                "Country": "国家",
+                "Event Description": "活动描述",
+                "Study Description": "项目描述"
+            },
+            es: {
+                "site-title": "Sitio Web Personal de Fanyunqi",
+                "home-link": "Inicio",
+                "instruments-link": "Instrumentos",
+                "event-link": "Eventos",
+                "study-abroad-link": "Estudiar en el Extranjero",
+                "artists-link": "Artistas",
+                "contact-link": "Contacto",
+                "home-title": "Bienvenido a Mi Sitio Web Personal",
+                "home-description": "¡Hola! Soy un músico apasionado y desarrollador web. En este sitio web, puedes explorar varios instrumentos musicales y aprender más sobre ellos.",
+                "intro-title": "Sobre Mí",
+                "intro-text": "He estado tocando música durante más de 10 años, especializándome en instrumentos de viento-metal. También tengo un profundo interés en el desarrollo web y me encanta combinar mis pasiones para crear experiencias interactivas.",
+                "featured-title": "Instrumentos Destacados",
+                "event-title": "Eventos",
+                "event-description": "Explora próximos eventos y talleres musicales.",
+                "event-details-title": "Detalles del Evento",
+                "study-abroad-title": "Programas de Estudio en el Extranjero",
+                "study-abroad-description": "Descubre oportunidades de estudio en el extranjero en educación musical.",
+                "study-details-title": "Detalles del Estudio en el Extranjero",
+                "artists-title": "Artistas",
+                "instruments-title": "Instrumentos",
+                "contact-title": "Contáctame",
+                "contact-description": "No dudes en contactarme vía email: ",
+                "filter-label": "Filtrar por marca o tipo:",
+                "woodwinds": "Viento-Madera",
+                "brass": "Viento-Metal",
+                "strings": "Cuerdas",
+                "brands": "Marcas",
+                "flute": "Flauta",
+                "clarinet": "Clarinete",
+                "oboe": "Oboe",
+                "trumpet": "Trompeta",
+                "trombone": "Trombón",
+                "tuba": "Tuba",
+                "violin": "Violín",
+                "cello": "Violonchelo",
+                "bass": "Contrabajo",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Detalles del Instrumento",
+                "Price": "Precio",
+                "No instruments found.": "No se encontraron instrumentos.",
+                "Learn More": "Saber Más",
+                "Date": "Fecha",
+                "Location": "Ubicación",
+                "Country": "País",
+                "Event Description": "Descripción del Evento",
+                "Study Description": "Descripción del Programa"
+            }
+        };
 
-    // 为每个乐器类别自动生成占位乐器
-    const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+        const instrumentData = {
+            flute: [],
+            trumpet: [],
+            violin: [],
+            clarinet: [],
+            oboe: [],
+            trombone: [],
+            tuba: [],
+            cello: [],
+            bass: []
+        };
 
-    categories.forEach(category => {
-        for (let i = 1; i <= 12; i++) {
-            const code = i.toString().padStart(3, '0');
-            instrumentData[category].push({
-                name: {
-                    en: `${capitalize(category)} ${code}`,
-                    cn: `${translations['cn'][category]} ${code}`,
-                    es: `${translations['es'][category]} ${code}`
+        // 为每个乐器类别自动生成占位乐器
+        const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+
+        categories.forEach(category => {
+            for (let i = 1; i <= 12; i++) {
+                const code = i.toString().padStart(3, '0');
+                instrumentData[category].push({
+                    name: {
+                        en: `${capitalize(category)} ${code}`,
+                        cn: `${translations['cn'][category]} ${code}`,
+                        es: `${translations['es'][category]} ${code}`
+                    },
+                    img: `${category}${i}.jpg`, // 图片命名为 category1.jpg, category2.jpg 等
+                    description: {
+                        en: `Description for ${capitalize(category)} ${code}`,
+                        cn: `${translations['cn'][category]} ${code} 的描述`,
+                        es: `Descripción para ${translations['es'][category]} ${code}`
+                    },
+                    brand: `Brand ${i}`,
+                    price: `$${(100 + i * 10)}`
+                });
+            }
+        });
+
+        // 推荐乐器列表
+        const featuredInstruments = [
+            instrumentData['trumpet'][0],
+            instrumentData['violin'][0],
+            instrumentData['flute'][0]
+        ];
+
+        // 活动数据
+        const eventData = [
+            {
+                title: {
+                    en: "Music Workshop 1",
+                    cn: "音乐工作坊 1",
+                    es: "Taller de Música 1"
                 },
-                img: `${category}${i}.jpg`, // 图片命名为 category1.jpg, category2.jpg 等
+                img: "event1.jpg",
+                date: "2024-11-10",
+                location: {
+                    en: "Concert Hall A",
+                    cn: "音乐厅 A",
+                    es: "Sala de Conciertos A"
+                },
                 description: {
-                    en: `Description for ${capitalize(category)} ${code}`,
-                    cn: `${translations['cn'][category]} ${code} 的描述`,
-                    es: `Descripción para ${capitalize(category)} ${code}`
+                    en: "An immersive workshop on classical music.",
+                    cn: "关于古典音乐的沉浸式工作坊。",
+                    es: "Un taller inmersivo sobre música clásica."
+                }
+            },
+            {
+                title: {
+                    en: "Music Workshop 2",
+                    cn: "音乐工作坊 2",
+                    es: "Taller de Música 2"
                 },
-                brand: `Brand ${i}`,
-                price: `$${(100 + i * 10)}`
+                img: "event2.jpg",
+                date: "2024-12-05",
+                location: {
+                    en: "Music Center B",
+                    cn: "音乐中心 B",
+                    es: "Centro de Música B"
+                },
+                description: {
+                    en: "Explore contemporary music trends.",
+                    cn: "探索当代音乐趋势。",
+                    es: "Explora las tendencias de la música contemporánea."
+                }
+            }
+            // 可以添加更多活动数据
+        ];
+
+        // 留学项目数据
+        const studyAbroadData = [
+            {
+                title: {
+                    en: "Program 1",
+                    cn: "项目 1",
+                    es: "Programa 1"
+                },
+                img: "study1.jpg",
+                country: {
+                    en: "Germany",
+                    cn: "德国",
+                    es: "Alemania"
+                },
+                description: {
+                    en: "Study classical music in Germany.",
+                    cn: "在德国学习古典音乐。",
+                    es: "Estudia música clásica en Alemania."
+                }
+            },
+            {
+                title: {
+                    en: "Program 2",
+                    cn: "项目 2",
+                    es: "Programa 2"
+                },
+                img: "study2.jpg",
+                country: {
+                    en: "France",
+                    cn: "法国",
+                    es: "Francia"
+                },
+                description: {
+                    en: "Learn about French musical heritage.",
+                    cn: "了解法国的音乐遗产。",
+                    es: "Aprende sobre el patrimonio musical francés."
+                }
+            }
+            // 可以添加更多留学项目数据
+        ];
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function filterInstruments(filter) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // 清空列表
+
+            const filteredInstruments = [];
+
+            for (const category in instrumentData) {
+                instrumentData[category].forEach(instrument => {
+                    const instrumentName = instrument.name[currentLanguage];
+                    const instrumentBrand = instrument.brand;
+                    if (
+                        instrumentName.toLowerCase().includes(filter.toLowerCase()) ||
+                        instrumentBrand.toLowerCase().includes(filter.toLowerCase())
+                    ) {
+                        filteredInstruments.push(instrument);
+                    }
+                });
+            }
+
+            if (filteredInstruments.length === 0) {
+                instrumentList.innerHTML = `<p>${translations[currentLanguage]["No instruments found."]}</p>`;
+                return;
+            }
+
+            currentInstruments = filteredInstruments;
+            currentPage = 1;
+            displayInstruments();
+        }
+
+        function showInstruments(category) {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = ''; // 清空现有内容
+
+            currentInstruments = instrumentData[category];
+            currentPage = 1;
+            displayInstruments();
+
+            showSection('instruments');
+        }
+
+        function displayInstruments() {
+            const instrumentList = document.getElementById('instrument-list');
+            instrumentList.innerHTML = '';
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const instrumentsToShow = currentInstruments.slice(startIndex, endIndex);
+
+            instrumentsToShow.forEach(instrument => {
+                const item = createInstrumentItem(instrument);
+                instrumentList.appendChild(item);
+            });
+
+            displayPagination();
+        }
+
+        function displayPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            const totalPages = Math.ceil(currentInstruments.length / itemsPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.innerText = i;
+                button.onclick = () => {
+                    currentPage = i;
+                    displayInstruments();
+                };
+                if (i === currentPage) {
+                    button.style.fontWeight = 'bold';
+                }
+                pagination.appendChild(button);
+            }
+        }
+
+        function createInstrumentItem(instrument) {
+            const item = document.createElement('div');
+            item.className = 'instrument-item';
+            item.onclick = () => showDetails(instrument);
+
+            const img = document.createElement('img');
+            img.src = instrument.img;
+            img.alt = instrument.name[currentLanguage];
+
+            const name = document.createElement('h3');
+            name.innerText = instrument.name[currentLanguage];
+
+            const brand = document.createElement('p');
+            brand.innerText = instrument.brand;
+
+            const price = document.createElement('p');
+            price.className = 'price';
+            price.innerText = instrument.price;
+
+            item.appendChild(img);
+            item.appendChild(name);
+            item.appendChild(brand);
+            item.appendChild(price);
+
+            return item;
+        }
+
+        function showDetails(instrument) {
+            document.getElementById('details-title').innerText = instrument.name[currentLanguage];
+            document.getElementById('details-img').src = instrument.img;
+            document.getElementById('details-description').innerText = instrument.description[currentLanguage];
+            document.getElementById('details-price').innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
+
+            showSection('details');
+        }
+
+        function showEventDetails(index) {
+            const event = eventData[index];
+            document.getElementById('event-details-title').innerText = event.title[currentLanguage];
+            document.getElementById('event-details-img').src = event.img;
+            document.getElementById('event-details-description').innerText = event.description[currentLanguage];
+            document.getElementById('event-details-date').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
+            document.getElementById('event-details-location').innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+
+            showSection('event-details');
+        }
+
+        function showStudyDetails(index) {
+            const program = studyAbroadData[index];
+            document.getElementById('study-details-title').innerText = program.title[currentLanguage];
+            document.getElementById('study-details-img').src = program.img;
+            document.getElementById('study-details-description').innerText = program.description[currentLanguage];
+            document.getElementById('study-details-country').innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+
+            showSection('study-details');
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
             });
         }
-    });
 
-    // 推荐乐器列表
-    const featuredInstruments = [
-        instrumentData['trumpet'][0],
-        instrumentData['violin'][0],
-        instrumentData['flute'][0]
-    ];
+        function switchLanguage(lang) {
+            currentLanguage = lang;
 
-    // 活动数据
-    const eventData = [
-        {
-            title: {
-                en: "Music Workshop 1",
-                cn: "音乐工作坊 1",
-                es: "Taller de Música 1"
-            },
-            img: "event1.jpg",
-            date: "2024-11-10",
-            location: {
-                en: "Concert Hall A",
-                cn: "音乐厅 A",
-                es: "Sala de Conciertos A"
-            },
-            description: {
-                en: "An immersive workshop on classical music.",
-                cn: "关于古典音乐的沉浸式工作坊。",
-                es: "Un taller inmersivo sobre música clásica."
+            // 更新具有 id 的元素
+            document.querySelectorAll("[id]").forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+
+            // 更新具有 data-translation-key 的元素
+            document.querySelectorAll("[data-translation-key]").forEach(element => {
+                const key = element.getAttribute("data-translation-key");
+                if (translations[lang][key]) {
+                    element.innerText = translations[lang][key];
+                }
+            });
+
+            // 更新过滤器标签
+            const filterLabel = document.querySelector('label[for="filter"]');
+            if (filterLabel && translations[lang]['filter-label']) {
+                filterLabel.innerText = translations[lang]['filter-label'];
             }
-        },
-        {
-            title: {
-                en: "Music Workshop 2",
-                cn: "音乐工作坊 2",
-                es: "Taller de Música 2"
-            },
-            img: "event2.jpg",
-            date: "2024-12-05",
-            location: {
-                en: "Music Center B",
-                cn: "音乐中心 B",
-                es: "Centro Musical B"
-            },
-            description: {
-                en: "Explore contemporary music trends.",
-                cn: "探索当代音乐趋势。",
-                es: "Explora tendencias de música contemporánea."
+
+            // 更新页面的语言属性
+            document.documentElement.lang = lang;
+
+            // 保存用户的语言选择
+            localStorage.setItem('selectedLanguage', lang);
+
+            // 如果当前在乐器列表页面，刷新列表以更新文本
+            if (!document.getElementById('instruments').classList.contains('hidden')) {
+                displayInstruments();
             }
+
+            // 更新活动和留学项目的文本
+            updateEventTexts();
+            updateStudyAbroadTexts();
+
+            // 更新主页推荐乐器的名称
+            updateFeaturedInstruments();
         }
-        // 可以添加更多活动数据
-    ];
 
-    // 留学项目数据
-    const studyAbroadData = [
-        {
-            title: {
-                en: "Program 1",
-                cn: "项目 1",
-                es: "Programa 1"
-            },
-            img: "study1.jpg",
-            country: {
-                en: "Germany",
-                cn: "德国",
-                es: "Alemania"
-            },
-            description: {
-                en: "Study classical music in Germany.",
-                cn: "在德国学习古典音乐。",
-                es: "Estudia música clásica en Alemania."
-            }
-        },
-        {
-            title: {
-                en: "Program 2",
-                cn: "项目 2",
-                es: "Programa 2"
-            },
-            img: "study2.jpg",
-            country: {
-                en: "France",
-                cn: "法国",
-                es: "Francia"
-            },
-            description: {
-                en: "Learn about French musical heritage.",
-                cn: "了解法国的音乐遗产。",
-                es: "Aprende sobre el patrimonio musical francés."
-            }
+        function updateEventTexts() {
+            document.getElementById('event-title').innerText = translations[currentLanguage]['event-title'];
+            document.getElementById('event-description').innerText = translations[currentLanguage]['event-description'];
+
+            const eventItems = document.querySelectorAll('.event-item');
+            eventItems.forEach((item, index) => {
+                const event = eventData[index];
+                item.querySelector('h3').innerText = event.title[currentLanguage];
+                item.querySelector('p').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
+                item.querySelectorAll('p')[1].innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+                item.querySelector('a').innerText = translations[currentLanguage]["Learn More"];
+            });
         }
-        // 可以添加更多留学项目数据
-    ];
 
-    function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+        function updateStudyAbroadTexts() {
+            document.getElementById('study-abroad-title').innerText = translations[currentLanguage]['study-abroad-title'];
+            document.getElementById('study-abroad-description').innerText = translations[currentLanguage]['study-abroad-description'];
 
-    // 其余的 JavaScript 函数（如 filterInstruments、showInstruments、displayInstruments、displayPagination、createInstrumentItem、showDetails、showEventDetails、showStudyDetails、showSection、switchLanguage、updateEventTexts、updateStudyAbroadTexts）
+            const studyItems = document.querySelectorAll('.study-abroad-item');
+            studyItems.forEach((item, index) => {
+                const program = studyAbroadData[index];
+                item.querySelector('h3').innerText = program.title[currentLanguage];
+                item.querySelector('p').innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+                item.querySelector('a').innerText = translations[currentLanguage]["Learn More"];
+            });
+        }
 
-    // 由于篇幅原因，这里简化描述，请确保在您的代码中包含这些函数，并在函数中正确处理 currentLanguage
+        function updateFeaturedInstruments() {
+            const featuredItems = document.querySelectorAll('.featured-instruments .instrument-item');
+            featuredItems.forEach((item, index) => {
+                const instrument = featuredInstruments[index];
+                item.querySelector('h4').innerText = instrument.name[currentLanguage];
+            });
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        switchLanguage(savedLanguage);
-        showSection('home');
-    });
-</script>
+            document.getElementById('featured-title').innerText = translations[currentLanguage]['featured-title'];
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            const supportedLanguages = ['en', 'cn', 'es'];
+            const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'en';
+            switchLanguage(languageToUse);
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
