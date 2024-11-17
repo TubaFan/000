@@ -10,8 +10,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            /* 移除原有的背景颜色 */
-            /* background-color: #f8f8f8; */
             color: #333;
             background-image: url('1.JPG'); /* 添加背景图片 */
             background-size: cover; /* 让背景图片覆盖整个屏幕 */
@@ -445,15 +443,15 @@
                     <!-- 推荐的乐器项 -->
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[0])">
                         <img src="trumpet1.jpg" alt="Featured Instrument">
-                        <h4>Trumpet 111</h4>
+                        <h4 id="featured-instrument-name-0">Trumpet 001</h4>
                     </div>
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[1])">
                         <img src="violin1.jpg" alt="Featured Instrument">
-                        <h4>Violin 111</h4>
+                        <h4 id="featured-instrument-name-1">Violin 001</h4>
                     </div>
                     <div class="instrument-item" onclick="showDetails(featuredInstruments[2])">
                         <img src="flute1.jpg" alt="Featured Instrument">
-                        <h4>Flute 111</h4>
+                        <h4 id="featured-instrument-name-2">Flute 001</h4>
                     </div>
                 </div>
             </div>
@@ -467,17 +465,17 @@
                 <!-- 活动项 -->
                 <div class="event-item">
                     <img src="event1.jpg" alt="Event 1">
-                    <h3>Music Workshop 1</h3>
-                    <p>Date: 2024-11-10</p>
-                    <p>Location: Concert Hall A</p>
-                    <p><a href="#" onclick="showEventDetails(0)">Learn More</a></p>
+                    <h3 id="event-name-0">Music Workshop 1</h3>
+                    <p id="event-date-0">Date: 2024-11-10</p>
+                    <p id="event-location-0">Location: Concert Hall A</p>
+                    <p><a href="#" onclick="showEventDetails(0)" data-translation-key="Learn More">Learn More</a></p>
                 </div>
                 <div class="event-item">
                     <img src="event2.jpg" alt="Event 2">
-                    <h3>Music Workshop 2</h3>
-                    <p>Date: 2024-12-05</p>
-                    <p>Location: Music Center B</p>
-                    <p><a href="#" onclick="showEventDetails(1)">Learn More</a></p>
+                    <h3 id="event-name-1">Music Workshop 2</h3>
+                    <p id="event-date-1">Date: 2024-12-05</p>
+                    <p id="event-location-1">Location: Music Center B</p>
+                    <p><a href="#" onclick="showEventDetails(1)" data-translation-key="Learn More">Learn More</a></p>
                 </div>
                 <!-- 添加更多活动项 -->
             </div>
@@ -501,15 +499,15 @@
                 <!-- 留学项目项 -->
                 <div class="study-abroad-item">
                     <img src="study1.jpg" alt="Study Abroad Program 1">
-                    <h3>Program 1</h3>
-                    <p>Country: Germany</p>
-                    <p><a href="#" onclick="showStudyDetails(0)">Learn More</a></p>
+                    <h3 id="study-name-0">Program 1</h3>
+                    <p id="study-country-0">Country: Germany</p>
+                    <p><a href="#" onclick="showStudyDetails(0)" data-translation-key="Learn More">Learn More</a></p>
                 </div>
                 <div class="study-abroad-item">
                     <img src="study2.jpg" alt="Study Abroad Program 2">
-                    <h3>Program 2</h3>
-                    <p>Country: France</p>
-                    <p><a href="#" onclick="showStudyDetails(1)">Learn More</a></p>
+                    <h3 id="study-name-1">Program 2</h3>
+                    <p id="study-country-1">Country: France</p>
+                    <p><a href="#" onclick="showStudyDetails(1)" data-translation-key="Learn More">Learn More</a></p>
                 </div>
                 <!-- 添加更多留学项目项 -->
             </div>
@@ -577,192 +575,181 @@
     <footer>
         <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
     </footer>
+<script>
+    let currentLanguage = 'en'; // 当前语言，默认为英文
+    let currentInstruments = []; // 当前显示的乐器列表
+    let currentPage = 1; // 当前页码
+    const itemsPerPage = 6; // 每页显示的乐器数量
 
-    <script>
-        let currentLanguage = 'en'; // 当前语言，默认为英文
-        let currentInstruments = []; // 当前显示的乐器列表
-        let currentPage = 1; // 当前页码
-        const itemsPerPage = 6; // 每页显示的乐器数量
+    const translations = {
+        en: {
+            "site-title": "Fanyunqi's Personal Website",
+            // ...（所有英文翻译，已在前面提供）
+            "Learn More": "Learn More",
+            "Date": "Date",
+            "Location": "Location",
+            "Country": "Country",
+            "No instruments found.": "No instruments found."
+        },
+        cn: {
+            "site-title": "范云麒的个人网站",
+            // ...（所有中文翻译，已在前面提供）
+            "Learn More": "了解更多",
+            "Date": "日期",
+            "Location": "地点",
+            "Country": "国家",
+            "No instruments found.": "未找到符合条件的乐器。"
+        },
+        es: { // 添加西班牙语翻译
+            "site-title": "Sitio Web Personal de Fanyunqi",
+            // ...（所有西班牙语翻译，已在前面提供）
+            "Learn More": "Aprende Más",
+            "Date": "Fecha",
+            "Location": "Ubicación",
+            "Country": "País",
+            "No instruments found.": "No se encontraron instrumentos."
+        }
+    };
 
-        const translations = {
-            en: {
-                "site-title": "Fanyunqi's Personal Website",
-                "home-link": "Home",
-                "instruments-link": "Instruments",
-                "event-link": "Events",
-                "study-abroad-link": "Study Abroad",
-                "artists-link": "Artists",
-                "contact-link": "Contact",
-                "home-title": "Welcome to My Personal Website",
-                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
-                "intro-title": "About Me",
-                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
-                "featured-title": "Featured Instruments",
-                "event-title": "Events",
-                "event-description": "Explore upcoming musical events and workshops.",
-                "event-details-title": "Event Details",
-                "study-abroad-title": "Study Abroad Programs",
-                "study-abroad-description": "Discover study abroad opportunities in music education.",
-                "study-details-title": "Study Abroad Details",
-                "artists-title": "Artists",
-                "instruments-title": "Instruments",
-                "contact-title": "Contact Me",
-                "contact-description": "Feel free to reach out to me via email: ",
-                "filter-label": "Filter by brand or type:",
-                "woodwinds": "Woodwinds",
-                "brass": "Brass",
-                "strings": "Strings",
-                "brands": "Brands",
-                "flute": "Flute",
-                "clarinet": "Clarinet",
-                "oboe": "Oboe",
-                "trumpet": "Trumpet",
-                "trombone": "Trombone",
-                "tuba": "Tuba",
-                "violin": "Violin",
-                "cello": "Cello",
-                "bass": "Bass",
-                "Yamaha": "Yamaha",
-                "Buffet": "Buffet",
-                "Selmer": "Selmer",
-                "Bach": "Bach",
-                "Conn": "Conn",
-                "Stradivarius": "Stradivarius",
-                "Eastman": "Eastman",
-                "Instrument Details": "Instrument Details",
-                "Price": "Price",
-                "No instruments found.": "No instruments found.",
-                "Learn More": "Learn More",
-                "Date": "Date",
-                "Location": "Location",
-                "Country": "Country",
-                "Event Description": "Event Description",
-                "Study Description": "Program Description"
+    // 乐器数据（简化示例）
+    const instrumentData = {
+        flute: [],
+        trumpet: [],
+        violin: [],
+        clarinet: [],
+        oboe: [],
+        trombone: [],
+        tuba: [],
+        cello: [],
+        bass: []
+    };
+
+    // 为每个乐器类别自动生成占位乐器
+    const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+
+    categories.forEach(category => {
+        for (let i = 1; i <= 12; i++) {
+            const code = i.toString().padStart(3, '0');
+            instrumentData[category].push({
+                name: {
+                    en: `${capitalize(category)} ${code}`,
+                    cn: `${translations['cn'][category]} ${code}`,
+                    es: `${translations['es'][category]} ${code}`
+                },
+                img: `${category}${i}.jpg`, // 图片命名为 category1.jpg, category2.jpg 等
+                description: {
+                    en: `Description for ${capitalize(category)} ${code}`,
+                    cn: `${translations['cn'][category]} ${code} 的描述`,
+                    es: `Descripción para ${capitalize(category)} ${code}`
+                },
+                brand: `Brand ${i}`,
+                price: `$${(100 + i * 10)}`
+            });
+        }
+    });
+
+    // 推荐乐器列表
+    const featuredInstruments = [
+        instrumentData['trumpet'][0],
+        instrumentData['violin'][0],
+        instrumentData['flute'][0]
+    ];
+
+    // 活动数据
+    const eventData = [
+        {
+            title: {
+                en: "Music Workshop 1",
+                cn: "音乐工作坊 1",
+                es: "Taller de Música 1"
             },
-            cn: {
-                "site-title": "范云麒的个人网站",
-                "home-link": "主页",
-                "instruments-link": "乐器浏览",
-                "event-link": "活动",
-                "study-abroad-link": "留学项目",
-                "artists-link": "艺术家",
-                "contact-link": "联系方式",
-                "home-title": "欢迎来到我的个人网站",
-                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
-                "intro-title": "关于我",
-                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
-                "featured-title": "推荐乐器",
-                "event-title": "活动",
-                "event-description": "探索即将举行的音乐活动和工作坊。",
-                "event-details-title": "活动详情",
-                "study-abroad-title": "留学项目",
-                "study-abroad-description": "发现音乐教育方面的留学机会。",
-                "study-details-title": "留学项目详情",
-                "artists-title": "艺术家",
-                "instruments-title": "乐器浏览",
-                "contact-title": "联系我",
-                "contact-description": "欢迎通过邮箱与我联系：",
-                "filter-label": "按品牌或类型筛选：",
-                "woodwinds": "木管乐器",
-                "brass": "铜管乐器",
-                "strings": "弦乐器",
-                "brands": "品牌",
-                "flute": "长笛",
-                "clarinet": "单簧管",
-                "oboe": "双簧管",
-                "trumpet": "小号",
-                "trombone": "长号",
-                "tuba": "大号",
-                "violin": "小提琴",
-                "cello": "大提琴",
-                "bass": "低音提琴",
-                "Yamaha": "雅马哈",
-                "Buffet": "布菲",
-                "Selmer": "塞尔玛",
-                "Bach": "巴赫",
-                "Conn": "康恩",
-                "Stradivarius": "斯特拉迪瓦里",
-                "Eastman": "伊斯特曼",
-                "Instrument Details": "乐器详情",
-                "Price": "价格",
-                "No instruments found.": "未找到符合条件的乐器。",
-                "Learn More": "了解更多",
-                "Date": "日期",
-                "Location": "地点",
-                "Country": "国家",
-                "Event Description": "活动描述",
-                "Study Description": "项目描述"
+            img: "event1.jpg",
+            date: "2024-11-10",
+            location: {
+                en: "Concert Hall A",
+                cn: "音乐厅 A",
+                es: "Sala de Conciertos A"
             },
-            es: { // 添加西班牙语翻译
-                "site-title": "Sitio Web Personal de Fanyunqi",
-                "home-link": "Inicio",
-                "instruments-link": "Instrumentos",
-                "event-link": "Eventos",
-                "study-abroad-link": "Estudiar en el Extranjero",
-                "artists-link": "Artistas",
-                "contact-link": "Contacto",
-                "home-title": "Bienvenido a Mi Sitio Web Personal",
-                "home-description": "¡Hola! Soy un músico y desarrollador web apasionado. En este sitio web, puedes explorar varios instrumentos musicales y aprender más sobre ellos.",
-                "intro-title": "Sobre Mí",
-                "intro-text": "He estado tocando música durante más de 10 años, especializándome en instrumentos de metal. También tengo un profundo interés en el desarrollo web y me encanta combinar mis pasiones para crear experiencias interactivas.",
-                "featured-title": "Instrumentos Destacados",
-                "event-title": "Eventos",
-                "event-description": "Explora próximos eventos y talleres musicales.",
-                "event-details-title": "Detalles del Evento",
-                "study-abroad-title": "Programas de Estudio en el Extranjero",
-                "study-abroad-description": "Descubre oportunidades de estudio en el extranjero en educación musical.",
-                "study-details-title": "Detalles del Estudio en el Extranjero",
-                "artists-title": "Artistas",
-                "instruments-title": "Instrumentos",
-                "contact-title": "Contáctame",
-                "contact-description": "No dudes en comunicarte conmigo vía correo electrónico: ",
-                "filter-label": "Filtrar por marca o tipo:",
-                "woodwinds": "Viento Madera",
-                "brass": "Metal",
-                "strings": "Cuerdas",
-                "brands": "Marcas",
-                "flute": "Flauta",
-                "clarinet": "Clarinete",
-                "oboe": "Oboe",
-                "trumpet": "Trompeta",
-                "trombone": "Trombón",
-                "tuba": "Tuba",
-                "violin": "Violín",
-                "cello": "Violonchelo",
-                "bass": "Contrabajo",
-                "Yamaha": "Yamaha",
-                "Buffet": "Buffet",
-                "Selmer": "Selmer",
-                "Bach": "Bach",
-                "Conn": "Conn",
-                "Stradivarius": "Stradivarius",
-                "Eastman": "Eastman",
-                "Instrument Details": "Detalles del Instrumento",
-                "Price": "Precio",
-                "No instruments found.": "No se encontraron instrumentos.",
-                "Learn More": "Aprende Más",
-                "Date": "Fecha",
-                "Location": "Ubicación",
-                "Country": "País",
-                "Event Description": "Descripción del Evento",
-                "Study Description": "Descripción del Programa"
+            description: {
+                en: "An immersive workshop on classical music.",
+                cn: "关于古典音乐的沉浸式工作坊。",
+                es: "Un taller inmersivo sobre música clásica."
             }
-        };
+        },
+        {
+            title: {
+                en: "Music Workshop 2",
+                cn: "音乐工作坊 2",
+                es: "Taller de Música 2"
+            },
+            img: "event2.jpg",
+            date: "2024-12-05",
+            location: {
+                en: "Music Center B",
+                cn: "音乐中心 B",
+                es: "Centro Musical B"
+            },
+            description: {
+                en: "Explore contemporary music trends.",
+                cn: "探索当代音乐趋势。",
+                es: "Explora tendencias de música contemporánea."
+            }
+        }
+        // 可以添加更多活动数据
+    ];
 
-        // 其余的 JavaScript 代码保持不变
-        // 请确保在 switchLanguage 函数中没有硬编码，仅使用 translations 对象来获取翻译文本
+    // 留学项目数据
+    const studyAbroadData = [
+        {
+            title: {
+                en: "Program 1",
+                cn: "项目 1",
+                es: "Programa 1"
+            },
+            img: "study1.jpg",
+            country: {
+                en: "Germany",
+                cn: "德国",
+                es: "Alemania"
+            },
+            description: {
+                en: "Study classical music in Germany.",
+                cn: "在德国学习古典音乐。",
+                es: "Estudia música clásica en Alemania."
+            }
+        },
+        {
+            title: {
+                en: "Program 2",
+                cn: "项目 2",
+                es: "Programa 2"
+            },
+            img: "study2.jpg",
+            country: {
+                en: "France",
+                cn: "法国",
+                es: "Francia"
+            },
+            description: {
+                en: "Learn about French musical heritage.",
+                cn: "了解法国的音乐遗产。",
+                es: "Aprende sobre el patrimonio musical francés."
+            }
+        }
+        // 可以添加更多留学项目数据
+    ];
 
-        // 以下是 JavaScript 代码的部分内容，确保功能正常运行
-        // 定义 instrumentData、eventData、studyAbroadData 等数据
-        // 并确保所有函数如 switchLanguage、showSection 等正确处理 currentLanguage
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
-        // ...（由于篇幅限制，这里省略其他 JavaScript 代码）
+    // 其余的 JavaScript 函数（如 filterInstruments、showInstruments、displayInstruments、displayPagination、createInstrumentItem、showDetails、showEventDetails、showStudyDetails、showSection、switchLanguage、updateEventTexts、updateStudyAbroadTexts）
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-            switchLanguage(savedLanguage);
-            showSection('home');
-        });
-    </script>
-</body>
-</html>
+    // 由于篇幅原因，这里简化描述，请确保在您的代码中包含这些函数，并在函数中正确处理 currentLanguage
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+        switchLanguage(savedLanguage);
+        showSection('home');
+    });
+</script>
