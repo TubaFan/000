@@ -4,7 +4,7 @@
     <!-- 元信息 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Fanyunqi's Personal Website</title>
+    <title id="site-title">范云麒的个人网站</title>
 
     <!-- 引入 Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -615,12 +615,12 @@
         </ul>
     </nav>
 
-    <!-- 英雄横幅 -->
-    <section id="hero">
+    <!-- 英雄横幅（仅在主页显示） -->
+    <section id="hero" class="hidden">
         <div class="hero-content">
-            <h1 id="hero-title">Welcome to My Personal Website</h1>
-            <p id="hero-subtitle">Explore the world of music with me</p>
-            <a href="#" class="hero-button" data-translation-key="get-started" onclick="scrollToSection('home')">Get Started</a>
+            <h1 id="hero-title">欢迎来到我的个人网站</h1>
+            <p id="hero-subtitle">与我一起探索音乐的世界</p>
+            <a href="#" class="hero-button" data-translation-key="get-started" onclick="scrollToSection('home')">开始探索</a>
         </div>
     </section>
 
@@ -629,33 +629,33 @@
         <!-- 主页 -->
         <section id="home">
             <div class="card" data-aos="fade-up">
-                <h2 id="home-title">Welcome to My Personal Website</h2>
-                <p id="home-description">Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.</p>
+                <h2 id="home-title">欢迎来到我的个人网站</h2>
+                <p id="home-description">你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。</p>
             </div>
 
             <!-- 关于我 -->
             <div class="card" data-aos="fade-up">
-                <h3 id="intro-title">About Me</h3>
-                <p id="intro-text">I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.</p>
+                <h3 id="intro-title">关于我</h3>
+                <p id="intro-text">我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。</p>
             </div>
 
             <!-- 推荐乐器 -->
             <section id="featured-instruments">
                 <div class="card" data-aos="fade-up">
-                    <h3 id="featured-title">Featured Instruments</h3>
+                    <h3 id="featured-title">推荐乐器</h3>
                     <div class="instrument-list">
                         <!-- 推荐的乐器项 -->
                         <div class="instrument-item" onclick="showDetails(featuredInstruments[0])" data-aos="zoom-in">
                             <img src="trumpet1.jpg" alt="Featured Instrument">
-                            <h4 id="featured-instrument-0">Trumpet 001</h4>
+                            <h4 id="featured-instrument-0">小号 001</h4>
                         </div>
                         <div class="instrument-item" onclick="showDetails(featuredInstruments[1])" data-aos="zoom-in">
                             <img src="violin1.jpg" alt="Featured Instrument">
-                            <h4 id="featured-instrument-1">Violin 001</h4>
+                            <h4 id="featured-instrument-1">小提琴 001</h4>
                         </div>
                         <div class="instrument-item" onclick="showDetails(featuredInstruments[2])" data-aos="zoom-in">
                             <img src="flute1.jpg" alt="Featured Instrument">
-                            <h4 id="featured-instrument-2">Flute 001</h4>
+                            <h4 id="featured-instrument-2">长笛 001</h4>
                         </div>
                     </div>
                 </div>
@@ -665,23 +665,23 @@
         <!-- 活动展示 -->
         <section id="event" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="event-title">Events</h2>
-                <p id="event-description">Explore upcoming musical events and workshops.</p>
+                <h2 id="event-title">活动</h2>
+                <p id="event-description">探索即将举行的音乐活动和工作坊。</p>
                 <div class="event-list">
                     <!-- 活动项 -->
                     <div class="event-item" data-aos="zoom-in">
                         <img src="event1.jpg" alt="Event 1">
-                        <h3 id="event-name-0">Music Workshop 1</h3>
-                        <p id="event-date-0">Date: 2024-11-10</p>
-                        <p id="event-location-0">Location: Concert Hall A</p>
-                        <p><a href="#" onclick="showEventDetails(0)" data-translation-key="Learn More">Learn More</a></p>
+                        <h3 id="event-name-0">音乐工作坊 1</h3>
+                        <p id="event-date-0">日期: 2024-11-10</p>
+                        <p id="event-location-0">地点: 音乐厅 A</p>
+                        <p><a href="#" onclick="showEventDetails(0)" data-translation-key="Learn More">了解更多</a></p>
                     </div>
                     <div class="event-item" data-aos="zoom-in">
                         <img src="event2.jpg" alt="Event 2">
-                        <h3 id="event-name-1">Music Workshop 2</h3>
-                        <p id="event-date-1">Date: 2024-12-05</p>
-                        <p id="event-location-1">Location: Music Center B</p>
-                        <p><a href="#" onclick="showEventDetails(1)" data-translation-key="Learn More">Learn More</a></p>
+                        <h3 id="event-name-1">音乐工作坊 2</h3>
+                        <p id="event-date-1">日期: 2024-12-05</p>
+                        <p id="event-location-1">地点: 音乐中心 B</p>
+                        <p><a href="#" onclick="showEventDetails(1)" data-translation-key="Learn More">了解更多</a></p>
                     </div>
                     <!-- 添加更多活动项 -->
                 </div>
@@ -691,9 +691,9 @@
         <!-- 活动详情 -->
         <section id="event-details" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="event-details-title">Event Details</h2>
+                <h2 id="event-details-title">活动详情</h2>
                 <img id="event-details-img" src="" alt="Event Image">
-                <p id="event-details-description">Detailed information about the event.</p>
+                <p id="event-details-description">活动的详细信息。</p>
                 <p id="event-details-date"></p>
                 <p id="event-details-location"></p>
                 <!-- 可以添加报名按钮或链接 -->
@@ -703,21 +703,21 @@
         <!-- 留学项目 -->
         <section id="study-abroad" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="study-abroad-title">Study Abroad Programs</h2>
-                <p id="study-abroad-description">Discover study abroad opportunities in music education.</p>
+                <h2 id="study-abroad-title">留学项目</h2>
+                <p id="study-abroad-description">发现音乐教育方面的留学机会。</p>
                 <div class="study-abroad-list">
                     <!-- 留学项目项 -->
                     <div class="study-abroad-item" data-aos="zoom-in">
                         <img src="study1.jpg" alt="Study Abroad Program 1">
-                        <h3 id="study-name-0">Program 1</h3>
-                        <p id="study-country-0">Country: Germany</p>
-                        <p><a href="#" onclick="showStudyDetails(0)" data-translation-key="Learn More">Learn More</a></p>
+                        <h3 id="study-name-0">项目 1</h3>
+                        <p id="study-country-0">国家: 德国</p>
+                        <p><a href="#" onclick="showStudyDetails(0)" data-translation-key="Learn More">了解更多</a></p>
                     </div>
                     <div class="study-abroad-item" data-aos="zoom-in">
                         <img src="study2.jpg" alt="Study Abroad Program 2">
-                        <h3 id="study-name-1">Program 2</h3>
-                        <p id="study-country-1">Country: France</p>
-                        <p><a href="#" onclick="showStudyDetails(1)" data-translation-key="Learn More">Learn More</a></p>
+                        <h3 id="study-name-1">项目 2</h3>
+                        <p id="study-country-1">国家: 法国</p>
+                        <p><a href="#" onclick="showStudyDetails(1)" data-translation-key="Learn More">了解更多</a></p>
                     </div>
                     <!-- 添加更多留学项目项 -->
                 </div>
@@ -727,9 +727,9 @@
         <!-- 留学项目详情 -->
         <section id="study-details" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="study-details-title">Study Abroad Details</h2>
+                <h2 id="study-details-title">留学项目详情</h2>
                 <img id="study-details-img" src="" alt="Study Abroad Image">
-                <p id="study-details-description">Detailed information about the study abroad program.</p>
+                <p id="study-details-description">留学项目的详细信息。</p>
                 <p id="study-details-country"></p>
                 <!-- 可以添加申请按钮或链接 -->
             </div>
@@ -738,18 +738,18 @@
         <!-- 艺术家 -->
         <section id="artists" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="artists-title">Artists</h2>
+                <h2 id="artists-title">艺术家</h2>
                 <div class="artist-list">
                     <!-- 艺术家项 -->
                     <div class="artist-item" data-aos="zoom-in">
                         <img src="artist1.jpg" alt="Artist 1">
-                        <h3>Artist 1</h3>
-                        <p>Brief introduction about Artist 1.</p>
+                        <h3>艺术家 1</h3>
+                        <p>关于艺术家 1 的简介。</p>
                     </div>
                     <div class="artist-item" data-aos="zoom-in">
                         <img src="artist2.jpg" alt="Artist 2">
-                        <h3>Artist 2</h3>
-                        <p>Brief introduction about Artist 2.</p>
+                        <h3>艺术家 2</h3>
+                        <p>关于艺术家 2 的简介。</p>
                     </div>
                     <!-- 添加更多艺术家 -->
                 </div>
@@ -759,9 +759,9 @@
         <!-- 乐器列表 -->
         <section id="instruments" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="instruments-title">Instruments</h2>
+                <h2 id="instruments-title">乐器浏览</h2>
                 <div class="filter">
-                    <label for="filter" id="filter-label">Filter by brand or type:</label>
+                    <label for="filter" id="filter-label">按品牌或类型筛选：</label>
                     <input type="text" id="filter" oninput="filterInstruments(this.value)">
                 </div>
                 <div id="instrument-list" class="instrument-list">
@@ -777,9 +777,9 @@
         <!-- 乐器详情 -->
         <section id="details" class="hidden">
             <div class="card details" data-aos="fade-up">
-                <h2 id="details-title">Instrument Details</h2>
+                <h2 id="details-title">乐器详情</h2>
                 <img id="details-img" src="" alt="Instrument Image">
-                <p id="details-description">Description of the selected instrument.</p>
+                <p id="details-description">所选乐器的描述。</p>
                 <p class="price" id="details-price"></p>
             </div>
         </section>
@@ -787,15 +787,15 @@
         <!-- 联系方式 -->
         <section id="contact" class="hidden">
             <div class="card" data-aos="fade-up">
-                <h2 id="contact-title">Contact Me</h2>
-                <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+                <h2 id="contact-title">联系我</h2>
+                <p id="contact-description">欢迎通过邮箱与我联系：<a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
             </div>
         </section>
     </main>
 
     <!-- 页脚 -->
     <footer>
-        <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
+        <p>&copy; 2024 范云麒。保留所有权利。</p>
         <div class="social-icons">
             <a href="#" target="_blank"><img src="icons/facebook.svg" alt="Facebook"></a>
             <a href="#" target="_blank"><img src="icons/twitter.svg" alt="Twitter"></a>
@@ -816,7 +816,7 @@
     <!-- JavaScript 代码 -->
     <script>
         // 全局变量
-        let currentLanguage = 'en'; // 当前语言，默认为英文
+        let currentLanguage = 'cn'; // 当前语言，默认为中文
         let currentInstruments = []; // 当前显示的乐器列表
         let currentPage = 1; // 当前页码
         const itemsPerPage = 6; // 每页显示的乐器数量
@@ -1177,6 +1177,13 @@
 
             // 更新主页推荐乐器的名称
             updateFeaturedInstruments();
+
+            // 更新英雄横幅的文本
+            if (document.getElementById('hero')) {
+                document.getElementById('hero-title').innerText = translations[lang]['hero-title'];
+                document.getElementById('hero-subtitle').innerText = translations[lang]['hero-subtitle'];
+                document.querySelector('.hero-button').innerText = translations[lang]['get-started'];
+            }
         }
 
         // 显示特定的页面部分
@@ -1189,6 +1196,13 @@
                     section.classList.add('hidden');
                 }
             });
+
+            // 控制英雄横幅的显示
+            if (sectionId === 'home') {
+                document.getElementById('hero').classList.remove('hidden');
+            } else {
+                document.getElementById('hero').classList.add('hidden');
+            }
         }
 
         // 显示乐器列表
@@ -1374,9 +1388,9 @@
 
         // 页面加载后初始化
         document.addEventListener("DOMContentLoaded", () => {
-            const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'cn';
             const supportedLanguages = ['en', 'cn', 'es'];
-            const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'en';
+            const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'cn';
             switchLanguage(languageToUse);
             showSection('home');
         });
