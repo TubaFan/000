@@ -1342,7 +1342,7 @@
 
         // 更新主页推荐乐器
         function updateFeaturedInstruments() {
-            const featuredItems = document.querySelectorAll('.featured-instruments .instrument-item');
+            const featuredItems = document.querySelectorAll('#featured-instruments .instrument-item');
             featuredItems.forEach((item, index) => {
                 const instrument = featuredInstruments[index];
                 item.querySelector('h4').innerText = instrument.name[currentLanguage];
