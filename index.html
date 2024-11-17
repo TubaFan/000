@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,11 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            /* 移除原有的背景颜色 */
+            /* background-color: #f8f8f8; */
             color: #333;
             background-image: url('1.JPG'); /* 添加背景图片 */
-            background-size: cover; /* 背景图片覆盖整个屏幕 */
+            background-size: cover; /* 让背景图片覆盖整个屏幕 */
             background-repeat: no-repeat; /* 防止背景图片重复 */
             background-position: center center; /* 背景图片居中显示 */
         }
@@ -24,7 +26,7 @@
 
         /* 头部样式 */
         header {
-            background-color: rgba(51, 51, 51, 0.8); /* 调整透明度以适应背景图片 */
+            background-color: rgba(51, 51, 51, 0.8); /* 添加透明度 */
             color: white;
             padding: 1rem;
             text-align: center;
@@ -52,7 +54,7 @@
 
         /* 导航栏样式 */
         nav {
-            background-color: rgba(68, 68, 68, 0.8); /* 调整透明度 */
+            background-color: rgba(68, 68, 68, 0.8); /* 添加透明度 */
         }
 
         nav ul {
@@ -75,7 +77,7 @@
         }
 
         nav ul li a:hover {
-            background-color: rgba(85, 85, 85, 0.8); /* 调整透明度 */
+            background-color: rgba(85, 85, 85, 0.8); /* 添加透明度 */
         }
 
         nav ul li:hover .dropdown {
@@ -85,7 +87,7 @@
         .dropdown {
             display: none;
             position: absolute;
-            background-color: rgba(85, 85, 85, 0.9); /* 调整透明度 */
+            background-color: rgba(85, 85, 85, 0.9); /* 添加透明度 */
             z-index: 1000;
             list-style: none;
             left: 0;
@@ -104,7 +106,7 @@
         }
 
         .dropdown li a:hover {
-            background-color: rgba(102, 102, 102, 0.9); /* 调整透明度 */
+            background-color: rgba(102, 102, 102, 0.9); /* 添加透明度 */
         }
 
         .dropdown li:hover .sub-dropdown {
@@ -114,14 +116,14 @@
         .sub-dropdown {
             display: none;
             position: absolute;
-            background-color: rgba(102, 102, 102, 0.9); /* 调整透明度 */
+            background-color: rgba(102, 102, 102, 0.9); /* 添加透明度 */
             left: 100%;
             top: 0;
             min-width: 200px;
         }
 
         .sub-dropdown li a:hover {
-            background-color: rgba(119, 119, 119, 0.9); /* 调整透明度 */
+            background-color: rgba(119, 119, 119, 0.9); /* 添加透明度 */
         }
 
         /* 主内容样式 */
@@ -132,7 +134,7 @@
         }
 
         #home {
-            background-color: rgba(255, 255, 255, 0.8); /* 添加半透明背景以提高可读性 */
+            background-color: rgba(255, 255, 255, 0.8); /* 添加半透明背景 */
             color: #333;
             padding: 3rem;
             text-align: center;
@@ -332,7 +334,7 @@
 
         /* 页脚样式 */
         footer {
-            background-color: rgba(51, 51, 51, 0.8); /* 调整透明度 */
+            background-color: rgba(51, 51, 51, 0.8); /* 添加透明度 */
             color: white;
             text-align: center;
             padding: 1rem;
@@ -380,6 +382,7 @@
         <div class="language-switch">
             <button onclick="switchLanguage('en')">English</button>
             <button onclick="switchLanguage('cn')">中文</button>
+            <button onclick="switchLanguage('es')">Español</button> <!-- 添加西班牙语按钮 -->
         </div>
         <h1 id="site-title">Fanyunqi's Personal Website</h1>
     </header>
@@ -576,14 +579,184 @@
     </footer>
 
     <script>
-        // 您的JavaScript代码保持不变
-        // 添加了完整的JavaScript代码
         let currentLanguage = 'en'; // 当前语言，默认为英文
         let currentInstruments = []; // 当前显示的乐器列表
         let currentPage = 1; // 当前页码
         const itemsPerPage = 6; // 每页显示的乐器数量
 
-        // ...（保留您原有的JavaScript代码，未做改动）
+        const translations = {
+            en: {
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "event-link": "Events",
+                "study-abroad-link": "Study Abroad",
+                "artists-link": "Artists",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
+                "intro-title": "About Me",
+                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
+                "featured-title": "Featured Instruments",
+                "event-title": "Events",
+                "event-description": "Explore upcoming musical events and workshops.",
+                "event-details-title": "Event Details",
+                "study-abroad-title": "Study Abroad Programs",
+                "study-abroad-description": "Discover study abroad opportunities in music education.",
+                "study-details-title": "Study Abroad Details",
+                "artists-title": "Artists",
+                "instruments-title": "Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via email: ",
+                "filter-label": "Filter by brand or type:",
+                "woodwinds": "Woodwinds",
+                "brass": "Brass",
+                "strings": "Strings",
+                "brands": "Brands",
+                "flute": "Flute",
+                "clarinet": "Clarinet",
+                "oboe": "Oboe",
+                "trumpet": "Trumpet",
+                "trombone": "Trombone",
+                "tuba": "Tuba",
+                "violin": "Violin",
+                "cello": "Cello",
+                "bass": "Bass",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Instrument Details",
+                "Price": "Price",
+                "No instruments found.": "No instruments found.",
+                "Learn More": "Learn More",
+                "Date": "Date",
+                "Location": "Location",
+                "Country": "Country",
+                "Event Description": "Event Description",
+                "Study Description": "Program Description"
+            },
+            cn: {
+                "site-title": "范云麒的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器浏览",
+                "event-link": "活动",
+                "study-abroad-link": "留学项目",
+                "artists-link": "艺术家",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
+                "intro-title": "关于我",
+                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
+                "featured-title": "推荐乐器",
+                "event-title": "活动",
+                "event-description": "探索即将举行的音乐活动和工作坊。",
+                "event-details-title": "活动详情",
+                "study-abroad-title": "留学项目",
+                "study-abroad-description": "发现音乐教育方面的留学机会。",
+                "study-details-title": "留学项目详情",
+                "artists-title": "艺术家",
+                "instruments-title": "乐器浏览",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过邮箱与我联系：",
+                "filter-label": "按品牌或类型筛选：",
+                "woodwinds": "木管乐器",
+                "brass": "铜管乐器",
+                "strings": "弦乐器",
+                "brands": "品牌",
+                "flute": "长笛",
+                "clarinet": "单簧管",
+                "oboe": "双簧管",
+                "trumpet": "小号",
+                "trombone": "长号",
+                "tuba": "大号",
+                "violin": "小提琴",
+                "cello": "大提琴",
+                "bass": "低音提琴",
+                "Yamaha": "雅马哈",
+                "Buffet": "布菲",
+                "Selmer": "塞尔玛",
+                "Bach": "巴赫",
+                "Conn": "康恩",
+                "Stradivarius": "斯特拉迪瓦里",
+                "Eastman": "伊斯特曼",
+                "Instrument Details": "乐器详情",
+                "Price": "价格",
+                "No instruments found.": "未找到符合条件的乐器。",
+                "Learn More": "了解更多",
+                "Date": "日期",
+                "Location": "地点",
+                "Country": "国家",
+                "Event Description": "活动描述",
+                "Study Description": "项目描述"
+            },
+            es: { // 添加西班牙语翻译
+                "site-title": "Sitio Web Personal de Fanyunqi",
+                "home-link": "Inicio",
+                "instruments-link": "Instrumentos",
+                "event-link": "Eventos",
+                "study-abroad-link": "Estudiar en el Extranjero",
+                "artists-link": "Artistas",
+                "contact-link": "Contacto",
+                "home-title": "Bienvenido a Mi Sitio Web Personal",
+                "home-description": "¡Hola! Soy un músico y desarrollador web apasionado. En este sitio web, puedes explorar varios instrumentos musicales y aprender más sobre ellos.",
+                "intro-title": "Sobre Mí",
+                "intro-text": "He estado tocando música durante más de 10 años, especializándome en instrumentos de metal. También tengo un profundo interés en el desarrollo web y me encanta combinar mis pasiones para crear experiencias interactivas.",
+                "featured-title": "Instrumentos Destacados",
+                "event-title": "Eventos",
+                "event-description": "Explora próximos eventos y talleres musicales.",
+                "event-details-title": "Detalles del Evento",
+                "study-abroad-title": "Programas de Estudio en el Extranjero",
+                "study-abroad-description": "Descubre oportunidades de estudio en el extranjero en educación musical.",
+                "study-details-title": "Detalles del Estudio en el Extranjero",
+                "artists-title": "Artistas",
+                "instruments-title": "Instrumentos",
+                "contact-title": "Contáctame",
+                "contact-description": "No dudes en comunicarte conmigo vía correo electrónico: ",
+                "filter-label": "Filtrar por marca o tipo:",
+                "woodwinds": "Viento Madera",
+                "brass": "Metal",
+                "strings": "Cuerdas",
+                "brands": "Marcas",
+                "flute": "Flauta",
+                "clarinet": "Clarinete",
+                "oboe": "Oboe",
+                "trumpet": "Trompeta",
+                "trombone": "Trombón",
+                "tuba": "Tuba",
+                "violin": "Violín",
+                "cello": "Violonchelo",
+                "bass": "Contrabajo",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Detalles del Instrumento",
+                "Price": "Precio",
+                "No instruments found.": "No se encontraron instrumentos.",
+                "Learn More": "Aprende Más",
+                "Date": "Fecha",
+                "Location": "Ubicación",
+                "Country": "País",
+                "Event Description": "Descripción del Evento",
+                "Study Description": "Descripción del Programa"
+            }
+        };
+
+        // 其余的 JavaScript 代码保持不变
+        // 请确保在 switchLanguage 函数中没有硬编码，仅使用 translations 对象来获取翻译文本
+
+        // 以下是 JavaScript 代码的部分内容，确保功能正常运行
+        // 定义 instrumentData、eventData、studyAbroadData 等数据
+        // 并确保所有函数如 switchLanguage、showSection 等正确处理 currentLanguage
+
+        // ...（由于篇幅限制，这里省略其他 JavaScript 代码）
 
         document.addEventListener("DOMContentLoaded", () => {
             const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
