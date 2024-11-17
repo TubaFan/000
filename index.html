@@ -22,10 +22,11 @@
             padding: 0;
             color: #333;
             scroll-behavior: smooth;
-            background-image: url('background.jpg'); /* 请将此处替换为您的全局背景图片路径 */
+            background-image: url('1.JPG'); /* 请将此处替换为您的全局背景图片路径 */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
         a {
@@ -43,7 +44,7 @@
 
         /* 头部样式 */
         header {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             color: #333;
             padding: 1rem 0;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -59,9 +60,10 @@
         }
 
         #site-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin: 0;
+            color: #e74c3c;
         }
 
         .language-switch button {
@@ -83,7 +85,7 @@
 
         /* 导航栏样式 */
         nav {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             position: sticky;
             top: 70px;
             z-index: 999;
@@ -126,25 +128,32 @@
             margin-top: 140px; /* 留出空间给固定的头部和导航栏 */
             padding: 2rem 1rem;
             box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.85);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         /* 卡片样式 */
         .card {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: transparent;
             padding: 2rem;
             margin: 2rem 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .card h2, .card h3 {
             color: #e74c3c;
             font-weight: 700;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .card p {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: #555;
         }
 
@@ -157,7 +166,7 @@
         }
 
         .category-item {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -169,10 +178,11 @@
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .category-item:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -185,7 +195,7 @@
 
         .category-item h3 {
             margin: 15px 0 10px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #333;
             font-weight: 600;
         }
@@ -199,7 +209,7 @@
         }
 
         .instrument-item {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(33.333% - 30px);
             max-width: calc(33.333% - 30px);
@@ -211,10 +221,11 @@
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .instrument-item:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -227,7 +238,7 @@
 
         .instrument-item h3 {
             margin: 15px 0 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #333;
             font-weight: 600;
         }
@@ -235,24 +246,25 @@
         .instrument-item p {
             margin: 5px 0;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .price {
             font-weight: bold;
             color: #e74c3c;
             margin-top: 10px;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         /* 详情样式 */
         .details {
             max-width: 800px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
         }
 
         .details img {
@@ -271,7 +283,7 @@
         }
 
         .event-item {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -283,10 +295,11 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            backdrop-filter: blur(5px);
         }
 
         .event-item:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -307,7 +320,7 @@
         .event-item p {
             margin: 5px 0;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* 留学项目样式 */
@@ -319,7 +332,7 @@
         }
 
         .study-abroad-item {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -331,10 +344,11 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            backdrop-filter: blur(5px);
         }
 
         .study-abroad-item:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -355,7 +369,7 @@
         .study-abroad-item p {
             margin: 5px 0;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* 艺术家列表样式 */
@@ -367,7 +381,7 @@
         }
 
         .artist-item {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -378,10 +392,11 @@
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
 
         .artist-item:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -394,7 +409,7 @@
 
         .artist-item h3 {
             margin: 15px 0 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #333;
             font-weight: 600;
         }
@@ -402,12 +417,12 @@
         .artist-item p {
             margin: 5px 0;
             color: #777;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* 页脚样式 */
         footer {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             color: #333;
             text-align: center;
             padding: 1rem;
@@ -595,20 +610,20 @@
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[0])">
                             <img src="trumpet1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-0">小号 001</h3>
-                            <p>品牌：雅马哈</p>
-                            <p class="price">价格：$1200</p>
+                            <p id="featured-brand-0">品牌：雅马哈</p>
+                            <p class="price" id="featured-price-0">价格：$1200</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[1])">
                             <img src="violin1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-1">小提琴 001</h3>
-                            <p>品牌：斯特拉迪瓦里</p>
-                            <p class="price">价格：$1500</p>
+                            <p id="featured-brand-1">品牌：斯特拉迪瓦里</p>
+                            <p class="price" id="featured-price-1">价格：$1500</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[2])">
                             <img src="flute1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-2">长笛 001</h3>
-                            <p>品牌：布菲</p>
-                            <p class="price">价格：$800</p>
+                            <p id="featured-brand-2">品牌：布菲</p>
+                            <p class="price" id="featured-price-2">价格：$800</p>
                         </div>
                     </div>
                 </div>
@@ -821,13 +836,175 @@
         // 翻译对象
         const translations = {
             en: {
-                // ...（完整的英文翻译内容）
+                "site-title": "Fanyunqi's Personal Website",
+                "home-link": "Home",
+                "instruments-link": "Instruments",
+                "event-link": "Events",
+                "study-abroad-link": "Study Abroad",
+                "artists-link": "Artists",
+                "contact-link": "Contact",
+                "home-title": "Welcome to My Personal Website",
+                "home-description": "Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.",
+                "intro-title": "About Me",
+                "intro-text": "I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.",
+                "latest-events-title": "Latest Events",
+                "featured-title": "Featured Instruments",
+                "event-title": "Events",
+                "event-description": "Explore upcoming musical events and workshops.",
+                "event-details-title": "Event Details",
+                "study-abroad-title": "Study Abroad Programs",
+                "study-abroad-description": "Discover study abroad opportunities in music education.",
+                "study-details-title": "Study Abroad Details",
+                "artists-title": "Artists",
+                "instrument-categories-title": "Instrument Categories",
+                "instruments-title": "Browse Instruments",
+                "contact-title": "Contact Me",
+                "contact-description": "Feel free to reach out to me via:",
+                "filter-label": "Filter by brand or type:",
+                "woodwinds": "Woodwinds",
+                "brass": "Brass",
+                "strings": "Strings",
+                "brands": "Brand",
+                "flute": "Flute",
+                "clarinet": "Clarinet",
+                "oboe": "Oboe",
+                "trumpet": "Trumpet",
+                "trombone": "Trombone",
+                "tuba": "Tuba",
+                "violin": "Violin",
+                "cello": "Cello",
+                "bass": "Bass",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Instrument Details",
+                "Price": "Price",
+                "No instruments found.": "No instruments found.",
+                "Learn More": "Learn More",
+                "Date": "Date",
+                "Location": "Location",
+                "Country": "Country",
+                "Event Description": "Event Description",
+                "Study Description": "Program Description",
+                "get-started": "Get Started"
             },
             cn: {
-                // ...（完整的中文翻译内容）
+                "site-title": "范云麒的个人网站",
+                "home-link": "主页",
+                "instruments-link": "乐器浏览",
+                "event-link": "活动",
+                "study-abroad-link": "留学项目",
+                "artists-link": "艺术家",
+                "contact-link": "联系方式",
+                "home-title": "欢迎来到我的个人网站",
+                "home-description": "你好！我是一名热爱音乐和网页开发的爱好者。在这个网站上，你可以探索各种乐器并了解更多信息。",
+                "intro-title": "关于我",
+                "intro-text": "我从事音乐演奏已有10多年，专注于铜管乐器。同时，我对网页开发有着浓厚的兴趣，喜欢将我的热情结合起来创造互动体验。",
+                "latest-events-title": "最新活动",
+                "featured-title": "推荐乐器",
+                "event-title": "活动",
+                "event-description": "探索即将举行的音乐活动和工作坊。",
+                "event-details-title": "活动详情",
+                "study-abroad-title": "留学项目",
+                "study-abroad-description": "发现音乐教育方面的留学机会。",
+                "study-details-title": "留学项目详情",
+                "artists-title": "艺术家",
+                "instrument-categories-title": "乐器分类",
+                "instruments-title": "乐器浏览",
+                "contact-title": "联系我",
+                "contact-description": "欢迎通过以下方式与我联系：",
+                "filter-label": "按品牌或类型筛选：",
+                "woodwinds": "木管乐器",
+                "brass": "铜管乐器",
+                "strings": "弦乐器",
+                "brands": "品牌",
+                "flute": "长笛",
+                "clarinet": "单簧管",
+                "oboe": "双簧管",
+                "trumpet": "小号",
+                "trombone": "长号",
+                "tuba": "大号",
+                "violin": "小提琴",
+                "cello": "大提琴",
+                "bass": "低音提琴",
+                "Yamaha": "雅马哈",
+                "Buffet": "布菲",
+                "Selmer": "塞尔玛",
+                "Bach": "巴赫",
+                "Conn": "康恩",
+                "Stradivarius": "斯特拉迪瓦里",
+                "Eastman": "伊斯特曼",
+                "Instrument Details": "乐器详情",
+                "Price": "价格",
+                "No instruments found.": "未找到符合条件的乐器。",
+                "Learn More": "了解更多",
+                "Date": "日期",
+                "Location": "地点",
+                "Country": "国家",
+                "Event Description": "活动描述",
+                "Study Description": "项目描述",
+                "get-started": "开始探索"
             },
             es: {
-                // ...（完整的西班牙语翻译内容）
+                "site-title": "Sitio Web Personal de Fanyunqi",
+                "home-link": "Inicio",
+                "instruments-link": "Instrumentos",
+                "event-link": "Eventos",
+                "study-abroad-link": "Estudiar en el Extranjero",
+                "artists-link": "Artistas",
+                "contact-link": "Contacto",
+                "home-title": "Bienvenido a Mi Sitio Web Personal",
+                "home-description": "¡Hola! Soy un músico apasionado y desarrollador web. En este sitio web, puedes explorar varios instrumentos musicales y aprender más sobre ellos.",
+                "intro-title": "Sobre Mí",
+                "intro-text": "He estado tocando música durante más de 10 años, especializándome en instrumentos de viento-metal. También tengo un profundo interés en el desarrollo web y me encanta combinar mis pasiones para crear experiencias interactivas.",
+                "latest-events-title": "Últimos Eventos",
+                "featured-title": "Instrumentos Destacados",
+                "event-title": "Eventos",
+                "event-description": "Explora próximos eventos y talleres musicales.",
+                "event-details-title": "Detalles del Evento",
+                "study-abroad-title": "Programas de Estudio en el Extranjero",
+                "study-abroad-description": "Descubre oportunidades de estudio en el extranjero en educación musical.",
+                "study-details-title": "Detalles del Estudio en el Extranjero",
+                "artists-title": "Artistas",
+                "instrument-categories-title": "Categorías de Instrumentos",
+                "instruments-title": "Explorar Instrumentos",
+                "contact-title": "Contáctame",
+                "contact-description": "No dudes en contactarme vía:",
+                "filter-label": "Filtrar por marca o tipo:",
+                "woodwinds": "Viento-Madera",
+                "brass": "Viento-Metal",
+                "strings": "Cuerdas",
+                "brands": "Marca",
+                "flute": "Flauta",
+                "clarinet": "Clarinete",
+                "oboe": "Oboe",
+                "trumpet": "Trompeta",
+                "trombone": "Trombón",
+                "tuba": "Tuba",
+                "violin": "Violín",
+                "cello": "Violonchelo",
+                "bass": "Contrabajo",
+                "Yamaha": "Yamaha",
+                "Buffet": "Buffet",
+                "Selmer": "Selmer",
+                "Bach": "Bach",
+                "Conn": "Conn",
+                "Stradivarius": "Stradivarius",
+                "Eastman": "Eastman",
+                "Instrument Details": "Detalles del Instrumento",
+                "Price": "Precio",
+                "No instruments found.": "No se encontraron instrumentos.",
+                "Learn More": "Saber Más",
+                "Date": "Fecha",
+                "Location": "Ubicación",
+                "Country": "País",
+                "Event Description": "Descripción del Evento",
+                "Study Description": "Descripción del Programa",
+                "get-started": "Comenzar"
             }
         };
 
@@ -1012,6 +1189,20 @@
 
             // 更新主页推荐乐器的名称
             updateFeaturedInstruments();
+
+            // 更新导航栏链接文本
+            updateNavLinks();
+        }
+
+        // 更新导航栏链接文本
+        function updateNavLinks() {
+            const links = ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link'];
+            links.forEach(id => {
+                const link = document.getElementById(id);
+                if (link && translations[currentLanguage][id]) {
+                    link.innerText = translations[currentLanguage][id];
+                }
+            });
         }
 
         // 显示特定的页面部分
