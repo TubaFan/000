@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 元信息 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="site-title">Fanyunqi's Personal Website</title>
+
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 引入 AOS 动画库的 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <!-- 内联样式表 -->
     <style>
         /* 全局样式 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('1.JPG');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: #333;
+            scroll-behavior: smooth;
         }
 
         a {
@@ -24,11 +30,13 @@
 
         /* 头部样式 */
         header {
-            background-color: rgba(51, 51, 51, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(51, 51, 51, 0.9);
             color: white;
             padding: 1rem;
             text-align: center;
-            position: relative;
         }
 
         .language-switch {
@@ -44,15 +52,20 @@
             color: white;
             cursor: pointer;
             border: none;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         .language-switch button:hover {
             background-color: #777;
+            transform: translateY(-2px);
         }
 
         /* 导航栏样式 */
         nav {
-            background-color: rgba(68, 68, 68, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: rgba(68, 68, 68, 0.9);
         }
 
         nav ul {
@@ -72,10 +85,12 @@
             display: block;
             padding: 1rem;
             color: white;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
         nav ul li a:hover {
             background-color: #555;
+            transform: translateY(-2px);
         }
 
         nav ul li:hover .dropdown {
@@ -101,6 +116,7 @@
             color: white;
             padding: 10px;
             display: block;
+            transition: background-color 0.3s;
         }
 
         .dropdown li a:hover {
@@ -124,75 +140,74 @@
             background-color: #777;
         }
 
-        /* 主内容样式 */
-        main {
-            padding: 2rem;
-            min-height: calc(100vh - 120px);
-            box-sizing: border-box;
+        /* 英雄横幅样式 */
+        #hero {
+            position: relative;
+            height: 100vh;
+            background-image: url('1.JPG'); /* 请将此处替换为您的背景图片路径 */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        #home {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #333;
-            padding: 3rem;
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明覆盖层 */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
             text-align: center;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        #home h2 {
-            font-size: 2.5rem;
+        .hero-content h1 {
+            font-size: 4rem;
             margin-bottom: 1rem;
         }
 
-        #home p {
-            font-size: 1.2rem;
+        .hero-content p {
+            font-size: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .intro, .featured-instruments {
-            margin-top: 2rem;
+        .hero-button {
+            padding: 1rem 2rem;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        .intro h3, .featured-instruments h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        .hero-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
         }
 
-        .intro p {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .featured-instruments .instrument-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .featured-instruments .instrument-item {
-            background-color: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ccc;
-            margin: 10px;
-            width: 200px;
-            text-align: center;
-            padding: 15px;
+        /* 主内容样式 */
+        main {
+            padding: 2rem;
             box-sizing: border-box;
-            cursor: pointer;
-            transition: box-shadow 0.3s, transform 0.3s;
-            position: relative;
         }
 
-        .featured-instruments .instrument-item:hover {
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
-        }
-
-        .featured-instruments .instrument-item img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .featured-instruments .instrument-item h4 {
-            margin: 10px 0 5px;
+        /* 卡片样式 */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         /* 乐器列表样式 */
@@ -211,13 +226,14 @@
             padding: 15px;
             box-sizing: border-box;
             cursor: pointer;
+            border-radius: 8px;
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
         }
 
         .instrument-item:hover {
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.02);
         }
 
         .instrument-item img {
@@ -225,7 +241,8 @@
             height: auto;
         }
 
-        .instrument-item h3 {
+        .instrument-item h3,
+        .instrument-item h4 {
             margin: 10px 0 5px;
         }
 
@@ -240,13 +257,14 @@
             margin: 10px 0;
         }
 
-        /* 乐器详情样式 */
+        /* 详情样式 */
         .details {
             max-width: 800px;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 2rem;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .details img {
@@ -270,13 +288,14 @@
             text-align: center;
             padding: 15px;
             box-sizing: border-box;
+            border-radius: 8px;
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
         }
 
         .event-item:hover {
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.02);
         }
 
         .event-item img {
@@ -308,13 +327,14 @@
             text-align: center;
             padding: 15px;
             box-sizing: border-box;
+            border-radius: 8px;
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
         }
 
         .study-abroad-item:hover {
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.02);
         }
 
         .study-abroad-item img {
@@ -331,15 +351,72 @@
             color: #666;
         }
 
+        /* 艺术家列表样式 */
+        .artist-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .artist-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 8px;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        .artist-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .artist-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .artist-item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .artist-item p {
+            margin: 5px 0;
+            color: #666;
+        }
+
         /* 页脚样式 */
         footer {
             background-color: rgba(51, 51, 51, 0.8);
             color: white;
             text-align: center;
             padding: 1rem;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+        }
+
+        /* 社交媒体图标 */
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            margin: 0 5px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
         }
 
         /* 隐藏元素 */
@@ -367,18 +444,38 @@
             margin: 0 5px;
             padding: 5px 10px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #777;
+            transform: translateY(-2px);
+            color: white;
         }
 
         /* 响应式设计 */
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
             }
 
             .instrument-item,
             .event-item,
-            .study-abroad-item {
+            .study-abroad-item,
+            .artist-item {
                 width: 100%;
+            }
+
+            .instrument-list,
+            .event-list,
+            .study-abroad-list,
+            .artist-list {
+                flex-direction: column;
+                align-items: center;
             }
 
             .language-switch {
@@ -389,15 +486,16 @@
     </style>
 </head>
 <body>
+    <!-- 头部 -->
     <header>
         <div class="language-switch">
             <button onclick="switchLanguage('en')">English</button>
             <button onclick="switchLanguage('cn')">中文</button>
             <button onclick="switchLanguage('es')">Español</button>
         </div>
-        <h1 id="site-title">Fanyunqi's Personal Website</h1>
     </header>
 
+    <!-- 导航栏 -->
     <nav>
         <ul>
             <li><a href="#" id="home-link" onclick="showSection('home')">Home</a></li>
@@ -437,158 +535,205 @@
         </ul>
     </nav>
 
+    <!-- 英雄横幅 -->
+    <section id="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 id="hero-title">Welcome to My Personal Website</h1>
+            <p id="hero-subtitle">Explore the world of music with me</p>
+            <a href="#home" class="hero-button" data-translation-key="get-started">Get Started</a>
+        </div>
+    </section>
+
+    <!-- 主内容 -->
     <main>
         <!-- 主页 -->
         <section id="home">
-            <h2 id="home-title">Welcome to My Personal Website</h2>
-            <p id="home-description">Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.</p>
+            <div class="card" data-aos="fade-up">
+                <h2 id="home-title">Welcome to My Personal Website</h2>
+                <p id="home-description">Hello! I'm a passionate musician and web developer. On this website, you can explore various musical instruments and learn more about them.</p>
+            </div>
 
             <!-- 关于我 -->
-            <div class="intro">
+            <div class="card" data-aos="fade-up">
                 <h3 id="intro-title">About Me</h3>
                 <p id="intro-text">I have been playing music for over 10 years, specializing in brass instruments. I also have a deep interest in web development and love combining my passions to create interactive experiences.</p>
             </div>
 
             <!-- 推荐乐器 -->
-            <div class="featured-instruments">
-                <h3 id="featured-title">Featured Instruments</h3>
-                <div class="instrument-list">
-                    <!-- 推荐的乐器项 -->
-                    <div class="instrument-item" onclick="showDetails(featuredInstruments[0])">
-                        <img src="trumpet1.jpg" alt="Featured Instrument">
-                        <h4>Trumpet 001</h4>
-                    </div>
-                    <div class="instrument-item" onclick="showDetails(featuredInstruments[1])">
-                        <img src="violin1.jpg" alt="Featured Instrument">
-                        <h4>Violin 001</h4>
-                    </div>
-                    <div class="instrument-item" onclick="showDetails(featuredInstruments[2])">
-                        <img src="flute1.jpg" alt="Featured Instrument">
-                        <h4>Flute 001</h4>
+            <section id="featured-instruments">
+                <div class="card" data-aos="fade-up">
+                    <h3 id="featured-title">Featured Instruments</h3>
+                    <div class="instrument-list">
+                        <!-- 推荐的乐器项 -->
+                        <div class="instrument-item" onclick="showDetails(featuredInstruments[0])" data-aos="zoom-in">
+                            <img src="trumpet1.jpg" alt="Featured Instrument">
+                            <h4>Trumpet 001</h4>
+                        </div>
+                        <div class="instrument-item" onclick="showDetails(featuredInstruments[1])" data-aos="zoom-in">
+                            <img src="violin1.jpg" alt="Featured Instrument">
+                            <h4>Violin 001</h4>
+                        </div>
+                        <div class="instrument-item" onclick="showDetails(featuredInstruments[2])" data-aos="zoom-in">
+                            <img src="flute1.jpg" alt="Featured Instrument">
+                            <h4>Flute 001</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </section>
 
         <!-- 活动展示 -->
         <section id="event" class="hidden">
-            <h2 id="event-title">Events</h2>
-            <p id="event-description">Explore upcoming musical events and workshops.</p>
-            <div class="event-list">
-                <!-- 活动项 -->
-                <div class="event-item">
-                    <img src="event1.jpg" alt="Event 1">
-                    <h3>Music Workshop 1</h3>
-                    <p>Date: 2024-11-10</p>
-                    <p>Location: Concert Hall A</p>
-                    <p><a href="#" onclick="showEventDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
+            <div class="card" data-aos="fade-up">
+                <h2 id="event-title">Events</h2>
+                <p id="event-description">Explore upcoming musical events and workshops.</p>
+                <div class="event-list">
+                    <!-- 活动项 -->
+                    <div class="event-item" data-aos="zoom-in">
+                        <img src="event1.jpg" alt="Event 1">
+                        <h3>Music Workshop 1</h3>
+                        <p>${translations[currentLanguage]["Date"]}: 2024-11-10</p>
+                        <p>${translations[currentLanguage]["Location"]}: Concert Hall A</p>
+                        <p><a href="#" onclick="showEventDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
+                    </div>
+                    <div class="event-item" data-aos="zoom-in">
+                        <img src="event2.jpg" alt="Event 2">
+                        <h3>Music Workshop 2</h3>
+                        <p>${translations[currentLanguage]["Date"]}: 2024-12-05</p>
+                        <p>${translations[currentLanguage]["Location"]}: Music Center B</p>
+                        <p><a href="#" onclick="showEventDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
+                    </div>
+                    <!-- 添加更多活动项 -->
                 </div>
-                <div class="event-item">
-                    <img src="event2.jpg" alt="Event 2">
-                    <h3>Music Workshop 2</h3>
-                    <p>Date: 2024-12-05</p>
-                    <p>Location: Music Center B</p>
-                    <p><a href="#" onclick="showEventDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
-                </div>
-                <!-- 添加更多活动项 -->
             </div>
         </section>
 
         <!-- 活动详情 -->
         <section id="event-details" class="hidden">
-            <h2 id="event-details-title">Event Details</h2>
-            <img id="event-details-img" src="" alt="Event Image">
-            <p id="event-details-description">Detailed information about the event.</p>
-            <p id="event-details-date"></p>
-            <p id="event-details-location"></p>
-            <!-- 可以添加报名按钮或链接 -->
+            <div class="card" data-aos="fade-up">
+                <h2 id="event-details-title">Event Details</h2>
+                <img id="event-details-img" src="" alt="Event Image">
+                <p id="event-details-description">Detailed information about the event.</p>
+                <p id="event-details-date"></p>
+                <p id="event-details-location"></p>
+                <!-- 可以添加报名按钮或链接 -->
+            </div>
         </section>
 
         <!-- 留学项目 -->
         <section id="study-abroad" class="hidden">
-            <h2 id="study-abroad-title">Study Abroad Programs</h2>
-            <p id="study-abroad-description">Discover study abroad opportunities in music education.</p>
-            <div class="study-abroad-list">
-                <!-- 留学项目项 -->
-                <div class="study-abroad-item">
-                    <img src="study1.jpg" alt="Study Abroad Program 1">
-                    <h3>Program 1</h3>
-                    <p>Country: Germany</p>
-                    <p><a href="#" onclick="showStudyDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
+            <div class="card" data-aos="fade-up">
+                <h2 id="study-abroad-title">Study Abroad Programs</h2>
+                <p id="study-abroad-description">Discover study abroad opportunities in music education.</p>
+                <div class="study-abroad-list">
+                    <!-- 留学项目项 -->
+                    <div class="study-abroad-item" data-aos="zoom-in">
+                        <img src="study1.jpg" alt="Study Abroad Program 1">
+                        <h3>Program 1</h3>
+                        <p>${translations[currentLanguage]["Country"]}: Germany</p>
+                        <p><a href="#" onclick="showStudyDetails(0)">${translations[currentLanguage]["Learn More"]}</a></p>
+                    </div>
+                    <div class="study-abroad-item" data-aos="zoom-in">
+                        <img src="study2.jpg" alt="Study Abroad Program 2">
+                        <h3>Program 2</h3>
+                        <p>${translations[currentLanguage]["Country"]}: France</p>
+                        <p><a href="#" onclick="showStudyDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
+                    </div>
+                    <!-- 添加更多留学项目项 -->
                 </div>
-                <div class="study-abroad-item">
-                    <img src="study2.jpg" alt="Study Abroad Program 2">
-                    <h3>Program 2</h3>
-                    <p>Country: France</p>
-                    <p><a href="#" onclick="showStudyDetails(1)">${translations[currentLanguage]["Learn More"]}</a></p>
-                </div>
-                <!-- 添加更多留学项目项 -->
             </div>
         </section>
 
         <!-- 留学项目详情 -->
         <section id="study-details" class="hidden">
-            <h2 id="study-details-title">Study Abroad Details</h2>
-            <img id="study-details-img" src="" alt="Study Abroad Image">
-            <p id="study-details-description">Detailed information about the study abroad program.</p>
-            <p id="study-details-country"></p>
-            <!-- 可以添加申请按钮或链接 -->
+            <div class="card" data-aos="fade-up">
+                <h2 id="study-details-title">Study Abroad Details</h2>
+                <img id="study-details-img" src="" alt="Study Abroad Image">
+                <p id="study-details-description">Detailed information about the study abroad program.</p>
+                <p id="study-details-country"></p>
+                <!-- 可以添加申请按钮或链接 -->
+            </div>
         </section>
 
         <!-- 艺术家 -->
         <section id="artists" class="hidden">
-            <h2 id="artists-title">Artists</h2>
-            <div class="artist-list">
-                <!-- 艺术家项 -->
-                <div class="artist-item">
-                    <img src="artist1.jpg" alt="Artist 1">
-                    <h3>Artist 1</h3>
-                    <p>Brief introduction about Artist 1.</p>
+            <div class="card" data-aos="fade-up">
+                <h2 id="artists-title">Artists</h2>
+                <div class="artist-list">
+                    <!-- 艺术家项 -->
+                    <div class="artist-item" data-aos="zoom-in">
+                        <img src="artist1.jpg" alt="Artist 1">
+                        <h3>Artist 1</h3>
+                        <p>Brief introduction about Artist 1.</p>
+                    </div>
+                    <div class="artist-item" data-aos="zoom-in">
+                        <img src="artist2.jpg" alt="Artist 2">
+                        <h3>Artist 2</h3>
+                        <p>Brief introduction about Artist 2.</p>
+                    </div>
+                    <!-- 添加更多艺术家 -->
                 </div>
-                <div class="artist-item">
-                    <img src="artist2.jpg" alt="Artist 2">
-                    <h3>Artist 2</h3>
-                    <p>Brief introduction about Artist 2.</p>
-                </div>
-                <!-- 添加更多艺术家 -->
             </div>
         </section>
 
         <!-- 乐器列表 -->
         <section id="instruments" class="hidden">
-            <h2 id="instruments-title">Instruments</h2>
-            <div class="filter">
-                <label for="filter" id="filter-label">Filter by brand or type:</label>
-                <input type="text" id="filter" oninput="filterInstruments(this.value)">
-            </div>
-            <div id="instrument-list" class="instrument-list">
-                <!-- 乐器项将在这里生成 -->
-            </div>
-            <!-- 分页控件 -->
-            <div id="pagination" class="pagination">
-                <!-- 分页按钮将在这里生成 -->
+            <div class="card" data-aos="fade-up">
+                <h2 id="instruments-title">Instruments</h2>
+                <div class="filter">
+                    <label for="filter" id="filter-label">Filter by brand or type:</label>
+                    <input type="text" id="filter" oninput="filterInstruments(this.value)">
+                </div>
+                <div id="instrument-list" class="instrument-list">
+                    <!-- 乐器项将在这里生成 -->
+                </div>
+                <!-- 分页控件 -->
+                <div id="pagination" class="pagination">
+                    <!-- 分页按钮将在这里生成 -->
+                </div>
             </div>
         </section>
 
         <!-- 乐器详情 -->
-        <section id="details" class="hidden details">
-            <h2 id="details-title">Instrument Details</h2>
-            <img id="details-img" src="" alt="Instrument Image">
-            <p id="details-description">Description of the selected instrument.</p>
-            <p class="price" id="details-price"></p>
+        <section id="details" class="hidden">
+            <div class="card details" data-aos="fade-up">
+                <h2 id="details-title">Instrument Details</h2>
+                <img id="details-img" src="" alt="Instrument Image">
+                <p id="details-description">Description of the selected instrument.</p>
+                <p class="price" id="details-price"></p>
+            </div>
         </section>
 
         <!-- 联系方式 -->
         <section id="contact" class="hidden">
-            <h2 id="contact-title">Contact Me</h2>
-            <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+            <div class="card" data-aos="fade-up">
+                <h2 id="contact-title">Contact Me</h2>
+                <p id="contact-description">Feel free to reach out to me via email: <a href="mailto:fanyunqi236@gmail.com">fanyunqi236@gmail.com</a></p>
+            </div>
         </section>
     </main>
 
+    <!-- 页脚 -->
     <footer>
         <p>&copy; 2024 Fanyunqi. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#" target="_blank"><img src="icons/facebook.svg" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="icons/twitter.svg" alt="Twitter"></a>
+            <a href="#" target="_blank"><img src="icons/instagram.svg" alt="Instagram"></a>
+            <!-- 添加更多社交媒体链接 -->
+        </div>
     </footer>
 
+    <!-- 引入 AOS 动画库的 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800, // 动画持续时间
+            once: true // 滚动时只触发一次动画
+        });
+    </script>
+
+    <!-- 您的 JavaScript 代码 -->
     <script>
         let currentLanguage = 'en'; // 当前语言，默认为英文
         let currentInstruments = []; // 当前显示的乐器列表
@@ -648,7 +793,10 @@
                 "Location": "Location",
                 "Country": "Country",
                 "Event Description": "Event Description",
-                "Study Description": "Program Description"
+                "Study Description": "Program Description",
+                "hero-title": "Welcome to My Personal Website",
+                "hero-subtitle": "Explore the world of music with me",
+                "get-started": "Get Started"
             },
             cn: {
                 "site-title": "范云麒的个人网站",
@@ -702,7 +850,10 @@
                 "Location": "地点",
                 "Country": "国家",
                 "Event Description": "活动描述",
-                "Study Description": "项目描述"
+                "Study Description": "项目描述",
+                "hero-title": "欢迎来到我的个人网站",
+                "hero-subtitle": "与我一起探索音乐的世界",
+                "get-started": "开始探索"
             },
             es: {
                 "site-title": "Sitio Web Personal de Fanyunqi",
@@ -756,7 +907,10 @@
                 "Location": "Ubicación",
                 "Country": "País",
                 "Event Description": "Descripción del Evento",
-                "Study Description": "Descripción del Programa"
+                "Study Description": "Descripción del Programa",
+                "hero-title": "Bienvenido a Mi Sitio Web Personal",
+                "hero-subtitle": "Explora el mundo de la música conmigo",
+                "get-started": "Comenzar"
             }
         };
 
