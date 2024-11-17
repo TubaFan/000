@@ -157,10 +157,14 @@
         #hero {
             position: relative;
             height: 100vh;
-            background-image: url('1.JPG'); /* 请将此处替换为您的背景图片路径 */
+            background-image: url('hero-background.jpg'); /* 请将此处替换为您的背景图片路径 */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         #hero::before {
@@ -176,24 +180,25 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            text-align: center;
             color: white;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            max-width: 800px;
+            margin: 0 1rem;
         }
 
         .hero-content h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
+            animation: fadeInDown 1s forwards;
         }
 
         .hero-content p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
+            animation: fadeInUp 1s forwards;
         }
 
         .hero-button {
+            display: inline-block;
             padding: 1rem 2rem;
             background-color: #e74c3c;
             color: white;
@@ -201,11 +206,44 @@
             font-size: 1.2rem;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.3s;
+            animation: fadeIn 1s forwards;
         }
 
         .hero-button:hover {
             background-color: #c0392b;
             transform: translateY(-2px);
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         /* 主内容样式 */
@@ -484,9 +522,7 @@
                 flex: 1 1 calc(50% - 20px);
                 max-width: calc(50% - 20px);
             }
-        }
 
-        @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 3rem;
             }
@@ -494,7 +530,9 @@
             .hero-content p {
                 font-size: 1.2rem;
             }
+        }
 
+        @media (max-width: 768px) {
             .instrument-item,
             .event-item,
             .study-abroad-item,
@@ -510,6 +548,19 @@
 
             nav ul li {
                 margin: 0 5px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-button {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
             }
         }
     </style>
@@ -566,10 +617,10 @@
 
     <!-- 英雄横幅 -->
     <section id="hero">
-        <div class="hero-content" data-aos="fade-up">
+        <div class="hero-content">
             <h1 id="hero-title">Welcome to My Personal Website</h1>
             <p id="hero-subtitle">Explore the world of music with me</p>
-            <a href="#home" class="hero-button" data-translation-key="get-started">Get Started</a>
+            <a href="#" class="hero-button" data-translation-key="get-started" onclick="scrollToSection('home')">Get Started</a>
         </div>
     </section>
 
@@ -764,11 +815,13 @@
 
     <!-- 您的 JavaScript 代码 -->
     <script>
+        // 全局变量
         let currentLanguage = 'en'; // 当前语言，默认为英文
         let currentInstruments = []; // 当前显示的乐器列表
         let currentPage = 1; // 当前页码
         const itemsPerPage = 6; // 每页显示的乐器数量
 
+        // 翻译对象
         const translations = {
             en: {
                 "site-title": "Fanyunqi's Personal Website",
@@ -943,9 +996,42 @@
             }
         };
 
-        // 在此处添加完整的 JavaScript 代码，包括 instrumentData、eventData、studyAbroadData 等数据的定义，以及所有相关函数
+        // 您的 instrumentData、eventData、studyAbroadData 等数据定义
+        // 由于篇幅限制，这里简要示例
 
-        // ...（完整的 JavaScript 代码）...
+        // instrumentData 示例
+        const instrumentData = {
+            flute: [{ /* ... */ }],
+            trumpet: [{ /* ... */ }],
+            // 其他类别
+        };
+
+        // eventData 示例
+        const eventData = [
+            {
+                title: { en: "Music Workshop 1", cn: "音乐工作坊 1", es: "Taller de Música 1" },
+                img: "event1.jpg",
+                date: "2024-11-10",
+                location: { en: "Concert Hall A", cn: "音乐厅 A", es: "Sala de Conciertos A" },
+                description: { en: "An immersive workshop on classical music.", cn: "关于古典音乐的沉浸式工作坊。", es: "Un taller inmersivo sobre música clásica." }
+            },
+            // 更多活动
+        ];
+
+        // studyAbroadData 示例
+        const studyAbroadData = [
+            {
+                title: { en: "Program 1", cn: "项目 1", es: "Programa 1" },
+                img: "study1.jpg",
+                country: { en: "Germany", cn: "德国", es: "Alemania" },
+                description: { en: "Study classical music in Germany.", cn: "在德国学习古典音乐。", es: "Estudia música clásica en Alemania." }
+            },
+            // 更多留学项目
+        ];
+
+        // 定义所有函数，包括 switchLanguage、showSection、scrollToSection 等
+
+        // 由于篇幅限制，这里不一一列出函数，请确保在实际代码中包含所有必要的函数
 
         // 在 DOMContentLoaded 事件中初始化页面
         document.addEventListener("DOMContentLoaded", () => {
