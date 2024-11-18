@@ -7,59 +7,31 @@
     <title id="site-title">欧亚乐桥</title>
 
     <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-dM1DrbbP6A6qZrHRh6FUw2L2kXgPdk4ZwqOqfPqo3cCcR+IYcFH0Azg+34h4QdGhw4C/Hb0eZK7G36hTkYzsw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- 内联样式表 -->
     <style>
-        /* CSS变量定义 */
-        :root {
-            --primary-color: #3498db; /* 高级蓝色 */
-            --secondary-color: #2c3e50; /* 深蓝色 */
-            --accent-color: #e74c3c; /* 红色强调 */
-            --background-color: rgba(255, 255, 255, 0.95);
-            --text-color: #333;
-            --header-background: rgba(255, 255, 255, 0.95);
-            --nav-background: rgba(255, 255, 255, 0.95);
-            --footer-background: rgba(255, 255, 255, 0.95);
-            --button-background: var(--primary-color);
-            --button-hover-background: #2980b9;
-            --card-background: rgba(255, 255, 255, 0.9);
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --transition-speed: 0.3s;
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Montserrat', sans-serif;
-        }
-
         /* 全局样式 */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
         body {
-            font-family: var(--font-body);
+            font-family: 'Noto Sans SC', 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: var(--text-color);
+            color: #333;
             scroll-behavior: smooth;
             background-image: url('1.JPG'); /* 请将此处替换为您的全局背景图片路径 */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: color var(--transition-speed);
-        }
-
-        a:hover {
-            color: var(--primary-color);
         }
 
         /* 容器样式 */
@@ -68,63 +40,62 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         /* 头部样式 */
         header {
-            background-color: var(--header-background);
-            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
             padding: 1rem 0;
-            box-shadow: 0 2px 4px var(--shadow-color);
-            position: fixed;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
-            width: 100%;
             z-index: 1000;
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
         }
 
         #site-title {
-            font-family: var(--font-heading);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             margin: 0;
-            color: var(--primary-color);
-            transition: color var(--transition-speed);
+            color: #e74c3c;
         }
 
         .language-switch button {
             margin: 0 5px;
             padding: 5px 10px;
             background-color: transparent;
-            color: var(--text-color);
+            color: #333;
             cursor: pointer;
-            border: 1px solid var(--primary-color);
+            border: 1px solid #333;
             border-radius: 3px;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
+            transition: background-color 0.3s, color 0.3s;
             font-size: 0.9rem;
-            font-family: var(--font-body);
         }
 
         .language-switch button:hover {
-            background-color: var(--primary-color);
+            background-color: #333;
             color: #fff;
         }
 
         /* 导航栏样式 */
         nav {
-            background-color: var(--nav-background);
-            box-shadow: 0 2px 4px var(--shadow-color);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+            background-color: rgba(255, 255, 255, 0.95);
+            position: sticky;
+            top: 70px;
             z-index: 999;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         nav .container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
         }
 
         nav ul {
@@ -141,17 +112,16 @@
         nav ul li a {
             display: block;
             padding: 1rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 500;
             font-size: 1rem;
-            transition: color var(--transition-speed), border-bottom var(--transition-speed);
+            transition: color 0.3s, border-bottom 0.3s;
             border-bottom: 2px solid transparent;
-            font-family: var(--font-body);
         }
 
         nav ul li a:hover {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
+            color: #e74c3c;
+            border-bottom: 2px solid #e74c3c;
         }
 
         /* 汉堡菜单按钮 */
@@ -159,7 +129,7 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-color);
+            color: #333;
         }
 
         /* 侧边导航栏 */
@@ -169,10 +139,10 @@
             left: -250px; /* 初始隐藏 */
             height: 100vh;
             width: 250px;
-            background-color: var(--nav-background);
+            background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 2px 0 5px rgba(0,0,0,0.3);
             transform: translateX(-100%);
-            transition: transform var(--transition-speed);
+            transition: transform 0.3s;
             z-index: 1500;
             padding-top: 60px; /* 与头部高度一致 */
         }
@@ -185,14 +155,14 @@
             padding: 15px 30px;
             text-decoration: none;
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #333;
             display: block;
-            transition: color var(--transition-speed);
-            font-family: var(--font-body);
+            transition: color 0.3s;
+            font-family: 'Noto Sans SC', 'Montserrat', Arial, sans-serif;
         }
 
         .side-nav a:hover {
-            color: var(--primary-color);
+            color: #e74c3c;
         }
 
         .side-nav .close-btn {
@@ -201,10 +171,10 @@
             right: 25px;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--text-color);
+            color: #333;
         }
 
-        /* 覆盖层（Overlay） */
+        /* Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -214,7 +184,7 @@
             background-color: rgba(0,0,0,0.5);
             opacity: 0;
             visibility: hidden;
-            transition: opacity var(--transition-speed), visibility var(--transition-speed);
+            transition: opacity 0.3s, visibility 0.3s;
             z-index: 1400;
         }
 
@@ -228,13 +198,12 @@
             margin-top: 140px; /* 留出空间给固定的头部和导航栏 */
             padding: 2rem 1rem;
             box-sizing: border-box;
-            background-color: var(--background-color);
+            background-color: rgba(255, 255, 255, 0.85);
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
             border-radius: 10px;
-            box-shadow: 0 4px 20px var(--shadow-color);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         /* 卡片样式 */
@@ -242,28 +211,20 @@
             background-color: transparent;
             padding: 2rem;
             margin: 2rem 0;
-            transition: transform var(--transition-speed);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
         }
 
         .card h2, .card h3 {
-            font-family: var(--font-heading);
-            color: var(--primary-color);
+            color: #e74c3c;
             font-weight: 700;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 2px solid #e74c3c;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
-            transition: color var(--transition-speed), border-color var(--transition-speed);
         }
 
         .card p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
-            transition: color var(--transition-speed);
         }
 
         /* 乐器分类列表样式 */
@@ -275,7 +236,7 @@
         }
 
         .category-item {
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -284,14 +245,14 @@
             box-sizing: border-box;
             cursor: pointer;
             border-radius: 10px;
-            transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
         }
 
         .category-item:hover {
-            box-shadow: 0 8px 30px var(--shadow-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -300,19 +261,13 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform var(--transition-speed);
-        }
-
-        .category-item:hover img {
-            transform: scale(1.05);
         }
 
         .category-item h3 {
             margin: 15px 0 10px;
             font-size: 1.3rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         /* 乐器列表样式 */
@@ -324,7 +279,7 @@
         }
 
         .instrument-item {
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(33.333% - 30px);
             max-width: calc(33.333% - 30px);
@@ -333,14 +288,14 @@
             box-sizing: border-box;
             cursor: pointer;
             border-radius: 10px;
-            transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
         }
 
         .instrument-item:hover {
-            box-shadow: 0 8px 30px var(--shadow-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -349,46 +304,37 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform var(--transition-speed);
-        }
-
-        .instrument-item:hover img {
-            transform: scale(1.05);
         }
 
         .instrument-item h3 {
             margin: 15px 0 10px;
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         .instrument-item p {
             margin: 5px 0;
             color: #777;
             font-size: 1rem;
-            transition: color var(--transition-speed);
         }
 
         .price {
             font-weight: bold;
-            color: var(--primary-color);
+            color: #e74c3c;
             margin-top: 10px;
             font-size: 1.1rem;
-            transition: color var(--transition-speed);
         }
 
         /* 详情样式 */
         .details {
             max-width: 800px;
             margin: 0 auto;
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 20px var(--shadow-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(5px);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         .details img {
@@ -396,11 +342,6 @@
             height: auto;
             margin-bottom: 20px;
             border-radius: 10px;
-            transition: transform var(--transition-speed);
-        }
-
-        .details img:hover {
-            transform: scale(1.02);
         }
 
         /* 活动列表样式 */
@@ -412,7 +353,7 @@
         }
 
         .event-item {
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -420,7 +361,7 @@
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
-            transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -428,7 +369,7 @@
         }
 
         .event-item:hover {
-            box-shadow: 0 8px 30px var(--shadow-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -437,26 +378,19 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform var(--transition-speed);
-        }
-
-        .event-item:hover img {
-            transform: scale(1.05);
         }
 
         .event-item h3 {
             margin: 15px 0 10px;
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         .event-item p {
             margin: 5px 0;
             color: #777;
             font-size: 1rem;
-            transition: color var(--transition-speed);
         }
 
         /* 留学项目样式 */
@@ -468,7 +402,7 @@
         }
 
         .study-abroad-item {
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(50% - 30px);
             max-width: calc(50% - 30px);
@@ -476,7 +410,7 @@
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
-            transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -484,7 +418,7 @@
         }
 
         .study-abroad-item:hover {
-            box-shadow: 0 8px 30px var(--shadow-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -493,26 +427,19 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            transition: transform var(--transition-speed);
-        }
-
-        .study-abroad-item:hover img {
-            transform: scale(1.05);
         }
 
         .study-abroad-item h3 {
             margin: 15px 0 10px;
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         .study-abroad-item p {
             margin: 5px 0;
             color: #777;
             font-size: 1rem;
-            transition: color var(--transition-speed);
         }
 
         /* 艺术家列表样式 */
@@ -524,7 +451,7 @@
         }
 
         .artist-item {
-            background-color: var(--card-background);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 15px;
             flex: 1 1 calc(25% - 30px);
             max-width: calc(25% - 30px);
@@ -532,14 +459,14 @@
             padding: 20px;
             box-sizing: border-box;
             border-radius: 10px;
-            transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+            transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
         }
 
         .artist-item:hover {
-            box-shadow: 0 8px 30px var(--shadow-color);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
             transform: translateY(-10px);
         }
 
@@ -548,36 +475,28 @@
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
-            transition: transform var(--transition-speed);
-        }
-
-        .artist-item:hover img {
-            transform: scale(1.05);
         }
 
         .artist-item h3 {
             margin: 15px 0 10px;
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #333;
             font-weight: 600;
-            transition: color var(--transition-speed);
         }
 
         .artist-item p {
             margin: 5px 0;
             color: #777;
             font-size: 1rem;
-            transition: color var(--transition-speed);
         }
 
         /* 页脚样式 */
         footer {
-            background-color: var(--footer-background);
-            color: var(--text-color);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
             text-align: center;
             padding: 1rem;
             border-top: 1px solid #ccc;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
         /* 社交媒体图标 */
@@ -586,16 +505,18 @@
         }
 
         .social-icons a {
-            margin: 0 10px;
+            margin: 0 5px;
             display: inline-block;
-            color: var(--text-color);
-            font-size: 1.5rem;
-            transition: color var(--transition-speed), transform var(--transition-speed);
+            transition: transform 0.3s;
         }
 
         .social-icons a:hover {
-            color: var(--primary-color);
             transform: translateY(-2px);
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
         }
 
         /* 隐藏元素 */
@@ -613,8 +534,6 @@
             margin-right: 10px;
             font-size: 1rem;
             color: #555;
-            transition: color var(--transition-speed);
-            font-family: var(--font-body);
         }
 
         .filter input {
@@ -624,12 +543,11 @@
             border-radius: 5px;
             font-size: 1rem;
             outline: none;
-            transition: border-color var(--transition-speed);
-            font-family: var(--font-body);
+            transition: border-color 0.3s;
         }
 
         .filter input:focus {
-            border-color: var(--primary-color);
+            border-color: #e74c3c;
         }
 
         /* 分页控件样式 */
@@ -642,22 +560,16 @@
             margin: 0 5px;
             padding: 8px 12px;
             cursor: pointer;
-            background-color: var(--button-background);
+            background-color: #e74c3c;
             color: white;
             border: none;
             border-radius: 5px;
-            transition: background-color var(--transition-speed), transform var(--transition-speed);
+            transition: background-color 0.3s, transform 0.3s;
             font-size: 1rem;
-            font-family: var(--font-body);
         }
 
         .pagination button:hover {
-            background-color: var(--button-hover-background);
-            transform: translateY(-2px);
-        }
-
-        .pagination button.active {
-            background-color: var(--button-hover-background);
+            background-color: #c0392b;
             transform: translateY(-2px);
         }
 
@@ -675,18 +587,27 @@
                 max-width: calc(50% - 30px);
             }
 
-            /* 隐藏语言切换按钮以释放空间 */
-            .language-switch {
-                display: none;
+            header .container {
+                flex-direction: column;
+                align-items: center;
             }
 
-            /* 隐藏顶部导航栏，并显示汉堡菜单 */
+            .language-switch {
+                margin-top: 10px;
+            }
+
             nav ul {
                 display: none; /* 隐藏默认导航 */
             }
 
             .hamburger {
                 display: block; /* 显示汉堡菜单按钮 */
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #333;
             }
         }
 
@@ -712,19 +633,19 @@
                 <button onclick="switchLanguage('cn')">中文</button>
                 <button onclick="switchLanguage('es')">Español</button>
             </div>
-            <span class="hamburger" id="hamburger"><i class="fas fa-bars"></i></span>
+            <span class="hamburger" id="hamburger">&#9776;</span> <!-- Unicode 汉堡菜单图标 -->
         </div>
     </header>
 
     <!-- 侧边导航栏 -->
     <div id="sideNav" class="side-nav">
         <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
-        <a href="#home" id="home-link-side">主页</a>
-        <a href="#instruments" id="instruments-link-side">乐器浏览</a>
-        <a href="#event" id="event-link-side">活动</a>
-        <a href="#study-abroad" id="study-abroad-link-side">留学项目</a>
-        <a href="#artists" id="artists-link-side">艺术家</a>
-        <a href="#contact" id="contact-link-side">联系方式</a>
+        <a href="#" id="home-link-side" onclick="showSection('home')">主页</a>
+        <a href="#" id="instruments-link-side" onclick="showSection('instrument-categories')">乐器浏览</a>
+        <a href="#" id="event-link-side" onclick="showSection('event')">活动</a>
+        <a href="#" id="study-abroad-link-side" onclick="showSection('study-abroad')">留学项目</a>
+        <a href="#" id="artists-link-side" onclick="showSection('artists')">艺术家</a>
+        <a href="#" id="contact-link-side" onclick="showSection('contact')">联系方式</a>
     </div>
 
     <!-- Overlay -->
@@ -734,12 +655,12 @@
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#home" id="home-link">主页</a></li>
-                <li><a href="#instruments" id="instruments-link">乐器浏览</a></li>
-                <li><a href="#event" id="event-link">活动</a></li>
-                <li><a href="#study-abroad" id="study-abroad-link">留学项目</a></li>
-                <li><a href="#artists" id="artists-link">艺术家</a></li>
-                <li><a href="#contact" id="contact-link">联系方式</a></li>
+                <li><a href="#" id="home-link" onclick="showSection('home')">主页</a></li>
+                <li><a href="#" id="instruments-link" onclick="showSection('instrument-categories')">乐器浏览</a></li>
+                <li><a href="#" id="event-link" onclick="showSection('event')">活动</a></li>
+                <li><a href="#" id="study-abroad-link" onclick="showSection('study-abroad')">留学项目</a></li>
+                <li><a href="#" id="artists-link" onclick="showSection('artists')">艺术家</a></li>
+                <li><a href="#" id="contact-link" onclick="showSection('contact')">联系方式</a></li>
             </ul>
         </div>
     </nav>
@@ -766,13 +687,13 @@
                     <div class="event-list">
                         <!-- 最新活动项 -->
                         <div class="event-item" onclick="showEventDetails(0)">
-                            <img src="event1.jpg" alt="音乐工作坊：古典乐之旅" loading="lazy">
+                            <img src="event1.jpg" alt="音乐工作坊：古典乐之旅">
                             <h3 id="latest-event-0-title">音乐工作坊：古典乐之旅</h3>
                             <p id="latest-event-0-date">日期: 2024-11-10</p>
                             <p id="latest-event-0-location">地点: 音乐厅 A</p>
                         </div>
                         <div class="event-item" onclick="showEventDetails(1)">
-                            <img src="event2.jpg" alt="爵士乐夜晚" loading="lazy">
+                            <img src="event2.jpg" alt="爵士乐夜晚">
                             <h3 id="latest-event-1-title">爵士乐夜晚</h3>
                             <p id="latest-event-1-date">日期: 2024-12-05</p>
                             <p id="latest-event-1-location">地点: 音乐中心 B</p>
@@ -788,19 +709,19 @@
                     <div class="instrument-list">
                         <!-- 推荐的乐器项 -->
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[0])">
-                            <img src="trumpet1.jpg" alt="小号 001" loading="lazy">
+                            <img src="trumpet1.jpg" alt="小号 001">
                             <h3 id="featured-instrument-0">小号 001</h3>
                             <p id="featured-brand-0">品牌：雅马哈</p>
                             <p class="price" id="featured-price-0">价格：$1200</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[1])">
-                            <img src="violin1.jpg" alt="小提琴 001" loading="lazy">
+                            <img src="violin1.jpg" alt="小提琴 001">
                             <h3 id="featured-instrument-1">小提琴 001</h3>
                             <p id="featured-brand-1">品牌：斯特拉迪瓦里</p>
                             <p class="price" id="featured-price-1">价格：$1500</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[2])">
-                            <img src="flute1.jpg" alt="长笛 001" loading="lazy">
+                            <img src="flute1.jpg" alt="长笛 001">
                             <h3 id="featured-instrument-2">长笛 001</h3>
                             <p id="featured-brand-2">品牌：布菲</p>
                             <p class="price" id="featured-price-2">价格：$800</p>
@@ -817,39 +738,39 @@
                 <div class="category-list">
                     <!-- 乐器分类项 -->
                     <div class="category-item" onclick="showInstruments('flute')">
-                        <img src="category-flute.jpg" alt="长笛" loading="lazy">
+                        <img src="category-flute.jpg" alt="Flute">
                         <h3 data-translation-key="flute">长笛</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('clarinet')">
-                        <img src="category-clarinet.jpg" alt="单簧管" loading="lazy">
+                        <img src="category-clarinet.jpg" alt="Clarinet">
                         <h3 data-translation-key="clarinet">单簧管</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('oboe')">
-                        <img src="category-oboe.jpg" alt="双簧管" loading="lazy">
+                        <img src="category-oboe.jpg" alt="Oboe">
                         <h3 data-translation-key="oboe">双簧管</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('trumpet')">
-                        <img src="category-trumpet.jpg" alt="小号" loading="lazy">
+                        <img src="category-trumpet.jpg" alt="Trumpet">
                         <h3 data-translation-key="trumpet">小号</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('trombone')">
-                        <img src="category-trombone.jpg" alt="长号" loading="lazy">
+                        <img src="category-trombone.jpg" alt="Trombone">
                         <h3 data-translation-key="trombone">长号</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('tuba')">
-                        <img src="category-tuba.jpg" alt="大号" loading="lazy">
+                        <img src="category-tuba.jpg" alt="Tuba">
                         <h3 data-translation-key="tuba">大号</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('violin')">
-                        <img src="category-violin.jpg" alt="小提琴" loading="lazy">
+                        <img src="category-violin.jpg" alt="Violin">
                         <h3 data-translation-key="violin">小提琴</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('cello')">
-                        <img src="category-cello.jpg" alt="大提琴" loading="lazy">
+                        <img src="category-cello.jpg" alt="Cello">
                         <h3 data-translation-key="cello">大提琴</h3>
                     </div>
                     <div class="category-item" onclick="showInstruments('bass')">
-                        <img src="category-bass.jpg" alt="低音提琴" loading="lazy">
+                        <img src="category-bass.jpg" alt="Bass">
                         <h3 data-translation-key="bass">低音提琴</h3>
                     </div>
                 </div>
@@ -878,7 +799,7 @@
         <section id="instrument-details" class="hidden">
             <div class="card details">
                 <h2 id="details-title">乐器详情</h2>
-                <img id="details-img" src="" alt="Instrument Image" loading="lazy">
+                <img id="details-img" src="" alt="Instrument Image">
                 <p id="details-description">所选乐器的描述。</p>
                 <p class="price" id="details-price"></p>
             </div>
@@ -892,13 +813,13 @@
                 <div class="event-list">
                     <!-- 活动项 -->
                     <div class="event-item" onclick="showEventDetails(0)">
-                        <img src="event1.jpg" alt="音乐工作坊：古典乐之旅" loading="lazy">
+                        <img src="event1.jpg" alt="音乐工作坊：古典乐之旅">
                         <h3 id="event-name-0">音乐工作坊：古典乐之旅</h3>
                         <p id="event-date-0">日期: 2024-11-10</p>
                         <p id="event-location-0">地点: 音乐厅 A</p>
                     </div>
                     <div class="event-item" onclick="showEventDetails(1)">
-                        <img src="event2.jpg" alt="爵士乐夜晚" loading="lazy">
+                        <img src="event2.jpg" alt="爵士乐夜晚">
                         <h3 id="event-name-1">爵士乐夜晚</h3>
                         <p id="event-date-1">日期: 2024-12-05</p>
                         <p id="event-location-1">地点: 音乐中心 B</p>
@@ -911,7 +832,7 @@
         <section id="event-details" class="hidden">
             <div class="card details">
                 <h2 id="event-details-title">活动详情</h2>
-                <img id="event-details-img" src="" alt="Event Image" loading="lazy">
+                <img id="event-details-img" src="" alt="Event Image">
                 <p id="event-details-description">活动的详细信息。</p>
                 <p id="event-details-date"></p>
                 <p id="event-details-location"></p>
@@ -926,12 +847,12 @@
                 <div class="study-abroad-list">
                     <!-- 留学项目项 -->
                     <div class="study-abroad-item" onclick="showStudyDetails(0)">
-                        <img src="study1.jpg" alt="德国音乐学院交流项目" loading="lazy">
+                        <img src="study1.jpg" alt="Study Abroad Program 1">
                         <h3 id="study-name-0">德国音乐学院交流项目</h3>
                         <p id="study-country-0">国家: 德国</p>
                     </div>
                     <div class="study-abroad-item" onclick="showStudyDetails(1)">
-                        <img src="study2.jpg" alt="法国艺术文化之旅" loading="lazy">
+                        <img src="study2.jpg" alt="Study Abroad Program 2">
                         <h3 id="study-name-1">法国艺术文化之旅</h3>
                         <p id="study-country-1">国家: 法国</p>
                     </div>
@@ -943,7 +864,7 @@
         <section id="study-details" class="hidden">
             <div class="card details">
                 <h2 id="study-details-title">留学项目详情</h2>
-                <img id="study-details-img" src="" alt="Study Abroad Image" loading="lazy">
+                <img id="study-details-img" src="" alt="Study Abroad Image">
                 <p id="study-details-description">留学项目的详细信息。</p>
                 <p id="study-details-country"></p>
             </div>
@@ -956,22 +877,22 @@
                 <div class="artist-list">
                     <!-- 艺术家项 -->
                     <div class="artist-item">
-                        <img src="artist1.jpg" alt="李小琴" loading="lazy">
+                        <img src="artist1.jpg" alt="Artist 1">
                         <h3>李小琴</h3>
                         <p>著名小提琴演奏家，曾获多项国际大奖。</p>
                     </div>
                     <div class="artist-item">
-                        <img src="artist2.jpg" alt="王明" loading="lazy">
+                        <img src="artist2.jpg" alt="Artist 2">
                         <h3>王明</h3>
                         <p>钢琴家，致力于现代音乐的推广。</p>
                     </div>
                     <div class="artist-item">
-                        <img src="artist3.jpg" alt="张华" loading="lazy">
+                        <img src="artist3.jpg" alt="Artist 3">
                         <h3>张华</h3>
                         <p>萨克斯演奏家，融合了爵士与传统音乐。</p>
                     </div>
                     <div class="artist-item">
-                        <img src="artist4.jpg" alt="刘艳" loading="lazy">
+                        <img src="artist4.jpg" alt="Artist 4">
                         <h3>刘艳</h3>
                         <p>女高音歌唱家，活跃于国际舞台。</p>
                     </div>
@@ -997,9 +918,9 @@
     <footer>
         <p>&copy; 2024 范云麒。保留所有权利。</p>
         <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><img src="icons/facebook.svg" alt="Facebook"></a>
+            <a href="#" target="_blank"><img src="icons/twitter.svg" alt="Twitter"></a>
+            <a href="#" target="_blank"><img src="icons/instagram.svg" alt="Instagram"></a>
             <!-- 添加更多社交媒体链接 -->
         </div>
     </footer>
@@ -1016,7 +937,7 @@
         // 翻译对象
         const translations = {
             en: {
-                "site-title": "欧亚乐桥",
+                "site-title": "Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
                 "event-link": "Events",
@@ -1202,9 +1123,9 @@
         };
 
         // 为每个乐器类别自动生成占位乐器
-        const categoriesList = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+        const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
 
-        categoriesList.forEach(category => {
+        categories.forEach(category => {
             for (let i = 1; i <= 12; i++) {
                 const code = i.toString().padStart(3, '0');
                 instrumentData[category].push({
@@ -1219,8 +1140,8 @@
                         cn: `${translations['cn'][category]} ${code} 的描述`,
                         es: `Descripción para ${translations['es'][category]} ${code}`
                     },
-                    brand: `${translations['cn'][category]}品牌 ${i}`,
-                    price: `$${(100 + i * 10)}`
+                    brand: `Brand ${i}`,
+                    price: `$${100 + i * 10}`
                 });
             }
         });
@@ -1530,8 +1451,8 @@
             eventItems.forEach((item, index) => {
                 const event = eventData[index];
                 item.querySelector('h3').innerText = event.title[currentLanguage];
-                item.querySelector(`#event-date-${index}`).innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
-                item.querySelector(`#event-location-${index}`).innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+                item.querySelector('#event-date-' + index).innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
+                item.querySelector('#event-location-' + index).innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
             });
         }
 
@@ -1544,7 +1465,7 @@
             studyItems.forEach((item, index) => {
                 const program = studyAbroadData[index];
                 item.querySelector('h3').innerText = program.title[currentLanguage];
-                item.querySelector(`#study-country-${index}`).innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+                item.querySelector('#study-country-' + index).innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
             });
         }
 
@@ -1576,7 +1497,7 @@
                     displayInstruments();
                 };
                 if (i === currentPage) {
-                    button.classList.add('active');
+                    button.style.backgroundColor = '#c0392b';
                 }
                 pagination.appendChild(button);
             }
@@ -1592,7 +1513,6 @@
 
         // 页面加载后初始化
         document.addEventListener("DOMContentLoaded", () => {
-            // 语言初始化
             const savedLanguage = localStorage.getItem('selectedLanguage') || 'cn';
             const supportedLanguages = ['en', 'cn', 'es'];
             const languageToUse = supportedLanguages.includes(savedLanguage) ? savedLanguage : 'cn';
@@ -1604,29 +1524,23 @@
             // 绑定事件监听器
             document.getElementById('hamburger').addEventListener('click', toggleSideNav);
             document.getElementById('closeBtn').addEventListener('click', toggleSideNav);
-            ['home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'].forEach(id => {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.addEventListener('click', () => {
-                        toggleSideNav();
-                    });
-                }
-            });
+            document.getElementById('overlay').addEventListener('click', toggleSideNav);
 
-            // 绑定顶部导航栏链接
-            ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link'].forEach(id => {
+            // 绑定侧边导航栏链接
+            ['home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'].forEach(id => {
                 const link = document.getElementById(id);
                 if (link) {
                     link.addEventListener('click', (e) => {
                         e.preventDefault();
                         const targetId = link.getAttribute('href').substring(1);
                         showSection(targetId);
+                        toggleSideNav(); // 关闭侧边导航栏
                     });
                 }
             });
 
-            // 绑定侧边导航栏链接
-            ['home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'].forEach(id => {
+            // 绑定顶部导航栏链接
+            ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link'].forEach(id => {
                 const link = document.getElementById(id);
                 if (link) {
                     link.addEventListener('click', (e) => {
