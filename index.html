@@ -7,7 +7,7 @@
     <title id="site-title">欧亚乐桥</title>
 
     <!-- 引入 Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- 引入 Font Awesome 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-dM1DrbbP6A6qZrHRh6FUw2L2kXgPdk4ZwqOqfPqo3cCcR+IYcFH0Azg+34h4QdGhw4C/Hb0eZK7G36hTkYzsw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,33 +16,21 @@
     <style>
         /* CSS变量定义 */
         :root {
-            --primary-color: #e74c3c;
-            --secondary-color: #2c3e50;
-            --background-color: rgba(255, 255, 255, 0.85);
+            --primary-color: #3498db; /* 高级蓝色 */
+            --secondary-color: #2c3e50; /* 深蓝色 */
+            --accent-color: #e74c3c; /* 红色强调 */
+            --background-color: rgba(255, 255, 255, 0.95);
             --text-color: #333;
             --header-background: rgba(255, 255, 255, 0.95);
             --nav-background: rgba(255, 255, 255, 0.95);
             --footer-background: rgba(255, 255, 255, 0.95);
-            --button-background: #e74c3c;
-            --button-hover-background: #c0392b;
+            --button-background: var(--primary-color);
+            --button-hover-background: #2980b9;
             --card-background: rgba(255, 255, 255, 0.9);
             --shadow-color: rgba(0, 0, 0, 0.1);
             --transition-speed: 0.3s;
-        }
-
-        /* Dark Mode变量 */
-        body.dark-mode {
-            --primary-color: #c0392b;
-            --secondary-color: #ecf0f1;
-            --background-color: rgba(44, 62, 80, 0.85);
-            --text-color: #ecf0f1;
-            --header-background: rgba(44, 62, 80, 0.95);
-            --nav-background: rgba(44, 62, 80, 0.95);
-            --footer-background: rgba(44, 62, 80, 0.95);
-            --button-background: #c0392b;
-            --button-hover-background: #e74c3c;
-            --card-background: rgba(44, 62, 80, 0.9);
-            --shadow-color: rgba(0, 0, 0, 0.3);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
         }
 
         /* 全局样式 */
@@ -51,7 +39,7 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', 'Montserrat', Arial, sans-serif;
+            font-family: var(--font-body);
             margin: 0;
             padding: 0;
             color: var(--text-color);
@@ -101,7 +89,8 @@
         }
 
         #site-title {
-            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            font-size: 2rem;
             font-weight: 700;
             margin: 0;
             color: var(--primary-color);
@@ -114,32 +103,15 @@
             background-color: transparent;
             color: var(--text-color);
             cursor: pointer;
-            border: 1px solid var(--text-color);
+            border: 1px solid var(--primary-color);
             border-radius: 3px;
             transition: background-color var(--transition-speed), color var(--transition-speed);
             font-size: 0.9rem;
+            font-family: var(--font-body);
         }
 
         .language-switch button:hover {
-            background-color: var(--text-color);
-            color: #fff;
-        }
-
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            margin-left: 10px;
-            padding: 5px 10px;
-            background-color: transparent;
-            color: var(--text-color);
-            cursor: pointer;
-            border: 1px solid var(--text-color);
-            border-radius: 3px;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-            font-size: 0.9rem;
-        }
-
-        .dark-mode-toggle:hover {
-            background-color: var(--text-color);
+            background-color: var(--primary-color);
             color: #fff;
         }
 
@@ -163,7 +135,6 @@
             padding: 0;
             margin: 0;
             list-style-type: none;
-            transition: flex-direction var(--transition-speed);
         }
 
         nav ul li {
@@ -178,6 +149,7 @@
             font-size: 1rem;
             transition: color var(--transition-speed), border-bottom var(--transition-speed);
             border-bottom: 2px solid transparent;
+            font-family: var(--font-body);
         }
 
         nav ul li a:hover {
@@ -212,6 +184,7 @@
         }
 
         .card h2, .card h3 {
+            font-family: var(--font-heading);
             color: var(--primary-color);
             font-weight: 700;
             border-bottom: 2px solid var(--primary-color);
@@ -553,7 +526,7 @@
         }
 
         .social-icons a {
-            margin: 0 5px;
+            margin: 0 10px;
             display: inline-block;
             color: var(--text-color);
             font-size: 1.5rem;
@@ -581,6 +554,7 @@
             font-size: 1rem;
             color: #555;
             transition: color var(--transition-speed);
+            font-family: var(--font-body);
         }
 
         .filter input {
@@ -591,6 +565,7 @@
             font-size: 1rem;
             outline: none;
             transition: border-color var(--transition-speed);
+            font-family: var(--font-body);
         }
 
         .filter input:focus {
@@ -613,6 +588,7 @@
             border-radius: 5px;
             transition: background-color var(--transition-speed), transform var(--transition-speed);
             font-size: 1rem;
+            font-family: var(--font-body);
         }
 
         .pagination button:hover {
@@ -644,7 +620,7 @@
                 align-items: center;
             }
 
-            .language-switch, .dark-mode-toggle {
+            .language-switch {
                 margin-top: 10px;
             }
 
@@ -680,9 +656,6 @@
                 <button onclick="switchLanguage('cn')">中文</button>
                 <button onclick="switchLanguage('es')">Español</button>
             </div>
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-                <i class="fas fa-moon"></i> 
-            </button>
         </div>
     </header>
 
@@ -1277,16 +1250,6 @@
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            // 保存用户的主题选择
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
-            }
-        }
-
         // 语言切换函数
         function switchLanguage(lang) {
             currentLanguage = lang;
@@ -1549,12 +1512,6 @@
 
         // 页面加载后初始化
         document.addEventListener("DOMContentLoaded", () => {
-            // 主题初始化
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-
             // 语言初始化
             const savedLanguage = localStorage.getItem('selectedLanguage') || 'cn';
             const supportedLanguages = ['en', 'cn', 'es'];
