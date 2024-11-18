@@ -168,21 +168,25 @@
 
         /* 侧边导航栏 */
         .side-nav {
-            height: 100%;
-            width: 0;
             position: fixed;
-            z-index: 1500;
             top: 0;
             left: 0;
+            height: 100vh;
+            width: 250px;
             background-color: var(--nav-background);
-            overflow-x: hidden;
-            transition: width var(--transition-speed);
-            padding-top: 60px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed);
+            z-index: 1500;
+            padding-top: 60px;
+        }
+
+        .side-nav.open {
+            transform: translateX(0);
         }
 
         .side-nav a {
-            padding: 8px 32px;
+            padding: 15px 30px;
             text-decoration: none;
             font-size: 1.2rem;
             color: var(--text-color);
@@ -200,9 +204,27 @@
             top: 20px;
             right: 25px;
             font-size: 2rem;
-            margin-left: 50px;
             cursor: pointer;
             color: var(--text-color);
+        }
+
+        /* 覆盖层（Overlay） */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed), visibility var(--transition-speed);
+            z-index: 1400;
+        }
+
+        .overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* 主内容样式 */
@@ -684,28 +706,6 @@
             .filter input {
                 width: 100%;
             }
-        }
-
-        /* 侧边导航栏动画 */
-        .side-nav.open {
-            width: 250px;
-        }
-
-        /* Overlay for side-nav */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1400; /* Just below the side-nav */
-            transition: width var(--transition-speed);
-            overflow: hidden;
-        }
-
-        .overlay.open {
-            width: 100%;
         }
     </style>
 </head>
