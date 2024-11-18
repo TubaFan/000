@@ -690,6 +690,23 @@
         .side-nav.open {
             width: 250px;
         }
+
+        /* Overlay for side-nav */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1400; /* Just below the side-nav */
+            transition: width var(--transition-speed);
+            overflow: hidden;
+        }
+
+        .overlay.open {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -716,6 +733,9 @@
         <a href="#" id="artists-link-side" onclick="showSection('artists'); toggleSideNav()">艺术家</a>
         <a href="#" id="contact-link-side" onclick="showSection('contact'); toggleSideNav()">联系方式</a>
     </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="toggleSideNav()"></div>
 
     <!-- 导航栏 -->
     <nav>
@@ -1189,9 +1209,9 @@
         };
 
         // 为每个乐器类别自动生成占位乐器
-        const categories = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
+        const categoriesList = ['flute', 'trumpet', 'violin', 'clarinet', 'oboe', 'trombone', 'tuba', 'cello', 'bass'];
 
-        categories.forEach(category => {
+        categoriesList.forEach(category => {
             for (let i = 1; i <= 12; i++) {
                 const code = i.toString().padStart(3, '0');
                 instrumentData[category].push({
@@ -1572,7 +1592,9 @@
         // 切换侧边导航栏
         function toggleSideNav() {
             const sideNav = document.getElementById('sideNav');
+            const overlay = document.getElementById('overlay');
             sideNav.classList.toggle('open');
+            overlay.classList.toggle('open');
         }
 
         // 页面加载后初始化
