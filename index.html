@@ -719,34 +719,34 @@
                 <button onclick="switchLanguage('cn')">中文</button>
                 <button onclick="switchLanguage('es')">Español</button>
             </div>
-            <span class="hamburger" onclick="toggleSideNav()"><i class="fas fa-bars"></i></span>
+            <span class="hamburger" id="hamburger"><i class="fas fa-bars"></i></span>
         </div>
     </header>
 
     <!-- 侧边导航栏 -->
     <div id="sideNav" class="side-nav">
-        <a href="javascript:void(0)" class="close-btn" onclick="toggleSideNav()">&times;</a>
-        <a href="#" id="home-link-side" onclick="showSection('home'); toggleSideNav()">主页</a>
-        <a href="#" id="instruments-link-side" onclick="showSection('instrument-categories'); toggleSideNav()">乐器浏览</a>
-        <a href="#" id="event-link-side" onclick="showSection('event'); toggleSideNav()">活动</a>
-        <a href="#" id="study-abroad-link-side" onclick="showSection('study-abroad'); toggleSideNav()">留学项目</a>
-        <a href="#" id="artists-link-side" onclick="showSection('artists'); toggleSideNav()">艺术家</a>
-        <a href="#" id="contact-link-side" onclick="showSection('contact'); toggleSideNav()">联系方式</a>
+        <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
+        <a href="#" id="home-link-side">主页</a>
+        <a href="#" id="instruments-link-side">乐器浏览</a>
+        <a href="#" id="event-link-side">活动</a>
+        <a href="#" id="study-abroad-link-side">留学项目</a>
+        <a href="#" id="artists-link-side">艺术家</a>
+        <a href="#" id="contact-link-side">联系方式</a>
     </div>
 
     <!-- Overlay -->
-    <div id="overlay" class="overlay" onclick="toggleSideNav()"></div>
+    <div id="overlay" class="overlay"></div>
 
     <!-- 导航栏 -->
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#" id="home-link" onclick="showSection('home')">主页</a></li>
-                <li><a href="#" id="instruments-link" onclick="showSection('instrument-categories')">乐器浏览</a></li>
-                <li><a href="#" id="event-link" onclick="showSection('event')">活动</a></li>
-                <li><a href="#" id="study-abroad-link" onclick="showSection('study-abroad')">留学项目</a></li>
-                <li><a href="#" id="artists-link" onclick="showSection('artists')">艺术家</a></li>
-                <li><a href="#" id="contact-link" onclick="showSection('contact')">联系方式</a></li>
+                <li><a href="#" id="home-link">主页</a></li>
+                <li><a href="#" id="instruments-link">乐器浏览</a></li>
+                <li><a href="#" id="event-link">活动</a></li>
+                <li><a href="#" id="study-abroad-link">留学项目</a></li>
+                <li><a href="#" id="artists-link">艺术家</a></li>
+                <li><a href="#" id="contact-link">联系方式</a></li>
             </ul>
         </div>
     </nav>
@@ -1607,6 +1607,18 @@
 
             // 初始时显示主页
             showSection('home');
+
+            // 绑定事件监听器
+            document.getElementById('hamburger').addEventListener('click', toggleSideNav);
+            document.getElementById('closeBtn').addEventListener('click', toggleSideNav);
+            ['home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'].forEach(id => {
+                const link = document.getElementById(id);
+                if (link) {
+                    link.addEventListener('click', () => {
+                        toggleSideNav();
+                    });
+                }
+            });
         });
     </script>
 </body>
