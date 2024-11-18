@@ -57,7 +57,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
         }
 
         #site-title {
@@ -122,75 +121,6 @@
         nav ul li a:hover {
             color: #e74c3c;
             border-bottom: 2px solid #e74c3c;
-        }
-
-        /* 汉堡菜单按钮 */
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* 侧边导航栏 */
-        .side-nav {
-            position: fixed;
-            top: 0;
-            left: -250px; /* 初始隐藏 */
-            height: 100vh;
-            width: 250px;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
-            transform: translateX(-100%);
-            transition: transform 0.3s;
-            z-index: 1500;
-            padding-top: 60px; /* 与头部高度一致 */
-        }
-
-        .side-nav.open {
-            transform: translateX(0);
-        }
-
-        .side-nav a {
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            color: #333;
-            display: block;
-            transition: color 0.3s;
-            font-family: 'Noto Sans SC', 'Montserrat', Arial, sans-serif;
-        }
-
-        .side-nav a:hover {
-            color: #e74c3c;
-        }
-
-        .side-nav .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #333;
-        }
-
-        /* Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-            z-index: 1400;
-        }
-
-        .overlay.open {
-            opacity: 1;
-            visibility: visible;
         }
 
         /* 主内容样式 */
@@ -597,28 +527,12 @@
             }
 
             nav ul {
-                display: none; /* 隐藏默认导航 */
+                flex-direction: column;
+                align-items: center;
             }
 
-            .hamburger {
-                display: block; /* 显示汉堡菜单按钮 */
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                font-size: 1.5rem;
-                cursor: pointer;
-                color: #333;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .category-item, .instrument-item, .event-item, .study-abroad-item, .artist-item {
-                flex: 1 1 100%;
-                max-width: 100%;
-            }
-
-            .filter input {
-                width: 100%;
+            nav ul li {
+                margin: 5px 0;
             }
         }
     </style>
@@ -633,23 +547,8 @@
                 <button onclick="switchLanguage('cn')">中文</button>
                 <button onclick="switchLanguage('es')">Español</button>
             </div>
-            <span class="hamburger" id="hamburger">&#9776;</span> <!-- Unicode 汉堡菜单图标 -->
         </div>
     </header>
-
-    <!-- 侧边导航栏 -->
-    <div id="sideNav" class="side-nav">
-        <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
-        <a href="#" id="home-link-side" onclick="showSection('home')">主页</a>
-        <a href="#" id="instruments-link-side" onclick="showSection('instrument-categories')">乐器浏览</a>
-        <a href="#" id="event-link-side" onclick="showSection('event')">活动</a>
-        <a href="#" id="study-abroad-link-side" onclick="showSection('study-abroad')">留学项目</a>
-        <a href="#" id="artists-link-side" onclick="showSection('artists')">艺术家</a>
-        <a href="#" id="contact-link-side" onclick="showSection('contact')">联系方式</a>
-    </div>
-
-    <!-- Overlay -->
-    <div id="overlay" class="overlay"></div>
 
     <!-- 导航栏 -->
     <nav>
@@ -687,13 +586,13 @@
                     <div class="event-list">
                         <!-- 最新活动项 -->
                         <div class="event-item" onclick="showEventDetails(0)">
-                            <img src="event1.jpg" alt="音乐工作坊：古典乐之旅">
+                            <img src="event1.jpg" alt="Event 1">
                             <h3 id="latest-event-0-title">音乐工作坊：古典乐之旅</h3>
                             <p id="latest-event-0-date">日期: 2024-11-10</p>
                             <p id="latest-event-0-location">地点: 音乐厅 A</p>
                         </div>
                         <div class="event-item" onclick="showEventDetails(1)">
-                            <img src="event2.jpg" alt="爵士乐夜晚">
+                            <img src="event2.jpg" alt="Event 2">
                             <h3 id="latest-event-1-title">爵士乐夜晚</h3>
                             <p id="latest-event-1-date">日期: 2024-12-05</p>
                             <p id="latest-event-1-location">地点: 音乐中心 B</p>
@@ -709,19 +608,19 @@
                     <div class="instrument-list">
                         <!-- 推荐的乐器项 -->
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[0])">
-                            <img src="trumpet1.jpg" alt="小号 001">
+                            <img src="trumpet1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-0">小号 001</h3>
                             <p id="featured-brand-0">品牌：雅马哈</p>
                             <p class="price" id="featured-price-0">价格：$1200</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[1])">
-                            <img src="violin1.jpg" alt="小提琴 001">
+                            <img src="violin1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-1">小提琴 001</h3>
                             <p id="featured-brand-1">品牌：斯特拉迪瓦里</p>
                             <p class="price" id="featured-price-1">价格：$1500</p>
                         </div>
                         <div class="instrument-item" onclick="showInstrumentDetails(featuredInstruments[2])">
-                            <img src="flute1.jpg" alt="长笛 001">
+                            <img src="flute1.jpg" alt="Featured Instrument">
                             <h3 id="featured-instrument-2">长笛 001</h3>
                             <p id="featured-brand-2">品牌：布菲</p>
                             <p class="price" id="featured-price-2">价格：$800</p>
@@ -783,7 +682,7 @@
                 <h2 id="instruments-title">乐器浏览</h2>
                 <div class="filter">
                     <label for="filter" id="filter-label">按品牌或类型筛选：</label>
-                    <input type="text" id="filter" oninput="filterInstruments(this.value)" placeholder="输入品牌或类型...">
+                    <input type="text" id="filter" oninput="filterInstruments(this.value)">
                 </div>
                 <div id="instrument-list" class="instrument-list">
                     <!-- 乐器项将在这里生成 -->
@@ -813,13 +712,13 @@
                 <div class="event-list">
                     <!-- 活动项 -->
                     <div class="event-item" onclick="showEventDetails(0)">
-                        <img src="event1.jpg" alt="音乐工作坊：古典乐之旅">
+                        <img src="event1.jpg" alt="Event 1">
                         <h3 id="event-name-0">音乐工作坊：古典乐之旅</h3>
                         <p id="event-date-0">日期: 2024-11-10</p>
                         <p id="event-location-0">地点: 音乐厅 A</p>
                     </div>
                     <div class="event-item" onclick="showEventDetails(1)">
-                        <img src="event2.jpg" alt="爵士乐夜晚">
+                        <img src="event2.jpg" alt="Event 2">
                         <h3 id="event-name-1">爵士乐夜晚</h3>
                         <p id="event-date-1">日期: 2024-12-05</p>
                         <p id="event-location-1">地点: 音乐中心 B</p>
@@ -830,7 +729,7 @@
 
         <!-- 活动详情 -->
         <section id="event-details" class="hidden">
-            <div class="card details">
+            <div class="card">
                 <h2 id="event-details-title">活动详情</h2>
                 <img id="event-details-img" src="" alt="Event Image">
                 <p id="event-details-description">活动的详细信息。</p>
@@ -862,7 +761,7 @@
 
         <!-- 留学项目详情 -->
         <section id="study-details" class="hidden">
-            <div class="card details">
+            <div class="card">
                 <h2 id="study-details-title">留学项目详情</h2>
                 <img id="study-details-img" src="" alt="Study Abroad Image">
                 <p id="study-details-description">留学项目的详细信息。</p>
@@ -937,7 +836,7 @@
         // 翻译对象
         const translations = {
             en: {
-                "site-title": "Personal Website",
+                "site-title": " Personal Website",
                 "home-link": "Home",
                 "instruments-link": "Instruments",
                 "event-link": "Events",
@@ -1130,18 +1029,18 @@
                 const code = i.toString().padStart(3, '0');
                 instrumentData[category].push({
                     name: {
-                        en: `${capitalize(category)} ${code}`,
-                        cn: `${translations['cn'][category]} ${code}`,
-                        es: `${translations['es'][category]} ${code}`
+                        en: ${capitalize(category)} ${code},
+                        cn: ${translations['cn'][category]} ${code},
+                        es: ${translations['es'][category]} ${code}
                     },
-                    img: `${category}${i}.jpg`, // 图片命名为 category1.jpg, category2.jpg 等
+                    img: ${category}${i}.jpg, // 图片命名为 category1.jpg, category2.jpg 等
                     description: {
-                        en: `Description for ${capitalize(category)} ${code}`,
-                        cn: `${translations['cn'][category]} ${code} 的描述`,
-                        es: `Descripción para ${translations['es'][category]} ${code}`
+                        en: Description for ${capitalize(category)} ${code},
+                        cn: ${translations['cn'][category]} ${code} 的描述,
+                        es: Descripción para ${translations['es'][category]} ${code}
                     },
-                    brand: `Brand ${i}`,
-                    price: `$${100 + i * 10}`
+                    brand: Brand ${i},
+                    price: $${(100 + i * 10)}
                 });
             }
         });
@@ -1242,6 +1141,11 @@
             return str.charAt(0).toUpperCase() + str.slice(1);
         }
 
+        function startExploring() {
+            showSection('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // 语言切换函数
         function switchLanguage(lang) {
             currentLanguage = lang;
@@ -1292,12 +1196,11 @@
 
         // 更新导航栏链接文本
         function updateNavLinks() {
-            const links = ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link',
-                           'home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'];
+            const links = ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link'];
             links.forEach(id => {
                 const link = document.getElementById(id);
-                if (link && translations[currentLanguage][id.replace('-side', '')]) {
-                    link.innerText = translations[currentLanguage][id.replace('-side', '')];
+                if (link && translations[currentLanguage][id]) {
+                    link.innerText = translations[currentLanguage][id];
                 }
             });
         }
@@ -1354,7 +1257,7 @@
             });
 
             if (filteredInstruments.length === 0) {
-                instrumentList.innerHTML = `<p>${translations[currentLanguage]["No instruments found."]}</p>`;
+                instrumentList.innerHTML = <p>${translations[currentLanguage]["No instruments found."]}</p>;
                 return;
             }
 
@@ -1389,17 +1292,16 @@
             const img = document.createElement('img');
             img.src = instrument.img;
             img.alt = instrument.name[currentLanguage];
-            img.loading = "lazy";
 
             const name = document.createElement('h3');
             name.innerText = instrument.name[currentLanguage];
 
             const brand = document.createElement('p');
-            brand.innerText = `${translations[currentLanguage]["brands"]}: ${instrument.brand}`;
+            brand.innerText = ${translations[currentLanguage]["brands"]}: ${instrument.brand};
 
             const price = document.createElement('p');
             price.className = 'price';
-            price.innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
+            price.innerText = ${translations[currentLanguage]["Price"]}: ${instrument.price};
 
             item.appendChild(img);
             item.appendChild(name);
@@ -1414,7 +1316,7 @@
             document.getElementById('details-title').innerText = instrument.name[currentLanguage];
             document.getElementById('details-img').src = instrument.img;
             document.getElementById('details-description').innerText = instrument.description[currentLanguage];
-            document.getElementById('details-price').innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
+            document.getElementById('details-price').innerText = ${translations[currentLanguage]["Price"]}: ${instrument.price};
 
             showSection('instrument-details');
         }
@@ -1425,8 +1327,8 @@
             document.getElementById('event-details-title').innerText = event.title[currentLanguage];
             document.getElementById('event-details-img').src = event.img;
             document.getElementById('event-details-description').innerText = event.description[currentLanguage];
-            document.getElementById('event-details-date').innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
-            document.getElementById('event-details-location').innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+            document.getElementById('event-details-date').innerText = ${translations[currentLanguage]["Date"]}: ${event.date};
+            document.getElementById('event-details-location').innerText = ${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]};
 
             showSection('event-details');
         }
@@ -1437,7 +1339,7 @@
             document.getElementById('study-details-title').innerText = program.title[currentLanguage];
             document.getElementById('study-details-img').src = program.img;
             document.getElementById('study-details-description').innerText = program.description[currentLanguage];
-            document.getElementById('study-details-country').innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+            document.getElementById('study-details-country').innerText = ${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]};
 
             showSection('study-details');
         }
@@ -1451,8 +1353,8 @@
             eventItems.forEach((item, index) => {
                 const event = eventData[index];
                 item.querySelector('h3').innerText = event.title[currentLanguage];
-                item.querySelector('#event-date-' + index).innerText = `${translations[currentLanguage]["Date"]}: ${event.date}`;
-                item.querySelector('#event-location-' + index).innerText = `${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]}`;
+                item.querySelector('#event-date-' + index).innerText = ${translations[currentLanguage]["Date"]}: ${event.date};
+                item.querySelector('#event-location-' + index).innerText = ${translations[currentLanguage]["Location"]}: ${event.location[currentLanguage]};
             });
         }
 
@@ -1465,7 +1367,7 @@
             studyItems.forEach((item, index) => {
                 const program = studyAbroadData[index];
                 item.querySelector('h3').innerText = program.title[currentLanguage];
-                item.querySelector('#study-country-' + index).innerText = `${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]}`;
+                item.querySelector('#study-country-' + index).innerText = ${translations[currentLanguage]["Country"]}: ${program.country[currentLanguage]};
             });
         }
 
@@ -1475,8 +1377,8 @@
             featuredItems.forEach((item, index) => {
                 const instrument = featuredInstruments[index];
                 item.querySelector('h3').innerText = instrument.name[currentLanguage];
-                item.querySelector('p').innerText = `${translations[currentLanguage]["brands"]}: ${instrument.brand}`;
-                item.querySelector('.price').innerText = `${translations[currentLanguage]["Price"]}: ${instrument.price}`;
+                item.querySelector('p').innerText = ${translations[currentLanguage]["brands"]}: ${instrument.brand};
+                item.querySelector('.price').innerText = ${translations[currentLanguage]["Price"]}: ${instrument.price};
             });
 
             document.getElementById('featured-title').innerText = translations[currentLanguage]['featured-title'];
@@ -1503,14 +1405,6 @@
             }
         }
 
-        // 切换侧边导航栏
-        function toggleSideNav() {
-            const sideNav = document.getElementById('sideNav');
-            const overlay = document.getElementById('overlay');
-            sideNav.classList.toggle('open');
-            overlay.classList.toggle('open');
-        }
-
         // 页面加载后初始化
         document.addEventListener("DOMContentLoaded", () => {
             const savedLanguage = localStorage.getItem('selectedLanguage') || 'cn';
@@ -1520,36 +1414,6 @@
 
             // 初始时显示主页
             showSection('home');
-
-            // 绑定事件监听器
-            document.getElementById('hamburger').addEventListener('click', toggleSideNav);
-            document.getElementById('closeBtn').addEventListener('click', toggleSideNav);
-            document.getElementById('overlay').addEventListener('click', toggleSideNav);
-
-            // 绑定侧边导航栏链接
-            ['home-link-side', 'instruments-link-side', 'event-link-side', 'study-abroad-link-side', 'artists-link-side', 'contact-link-side'].forEach(id => {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = link.getAttribute('href').substring(1);
-                        showSection(targetId);
-                        toggleSideNav(); // 关闭侧边导航栏
-                    });
-                }
-            });
-
-            // 绑定顶部导航栏链接
-            ['home-link', 'instruments-link', 'event-link', 'study-abroad-link', 'artists-link', 'contact-link'].forEach(id => {
-                const link = document.getElementById(id);
-                if (link) {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = link.getAttribute('href').substring(1);
-                        showSection(targetId);
-                    });
-                }
-            });
         });
     </script>
 </body>
