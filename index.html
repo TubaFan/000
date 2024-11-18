@@ -68,6 +68,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         /* 头部样式 */
@@ -80,12 +83,6 @@
             top: 0;
             z-index: 1000;
             transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-
-        header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         #site-title {
@@ -118,11 +115,9 @@
         /* 导航栏样式 */
         nav {
             background-color: var(--nav-background);
-            position: sticky;
-            top: 70px;
-            z-index: 999;
             box-shadow: 0 2px 4px var(--shadow-color);
             transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+            z-index: 999;
         }
 
         nav .container {
@@ -679,15 +674,12 @@
                 max-width: calc(50% - 30px);
             }
 
-            header .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
+            /* 隐藏语言切换按钮以释放空间 */
             .language-switch {
-                margin-top: 10px;
+                display: none;
             }
 
+            /* 隐藏顶部导航栏，并显示汉堡菜单 */
             nav ul {
                 display: none; /* 隐藏默认导航 */
             }
